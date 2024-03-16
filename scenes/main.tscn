@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=7 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 
@@ -16,6 +16,8 @@ tonemap_mode = 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_finwm"]
 size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mwrh3"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -46,3 +48,6 @@ tracker = &"right_hand"
 [node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightHand"]
 mesh = SubResource("BoxMesh_finwm")
 skeleton = NodePath("../../LeftHand")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_mwrh3")

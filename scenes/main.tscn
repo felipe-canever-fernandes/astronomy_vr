@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=8 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -16,8 +16,6 @@ sky_material = SubResource("ProceduralSkyMaterial_n2jip")
 background_mode = 2
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_mwrh3"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -47,6 +45,3 @@ tracker = &"right_hand"
 
 [node name="RightHand" parent="XROrigin3D/RightHand" instance=ExtResource("3_a1m3w")]
 hand_material_override = ExtResource("3_tmbjj")
-
-[node name="Ground" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_mwrh3")

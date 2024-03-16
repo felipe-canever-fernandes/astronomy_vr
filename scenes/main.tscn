@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=6 format=3 uid="uid://dgujsn3tru3w2"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,6 +18,7 @@ tonemap_mode = 2
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_2r76i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_82r61")

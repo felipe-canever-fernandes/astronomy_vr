@@ -32,16 +32,16 @@ shadow_enabled = true
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 
-[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
 tracker = &"left_hand"
 
-[node name="LeftHand" parent="XROrigin3D/LeftHand" instance=ExtResource("2_cc1m1")]
+[node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_cc1m1")]
 hand_material_override = ExtResource("3_tmbjj")
 
-[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
 tracker = &"right_hand"
 
-[node name="RightHand" parent="XROrigin3D/RightHand" instance=ExtResource("3_a1m3w")]
+[node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("3_a1m3w")]
 hand_material_override = ExtResource("3_tmbjj")

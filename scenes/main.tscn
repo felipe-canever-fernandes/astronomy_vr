@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=13 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
-[ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_d5xf7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,20 +17,12 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_n2jip")
 
 [sub_resource type="Environment" id="Environment_82r61"]
-background_mode = 2
+background_mode = 1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_38m2k"]
-size = Vector2(10, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbg12"]
-albedo_color = Color(0.678431, 0.678431, 0.678431, 1)
-albedo_texture = ExtResource("9_d5xf7")
-uv1_triplanar = true
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
-size = Vector3(10, 1, 10)
+size = Vector3(100, 1, 100)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -44,6 +35,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
@@ -72,10 +64,6 @@ hand_material_override = ExtResource("3_tmbjj")
 player_calibrate_height = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("PlaneMesh_38m2k")
-surface_material_override/0 = SubResource("StandardMaterial3D_mbg12")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)

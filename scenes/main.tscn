@@ -75,6 +75,7 @@ top_level = true
 collision_layer = 524288
 collision_mask = 1023
 script = ExtResource("7_xxk4p")
+player_calibrate_height = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
 

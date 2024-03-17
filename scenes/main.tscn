@@ -51,6 +51,9 @@ tracker = &"left_hand"
 hand_material_override = ExtResource("3_tmbjj")
 
 [node name="FunctionTeleport" parent="XROrigin3D/LeftController" instance=ExtResource("4_mmhsi")]
+can_teleport_color = Color(1, 1, 1, 1)
+cant_teleport_color = Color(1, 0.654902, 0.6, 1)
+no_collision_color = Color(1, 1, 1, 1)
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
@@ -72,9 +75,9 @@ player_calibrate_height = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Sun" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_ie4fg")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
 omni_range = 75.0

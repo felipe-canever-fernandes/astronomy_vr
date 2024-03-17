@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=10 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_htorm"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_a1m3w"]
 [ext_resource type="Material" uid="uid://dvxp3kftr2x3u" path="res://resources/hand_material.tres" id="3_tmbjj"]
 
@@ -16,6 +17,8 @@ sky_material = SubResource("ProceduralSkyMaterial_n2jip")
 background_mode = 2
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qj2o"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -45,3 +48,8 @@ tracker = &"right_hand"
 
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("3_a1m3w")]
 hand_material_override = ExtResource("3_tmbjj")
+
+[node name="PlayerBody" parent="." instance=ExtResource("2_htorm")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerBody"]
+shape = SubResource("CapsuleShape3D_6qj2o")

@@ -5,6 +5,7 @@ class_name Body
 @onready var _mesh := $Mesh
 @onready var _mesh_instance := _mesh.mesh as SphereMesh
 
+## The radius in meters.
 @export var radius: float:
 	get:
 		return _mesh_instance.radius

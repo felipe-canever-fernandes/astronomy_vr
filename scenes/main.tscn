@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=17 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
+[ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_03vxy"]
 [ext_resource type="PackedScene" uid="uid://dijwuy7wkytnk" path="res://scenes/body.tscn" id="9_ho1w3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
@@ -22,12 +23,16 @@ background_mode = 1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxqlp"]
+albedo_texture = ExtResource("9_03vxy")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hoiqd"]
+material = SubResource("StandardMaterial3D_oxqlp")
+size = Vector2(100, 100)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
 size = Vector3(100, 1, 100)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nx05o"]
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -69,13 +74,15 @@ player_calibrate_height = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_hoiqd")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
 [node name="Sun" parent="." instance=ExtResource("9_ho1w3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material = SubResource("StandardMaterial3D_nx05o")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
 omni_range = 75.0

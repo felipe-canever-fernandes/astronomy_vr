@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
+[ext_resource type="PackedScene" uid="uid://dijwuy7wkytnk" path="res://scenes/body.tscn" id="9_ho1w3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,9 +28,6 @@ size = Vector3(100, 1, 100)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nx05o"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_ie4fg"]
-material = SubResource("StandardMaterial3D_nx05o")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -75,9 +73,9 @@ player_calibrate_height = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
-[node name="Sun" type="MeshInstance3D" parent="."]
+[node name="Sun" parent="." instance=ExtResource("9_ho1w3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("SphereMesh_ie4fg")
+material = SubResource("StandardMaterial3D_nx05o")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
 omni_range = 75.0

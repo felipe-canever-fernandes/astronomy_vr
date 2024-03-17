@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=16 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="7_xxk4p"]
+[ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_d5xf7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,16 +25,10 @@ tonemap_mode = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_38m2k"]
 size = Vector2(10, 10)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vnn1a"]
-noise_type = 4
-frequency = 0.15
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_eiyp5"]
-noise = SubResource("FastNoiseLite_vnn1a")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbg12"]
 albedo_color = Color(0.678431, 0.678431, 0.678431, 1)
-albedo_texture = SubResource("NoiseTexture2D_eiyp5")
+albedo_texture = ExtResource("9_d5xf7")
+uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
 size = Vector3(10, 1, 10)
@@ -74,13 +68,7 @@ hand_material_override = ExtResource("3_tmbjj")
 
 [node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("7_bbvjr")]
 
-[node name="PlayerBody" type="CharacterBody3D" parent="XROrigin3D" groups=["player_body"] instance=ExtResource("2_htorm")]
-process_priority = -100
-process_physics_priority = -100
-top_level = true
-collision_layer = 524288
-collision_mask = 1023
-script = ExtResource("7_xxk4p")
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("2_htorm")]
 player_calibrate_height = false
 
 [node name="Floor" type="StaticBody3D" parent="."]

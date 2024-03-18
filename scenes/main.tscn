@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=21 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -44,6 +44,10 @@ material = SubResource("StandardMaterial3D_02ck4")
 [sub_resource type="SphereMesh" id="SphereMesh_ttanw"]
 radius = 0.1
 height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_qc471"]
+radius = 0.025
+height = 0.05
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -105,3 +109,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 mesh = SubResource("SphereMesh_ttanw")
 script = ExtResource("10_78lbn")
 parent = NodePath("../Sun")
+orbital_period = 60.0
+
+[node name="Moon" type="MeshInstance3D" parent="." node_paths=PackedStringArray("parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.4)
+mesh = SubResource("SphereMesh_qc471")
+script = ExtResource("10_78lbn")
+parent = NodePath("../Planet")
+orbital_period = 10.0

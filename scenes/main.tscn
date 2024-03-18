@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=20 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
 [ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_03vxy"]
-[ext_resource type="PackedScene" uid="uid://dijwuy7wkytnk" path="res://scenes/body.tscn" id="9_ho1w3"]
+[ext_resource type="Script" path="res://scripts/body.gd" id="10_78lbn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -34,9 +34,16 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or6mb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02ck4"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8vbqh"]
+material = SubResource("StandardMaterial3D_02ck4")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ttanw"]
+radius = 0.1
+height = 0.2
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -85,16 +92,15 @@ mesh = SubResource("PlaneMesh_hoiqd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
-[node name="Sun" parent="." instance=ExtResource("9_ho1w3")]
+[node name="Sun" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material = SubResource("StandardMaterial3D_or6mb")
-orbital_period = 0.1
+mesh = SubResource("SphereMesh_8vbqh")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Sun"]
+[node name="Light" type="OmniLight3D" parent="Sun"]
 omni_range = 75.0
 
-[node name="Planet" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("9_ho1w3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.99391, 1, 0.133244)
-material = SubResource("StandardMaterial3D_or6mb")
+[node name="Planet" type="MeshInstance3D" parent="." node_paths=PackedStringArray("parent")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+mesh = SubResource("SphereMesh_ttanw")
+script = ExtResource("10_78lbn")
 parent = NodePath("../Sun")
-orbital_period = 20.0

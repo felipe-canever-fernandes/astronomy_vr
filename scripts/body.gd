@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		_angle = 0
 
 	global_position.x = parent.global_position.x + _distance * cos(_angle)
-	global_position.z = parent.global_position.y + _distance * sin(_angle)
+	global_position.z = parent.global_position.z + _distance * sin(_angle)
 
 
 func _set_up_orbiting() -> void:

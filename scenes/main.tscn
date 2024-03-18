@@ -97,6 +97,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_8vbqh")
 
 [node name="Light" type="OmniLight3D" parent="Sun"]
+light_energy = 16.0
 omni_range = 75.0
 
 [node name="Planet" type="MeshInstance3D" parent="." node_paths=PackedStringArray("parent")]

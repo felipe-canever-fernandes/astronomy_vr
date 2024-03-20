@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=26 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
 [ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_03vxy"]
 [ext_resource type="Script" path="res://scripts/body.gd" id="10_78lbn"]
+[ext_resource type="PackedScene" uid="uid://bkx8teft6wc0v" path="res://scenes/menu_gui.tscn" id="12_3bct5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,12 +25,18 @@ background_mode = 1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_q2hk2"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7jr6"]
+resource_local_to_scene = true
 shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_q2hk2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_ywbkm"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_j7jr6")
-size = Vector2(0.3, 0.2)
+size = Vector2(0.4, 0.225)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxqlp"]
 albedo_texture = ExtResource("9_03vxy")
@@ -82,7 +89,7 @@ cant_teleport_color = Color(1, 0.654902, 0.6, 1)
 no_collision_color = Color(1, 1, 1, 1)
 
 [node name="Menu" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
-transform = Transform3D(0.642402, 0.25, 0.724444, -0.482963, 0.866025, 0.129409, -0.595035, -0.433013, 0.677077, 0.126667, -0.0356093, -0.0345268)
+transform = Transform3D(0.642402, 0.25, 0.724444, -0.482963, 0.866025, 0.129409, -0.595035, -0.433013, 0.677077, 0.165622, -0.0648957, -0.0706091)
 mesh = SubResource("QuadMesh_ywbkm")
 skeleton = NodePath("../../..")
 script = ExtResource("5_myupe")
@@ -131,5 +138,10 @@ mesh = SubResource("SphereMesh_qc471")
 script = ExtResource("10_78lbn")
 parent = NodePath("../Planet")
 orbital_period = 10.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(512, 288)
+
+[node name="MenuGUI" parent="SubViewport" instance=ExtResource("12_3bct5")]
 
 [connection signal="button_released" from="XROrigin3D/LeftController" to="XROrigin3D/LeftController/Menu" method="_on_left_controller_button_released"]

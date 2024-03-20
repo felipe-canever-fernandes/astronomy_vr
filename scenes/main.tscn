@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=23 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -22,6 +22,13 @@ sky_material = SubResource("ProceduralSkyMaterial_n2jip")
 background_mode = 1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7jr6"]
+shading_mode = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ywbkm"]
+material = SubResource("StandardMaterial3D_j7jr6")
+size = Vector2(0.3, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxqlp"]
 albedo_texture = ExtResource("9_03vxy")
@@ -73,6 +80,11 @@ can_teleport_color = Color(1, 1, 1, 1)
 cant_teleport_color = Color(1, 0.654902, 0.6, 1)
 no_collision_color = Color(1, 1, 1, 1)
 
+[node name="Menu" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
+transform = Transform3D(0.642402, 0.25, 0.724444, -0.482963, 0.866025, 0.129409, -0.595035, -0.433013, 0.677077, 0.126667, -0.0356093, -0.0345268)
+mesh = SubResource("QuadMesh_ywbkm")
+skeleton = NodePath("../../..")
+
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
 tracker = &"right_hand"
@@ -117,3 +129,5 @@ mesh = SubResource("SphereMesh_qc471")
 script = ExtResource("10_78lbn")
 parent = NodePath("../Planet")
 orbital_period = 10.0
+
+[connection signal="button_released" from="XROrigin3D/RightController" to="." method="_on_right_controller_button_released"]

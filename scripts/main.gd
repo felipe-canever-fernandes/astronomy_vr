@@ -8,3 +8,7 @@ func _ready() -> void:
 		get_viewport().use_xr = true
 	else:
 		printerr("OpenXR not initialized.")
+
+
+func _on_menu_gui_quit_button_up() -> void:
+	get_tree().quit()

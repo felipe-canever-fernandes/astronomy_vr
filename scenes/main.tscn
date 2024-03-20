@@ -145,3 +145,4 @@ size = Vector2i(512, 288)
 [node name="MenuGUI" parent="SubViewport" instance=ExtResource("12_3bct5")]
 
 [connection signal="button_released" from="XROrigin3D/LeftController" to="XROrigin3D/LeftController/Menu" method="_on_left_controller_button_released"]
+[connection signal="quit_button_up" from="SubViewport/MenuGUI" to="." method="_on_menu_gui_quit_button_up"]

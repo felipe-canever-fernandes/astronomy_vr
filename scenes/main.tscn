@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=24 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_a1m3w"]
 [ext_resource type="Material" uid="uid://dvxp3kftr2x3u" path="res://resources/hand_material.tres" id="3_tmbjj"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="5_myupe"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
 [ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_03vxy"]
@@ -84,6 +85,7 @@ no_collision_color = Color(1, 1, 1, 1)
 transform = Transform3D(0.642402, 0.25, 0.724444, -0.482963, 0.866025, 0.129409, -0.595035, -0.433013, 0.677077, 0.126667, -0.0356093, -0.0345268)
 mesh = SubResource("QuadMesh_ywbkm")
 skeleton = NodePath("../../..")
+script = ExtResource("5_myupe")
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
@@ -130,4 +132,4 @@ script = ExtResource("10_78lbn")
 parent = NodePath("../Planet")
 orbital_period = 10.0
 
-[connection signal="button_released" from="XROrigin3D/RightController" to="." method="_on_right_controller_button_released"]
+[connection signal="button_released" from="XROrigin3D/LeftController" to="XROrigin3D/LeftController/Menu" method="_on_left_controller_button_released"]

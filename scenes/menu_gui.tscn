@@ -35,11 +35,11 @@ text = "Play/Pause"
 
 [node name="IncreaseSimulationSpeed" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "+"
+text = "2x"
 
 [node name="DecreaseSimulationSpeed" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "-"
+text = "0.5x"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2

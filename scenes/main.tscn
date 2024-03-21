@@ -119,7 +119,6 @@ mesh = SubResource("SphereMesh_8vbqh")
 body_name = "Sun"
 
 [node name="Light" type="OmniLight3D" parent="Sun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_energy = 16.0
 omni_range = 75.0
 

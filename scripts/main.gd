@@ -28,6 +28,7 @@ func _ready() -> void:
 		printerr("OpenXR not initialized.")
 	
 	_menu.connect_scene_signal("play_up", _on_menu_gui_play_button_up)
+	_menu.connect_scene_signal("normal_speed_up", _on_menu_gui_normal_speed_button_up)
 	_menu.connect_scene_signal("quit_button_up", _on_menu_gui_quit_button_up)
 	_menu.connect_scene_signal("increase_simulation_speed_up", _on_menu_gui_increase_simulation_speed_up)
 	_menu.connect_scene_signal("decrease_simulation_speed_up", _on_menu_gui_decrease_simulation_speed_up)
@@ -48,6 +49,11 @@ func _on_menu_gui_play_button_up() -> void:
 		Game.simulation_speed_factor = 0
 	else:
 		Game.simulation_speed_factor = _old_simulation_speed_factor
+
+
+func _on_menu_gui_normal_speed_button_up() -> void:
+	if not _is_game_paused:
+		Game.simulation_speed_factor = 1
 
 
 func _on_menu_gui_increase_simulation_speed_up() -> void:

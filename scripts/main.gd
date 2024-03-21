@@ -3,6 +3,9 @@ extends Node3D
 @onready var _menu := $XROrigin3D/LeftController/Menu
 @onready var _pointer := $XROrigin3D/RightController/FunctionPointer
 
+var _is_game_paused: bool = false
+var _old_simulation_speed_factor: float
+
 
 var _menu_enabled: bool:
 	get:
@@ -24,6 +27,7 @@ func _ready() -> void:
 	else:
 		printerr("OpenXR not initialized.")
 	
+	_menu.connect_scene_signal("play_up", _on_menu_gui_play_button_up)
 	_menu.connect_scene_signal("quit_button_up", _on_menu_gui_quit_button_up)
 	_menu.connect_scene_signal("increase_simulation_speed_up", _on_menu_gui_increase_simulation_speed_up)
 	_menu.connect_scene_signal("decrease_simulation_speed_up", _on_menu_gui_decrease_simulation_speed_up)
@@ -36,12 +40,24 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 		_menu_enabled = not _menu_enabled
 
 
+func _on_menu_gui_play_button_up() -> void:
+	_is_game_paused = not _is_game_paused
+
+	if _is_game_paused:
+		_old_simulation_speed_factor = Game.simulation_speed_factor
+		Game.simulation_speed_factor = 0
+	else:
+		Game.simulation_speed_factor = _old_simulation_speed_factor
+
+
 func _on_menu_gui_increase_simulation_speed_up() -> void:
-	Game.simulation_speed_factor *= 2
+	if not _is_game_paused:
+		Game.simulation_speed_factor *= 2
 
 
 func _on_menu_gui_decrease_simulation_speed_up() -> void:
-	Game.simulation_speed_factor /= 2
+	if not _is_game_paused:
+		Game.simulation_speed_factor /= 2
 
 
 func _on_menu_gui_quit_button_up() -> void:

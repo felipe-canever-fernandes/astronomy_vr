@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
 [ext_resource type="Texture2D" uid="uid://bubealum60yf2" path="res://textures/floor.png" id="9_03vxy"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="9_yrm02"]
-[ext_resource type="Script" path="res://scripts/body.gd" id="10_78lbn"]
 [ext_resource type="PackedScene" uid="uid://bkx8teft6wc0v" path="res://scenes/menu_gui.tscn" id="12_3bct5"]
+[ext_resource type="PackedScene" uid="uid://bxg7qliyo1b16" path="res://scenes/body.tscn" id="13_e00vo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -113,25 +113,24 @@ mesh = SubResource("PlaneMesh_hoiqd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
-[node name="Sun" type="MeshInstance3D" parent="."]
+[node name="Sun" parent="." instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_8vbqh")
 
 [node name="Light" type="OmniLight3D" parent="Sun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_energy = 16.0
 omni_range = 75.0
 
-[node name="Planet" type="MeshInstance3D" parent="." node_paths=PackedStringArray("parent")]
+[node name="Planet" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 mesh = SubResource("SphereMesh_ttanw")
-script = ExtResource("10_78lbn")
 parent = NodePath("../Sun")
 orbital_period = 60.0
 
-[node name="Moon" type="MeshInstance3D" parent="." node_paths=PackedStringArray("parent")]
+[node name="Moon" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.4)
 mesh = SubResource("SphereMesh_qc471")
-script = ExtResource("10_78lbn")
 parent = NodePath("../Planet")
 orbital_period = 10.0
 

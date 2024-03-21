@@ -116,6 +116,7 @@ shape = SubResource("BoxShape3D_nhc8g")
 [node name="Sun" parent="." instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_8vbqh")
+body_name = "Sun"
 
 [node name="Light" type="OmniLight3D" parent="Sun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -125,12 +126,14 @@ omni_range = 75.0
 [node name="Planet" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 mesh = SubResource("SphereMesh_ttanw")
+body_name = "Planet"
 parent = NodePath("../Sun")
 orbital_period = 60.0
 
 [node name="Moon" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.4)
 mesh = SubResource("SphereMesh_qc471")
+body_name = "Moon"
 parent = NodePath("../Planet")
 orbital_period = 10.0
 

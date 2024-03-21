@@ -4,3 +4,9 @@
 
 [node name="Body" type="MeshInstance3D"]
 script = ExtResource("1_4gxck")
+body_name = null
+
+[node name="Label" type="Label3D" parent="."]
+pixel_size = 0.001
+billboard = 2
+text = "Body"

@@ -29,8 +29,18 @@ grow_vertical = 2
 layout_mode = 2
 text = "Astronomy VR"
 
+[node name="IncreaseSimulationSpeed" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="DecreaseSimulationSpeed" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "-"
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
+[connection signal="button_up" from="VBoxContainer/IncreaseSimulationSpeed" to="." method="_on_increase_simulation_speed_button_up"]
+[connection signal="button_up" from="VBoxContainer/DecreaseSimulationSpeed" to="." method="_on_decrease_simulation_speed_button_up"]
 [connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]

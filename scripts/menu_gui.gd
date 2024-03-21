@@ -1,7 +1,17 @@
 extends Control
 
 
+signal increase_simulation_speed_up
+signal decrease_simulation_speed_up
 signal quit_button_up
+
+
+func _on_increase_simulation_speed_button_up() -> void:
+	increase_simulation_speed_up.emit()
+
+
+func _on_decrease_simulation_speed_button_up() -> void:
+	decrease_simulation_speed_up.emit()
 
 
 func _on_quit_button_up() -> void:

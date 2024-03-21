@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	if parent == null:
 		return
 	
-	_angle += _angular_speed * delta
+	_angle += _angular_speed * delta * Game.simulation_speed_factor
 	
 	if _angle >= 2 * PI:
 		_angle = 0

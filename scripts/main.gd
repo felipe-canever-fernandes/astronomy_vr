@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var _camera := $XROrigin3D/XRCamera3D
 @onready var _menu := $XROrigin3D/LeftController/Menu
 @onready var _pointer := $XROrigin3D/RightController/FunctionPointer
 
@@ -34,6 +35,10 @@ func _ready() -> void:
 	_menu.connect_scene_signal("decrease_simulation_speed_up", _on_menu_gui_decrease_simulation_speed_up)
 
 	_menu_enabled = false
+
+
+func _process(_delta: float) -> void:
+	Game.player_camera_position = _camera.global_position
 
 
 func _on_left_controller_button_pressed(button_name: String) -> void:

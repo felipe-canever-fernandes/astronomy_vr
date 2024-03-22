@@ -117,6 +117,11 @@ shape = SubResource("BoxShape3D_nhc8g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("SphereMesh_8vbqh")
 body_name = "Sun"
+info = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
+
+Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
+
+Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget."
 
 [node name="Light" type="OmniLight3D" parent="Sun"]
 light_energy = 16.0
@@ -126,6 +131,9 @@ omni_range = 75.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
 mesh = SubResource("SphereMesh_ttanw")
 body_name = "Planet"
+info = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Ornare aenean euismod elementum nisi. In arcu cursus euismod quis viverra nibh. Id leo in vitae turpis massa sed elementum tempus egestas. Sed nisi lacus sed viverra tellus in hac habitasse platea. Est ante in nibh mauris cursus mattis. Eget dolor morbi non arcu risus quis. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Aliquam nulla facilisi cras fermentum. Bibendum at varius vel pharetra vel turpis. Rhoncus urna neque viverra justo nec ultrices dui sapien eget. Dictum sit amet justo donec. Erat nam at lectus urna duis convallis convallis tellus id. Lacus viverra vitae congue eu consequat ac. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu.
+
+Ornare lectus sit amet est. Morbi tristique senectus et netus et malesuada fames. Cursus turpis massa tincidunt dui ut ornare lectus sit. Eget lorem dolor sed viverra. Pulvinar neque laoreet suspendisse interdum. Ut lectus arcu bibendum at varius vel pharetra. Porttitor lacus luctus accumsan tortor posuere. Purus viverra accumsan in nisl nisi scelerisque eu. Sed felis eget velit aliquet. Faucibus interdum posuere lorem ipsum dolor sit. Quam lacus suspendisse faucibus interdum. Et pharetra pharetra massa massa ultricies mi. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Est ultricies integer quis auctor elit sed vulputate."
 parent = NodePath("../Sun")
 orbital_period = 60.0
 
@@ -133,6 +141,7 @@ orbital_period = 60.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.4)
 mesh = SubResource("SphereMesh_qc471")
 body_name = "Moon"
+info = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet aliquam id diam maecenas ultricies mi eget. Viverra justo nec ultrices dui sapien eget mi proin. Et sollicitudin ac orci phasellus egestas. Placerat in egestas erat imperdiet sed. Purus semper eget duis at tellus. Viverra tellus in hac habitasse platea dictumst. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Orci dapibus ultrices in iaculis."
 parent = NodePath("../Planet")
 orbital_period = 10.0
 

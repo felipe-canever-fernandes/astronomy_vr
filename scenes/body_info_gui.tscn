@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://bytbjn4vvxomr"]
+
+[ext_resource type="Script" path="res://scripts/body_info_gui.gd" id="1_gkwfd"]
+
+[node name="BodyInfoGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkwfd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(512, 648)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -324.0
+offset_right = 256.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Info" type="RichTextLabel" parent="MarginContainer"]
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
+
+Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
+
+Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget."
+autowrap_mode = 2

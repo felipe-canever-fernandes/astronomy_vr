@@ -1,26 +1,34 @@
-@tool
-extends MeshInstance3D
+extends Node3D
 class_name Body
+
+const _MAXIMUM_DESCRIPTION_PANEL_ROTATION_OFFSET := PI / 2
+const _GUI_OFFSET := 0.05
+
+@onready var _name_label: Label3D = $NameLabel
+@onready var _description_panel: Node3D = $DescriptionPanel
+@onready var _description_panel_panel: Node3D = $DescriptionPanel/Panel
+@onready var _description_panel_gui: BodyInfoGUI = _description_panel_panel.scene_node
+
 
 ## The name of this body that will be displayed on its label.
 @export var body_name: String
-## Information about this body.
-@export_multiline var info: String
+## A description that will be shown on the description panel.
+@export_multiline var description: String
 ## The body around which this body orbits.
 @export var parent: Node3D
 ## The time it takes for this body to orbit around its parent, in seconds.
 @export var orbital_period: float = 30
 
-@onready var _label := $Label
-@onready var _info := $Info
-@onready var _info_panel := $Info/Node3D
+var _mesh: MeshInstance3D
 
-var radius: float:
+var _size: Vector3:
 	get:
-		return get_aabb().size.x / 2
+		return _mesh.get_aabb().size
 
-var _distance: float = 0
-var _angle: float = 0
+
+var _orbital_distance: float = 0
+var _orbital_angle: float = 0
+
 
 var _angular_speed: float:
 	get:
@@ -28,57 +36,68 @@ var _angular_speed: float:
 
 
 func _ready() -> void:
+	_find_mesh()
 	_set_up_gui()
-	_set_up_orbiting()
+	_set_up_orbit()
 
 
 func _process(delta: float) -> void:
-	_set_info_rotation()
+	_set_description_panel_rotation()
 	_orbit(delta)
 
 
-func _set_info_rotation() -> void:
-	if Engine.is_editor_hint():
-		return
-
-	var player_horizontal_position := Vector3(
-		Game.player_camera_position.x,
-		_info.global_position.y,
-		Game.player_camera_position.z
-	)
-
-	_info.look_at(player_horizontal_position)
-	_info.global_rotation.y += -1 / (exp(radius) - log(PI / 2)) + PI / 2
-
-
-func _orbit(delta: float) -> void:
-	if Engine.is_editor_hint():
-		return
-	
-	if parent == null:
-		return
-	
-	_angle += _angular_speed * delta * Game.simulation_speed_factor
-	
-	if _angle >= 2 * PI:
-		_angle = 0
-
-	global_position.x = parent.global_position.x + _distance * cos(_angle)
-	global_position.z = parent.global_position.z + _distance * sin(_angle)
+func _find_mesh():
+	for node in get_children():
+		if node is MeshInstance3D:
+			print("Found!")
+			_mesh = node
+			break
 
 
 func _set_up_gui() -> void:
-	_label.text = body_name
-	_label.position.y = radius + 0.05
+	_name_label.text = body_name
+	_description_panel_gui.text = description
 
-	var info_gui: BodyInfoGUI = _info_panel.scene_node
-	info_gui.text = info
-	_info_panel.position.x = radius + _info_panel.screen_size.x / 2 + 0.05
+	_name_label.position.y = _size.y / 2 + _GUI_OFFSET
+
+	_description_panel_panel.position.x = \
+			_size.x / 2 + _description_panel_panel.screen_size.x / 2 + _GUI_OFFSET
 	
 	
-func _set_up_orbiting() -> void:
+func _set_up_orbit() -> void:
 	if parent == null:
 		return
 
-	_distance = parent.global_position.distance_to(global_position)
-	_angle = acos(global_position.x / _distance)
+	_orbital_distance = parent.global_position.distance_to(global_position)
+	_orbital_angle = acos(global_position.x / _orbital_distance)
+
+
+func _set_description_panel_rotation() -> void:
+	var player_horizontal_position := Vector3(
+		Game.player_camera_position.x,
+		_description_panel.global_position.y,
+		Game.player_camera_position.z
+	)
+
+	_description_panel.look_at(player_horizontal_position)
+
+	var offset := _MAXIMUM_DESCRIPTION_PANEL_ROTATION_OFFSET
+
+	_description_panel.global_rotation.y += \
+			-1 / exp(_size.x / 2 - log(offset)) + offset
+
+
+func _orbit(delta: float) -> void:
+	if parent == null:
+		return
+	
+	_orbital_angle += _angular_speed * delta * Game.simulation_speed_factor
+	
+	if _orbital_angle >= 2 * PI:
+		_orbital_angle = 0
+
+	global_position.x = \
+			parent.global_position.x + _orbital_distance * cos(_orbital_angle)
+
+	global_position.z = \
+			parent.global_position.z + _orbital_distance * sin(_orbital_angle)

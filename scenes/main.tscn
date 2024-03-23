@@ -37,20 +37,20 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_02ck4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcw7w"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_8vbqh"]
-material = SubResource("StandardMaterial3D_02ck4")
+[sub_resource type="SphereMesh" id="SphereMesh_gseub"]
+material = SubResource("StandardMaterial3D_lcw7w")
 
-[sub_resource type="SphereMesh" id="SphereMesh_ttanw"]
+[sub_resource type="SphereMesh" id="SphereMesh_kp8r6"]
 radius = 0.1
 height = 0.2
 
-[sub_resource type="SphereMesh" id="SphereMesh_qc471"]
-radius = 0.025
-height = 0.05
+[sub_resource type="SphereMesh" id="SphereMesh_cptbp"]
+radius = 0.01
+height = 0.02
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -113,36 +113,36 @@ mesh = SubResource("PlaneMesh_hoiqd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
-[node name="Sun" parent="." instance=ExtResource("13_e00vo")]
+[node name="Star" parent="." instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("SphereMesh_8vbqh")
-body_name = "Sun"
-info = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
+body_name = "Star"
+description = "A star is a luminous spheroid of plasma held together by self-gravity. The nearest star to Earth is the Sun. Many other stars are visible to the naked eye at night; their immense distances from Earth make them appear as fixed points of light. The most prominent stars have been categorised into constellations and asterisms, and many of the brightest stars have proper names. Astronomers have assembled star catalogues that identify the known stars and provide standardized stellar designations. The observable universe contains an estimated 1022 to 1024 stars. Only about 4,000 of these stars are visible to the naked eye—all within the Milky Way galaxy."
 
-Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Star"]
+mesh = SubResource("SphereMesh_gseub")
 
-Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget."
-
-[node name="Light" type="OmniLight3D" parent="Sun"]
+[node name="Light" type="OmniLight3D" parent="Star"]
 light_energy = 16.0
 omni_range = 75.0
 
 [node name="Planet" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
-mesh = SubResource("SphereMesh_ttanw")
 body_name = "Planet"
-info = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Ornare aenean euismod elementum nisi. In arcu cursus euismod quis viverra nibh. Id leo in vitae turpis massa sed elementum tempus egestas. Sed nisi lacus sed viverra tellus in hac habitasse platea. Est ante in nibh mauris cursus mattis. Eget dolor morbi non arcu risus quis. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique. Aliquam nulla facilisi cras fermentum. Bibendum at varius vel pharetra vel turpis. Rhoncus urna neque viverra justo nec ultrices dui sapien eget. Dictum sit amet justo donec. Erat nam at lectus urna duis convallis convallis tellus id. Lacus viverra vitae congue eu consequat ac. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu.
-
-Ornare lectus sit amet est. Morbi tristique senectus et netus et malesuada fames. Cursus turpis massa tincidunt dui ut ornare lectus sit. Eget lorem dolor sed viverra. Pulvinar neque laoreet suspendisse interdum. Ut lectus arcu bibendum at varius vel pharetra. Porttitor lacus luctus accumsan tortor posuere. Purus viverra accumsan in nisl nisi scelerisque eu. Sed felis eget velit aliquet. Faucibus interdum posuere lorem ipsum dolor sit. Quam lacus suspendisse faucibus interdum. Et pharetra pharetra massa massa ultricies mi. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Est ultricies integer quis auctor elit sed vulputate."
-parent = NodePath("../Sun")
+description = "A planet is a large, rounded astronomical body that is neither a star nor its remnant. The best available theory of planet formation is the nebular hypothesis, which posits that an interstellar cloud collapses out of a nebula to create a young protostar orbited by a protoplanetary disk. Planets grow in this disk by the gradual accumulation of material driven by gravity, a process called accretion. The Solar System has at least eight planets: the terrestrial planets Mercury, Venus, Earth, and Mars, and the giant planets Jupiter, Saturn, Uranus, and Neptune."
+parent = NodePath("../Star")
 orbital_period = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet"]
+mesh = SubResource("SphereMesh_kp8r6")
 
 [node name="Moon" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.4)
-mesh = SubResource("SphereMesh_qc471")
 body_name = "Moon"
-info = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet aliquam id diam maecenas ultricies mi eget. Viverra justo nec ultrices dui sapien eget mi proin. Et sollicitudin ac orci phasellus egestas. Placerat in egestas erat imperdiet sed. Purus semper eget duis at tellus. Viverra tellus in hac habitasse platea dictumst. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Orci dapibus ultrices in iaculis."
+description = "A natural satellite is, in the most common usage, an astronomical body that orbits a planet, dwarf planet, or small Solar System body (or sometimes another natural satellite). Natural satellites are colloquially referred to as moons, a derivation from the Moon of Earth."
 parent = NodePath("../Planet")
-orbital_period = 10.0
+orbital_period = 5.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Moon"]
+mesh = SubResource("SphereMesh_cptbp")
 
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="." method="_on_left_controller_button_pressed"]

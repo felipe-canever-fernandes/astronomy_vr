@@ -32,11 +32,4 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Info" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
-
-Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl nisi scelerisque eu ultrices vitae auctor eu. Dui faucibus in ornare quam viverra orci sagittis eu. Amet consectetur adipiscing elit ut aliquam purus. At urna condimentum mattis pellentesque id. Neque egestas congue quisque egestas diam in. Quisque non tellus orci ac auctor augue mauris. Eu feugiat pretium nibh ipsum consequat nisl vel. Elit scelerisque mauris pellentesque pulvinar. Mi in nulla posuere sollicitudin aliquam. Lacinia quis vel eros donec ac odio. Odio tempor orci dapibus ultrices in iaculis nunc sed.
-
-Magna fringilla urna porttitor rhoncus dolor. Diam phasellus vestibulum lorem sed risus ultricies. Fames ac turpis egestas integer. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Eget dolor morbi non arcu risus quis. Sed vulputate mi sit amet mauris commodo. Mollis nunc sed id semper risus. At tempor commodo ullamcorper a. Ac odio tempor orci dapibus ultrices in iaculis. Morbi enim nunc faucibus a pellentesque sit amet porttitor eget."
 autowrap_mode = 2

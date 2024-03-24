@@ -32,4 +32,5 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Info" type="RichTextLabel" parent="MarginContainer"]
 layout_mode = 2
+bbcode_enabled = true
 autowrap_mode = 2

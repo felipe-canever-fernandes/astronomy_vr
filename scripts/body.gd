@@ -1,13 +1,6 @@
 extends Node3D
 class_name Body
 
-const _GUI_OFFSET := 0.05
-
-@onready var _name_label: Label3D = $NameLabel
-
-
-## The name of this body that will be displayed on its label.
-@export var body_name: String
 ## The body around which this body orbits.
 @export var parent: Node3D
 ## The time it takes for this body to orbit around its parent, in seconds.
@@ -16,13 +9,6 @@ const _GUI_OFFSET := 0.05
 @export var rotation_period: float
 
 var _mesh: MeshInstance3D
-
-
-var _size: Vector3:
-	get:
-		return _mesh.get_aabb().size * Game.simulation_scale
-
-
 var _initial_orbital_distance: float
 
 
@@ -45,7 +31,6 @@ var _rotation_angular_speed: float:
 
 
 func _ready() -> void:
-	_name_label.text = body_name
 	_set_initial_orbital_distance()
 	_find_mesh()
 	_set_up_orbit()
@@ -53,7 +38,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_mesh.scale = Game.simulation_scale * Vector3.ONE
-	_update_gui()
 	_rotate(delta)
 	_orbit(delta)
 
@@ -70,10 +54,6 @@ func _find_mesh():
 			print("Found!")
 			_mesh = node
 			break
-
-
-func _update_gui() -> void:
-	_name_label.position.y = _size.y / 2 + _GUI_OFFSET
 	
 	
 func _set_up_orbit() -> void:

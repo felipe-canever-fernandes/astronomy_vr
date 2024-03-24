@@ -3,9 +3,13 @@ extends Node3D
 const _SYSTEM_HEIGHT_OFFSET := -0.3
 
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
+@onready var _left_controller: XRController3D = $XROrigin3D/LeftController
 @onready var _menu: Node3D = $XROrigin3D/LeftController/Menu
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
+@onready var _movement_direct: XRToolsMovementDirect = $XROrigin3D/RightController/MovementDirect
 @onready var _system: Node3D = $System
+
+@onready var _initial_movement_speed: float = _movement_direct.max_speed
 
 
 @export var simulation_speed: float:
@@ -46,6 +50,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
+	_set_movement_speed()
 
 
 func _set_up_xr() -> void:
@@ -72,6 +77,14 @@ func _set_up_controls() -> void:
 func _set_up_system() -> void:
 	_system.position.y = _camera.global_position.y + _SYSTEM_HEIGHT_OFFSET
 
+
+func _set_movement_speed() -> void:
+	if not _left_controller.is_button_pressed("grip_click"):
+		_movement_direct.max_speed = _initial_movement_speed
+	else:
+		_movement_direct.max_speed = \
+				_initial_movement_speed * Game.simulation_scale
+	
 
 func _on_left_controller_button_pressed(button_name: String) -> void:
 	if button_name == "ax_button":

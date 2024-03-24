@@ -32,6 +32,7 @@ tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxqlp"]
 transparency = 1
+shading_mode = 0
 albedo_texture = ExtResource("9_03vxy")
 uv1_triplanar = true
 

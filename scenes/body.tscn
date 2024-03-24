@@ -22,3 +22,12 @@ scene = ExtResource("3_qkkfl")
 viewport_size = Vector2(512, 648)
 transparent = 0
 unshaded = true
+
+[node name="Area" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 524288
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Area"]
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

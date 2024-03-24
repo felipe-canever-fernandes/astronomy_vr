@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=30 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://mpqkhcyxtl64" path="res://textures/sun.jpg" id="14_ef8r8"]
 [ext_resource type="Texture2D" uid="uid://c2lsfiorg8q35" path="res://textures/mars.jpg" id="15_1f18s"]
 [ext_resource type="Texture2D" uid="uid://5o6kv2yg1aqv" path="res://textures/moon.jpg" id="16_w7ary"]
+[ext_resource type="Script" path="res://scripts/sun_light.gd" id="16_wos71"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -36,10 +37,10 @@ uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hoiqd"]
 material = SubResource("StandardMaterial3D_oxqlp")
-size = Vector2(100, 100)
+size = Vector2(10000, 10000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
-size = Vector3(100, 1, 100)
+size = Vector3(10000, 1, 10000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcw7w"]
 albedo_texture = ExtResource("14_ef8r8")
@@ -68,6 +69,8 @@ height = 0.02
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
+simulation_speed = 1.0
+simulation_scale = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_82r61")
@@ -97,6 +100,7 @@ transform = Transform3D(0.642402, 0.25, 0.724445, -0.482963, 0.866025, 0.12941, 
 screen_size = Vector2(0.4, 0.225)
 collision_layer = 5242880
 scene = ExtResource("12_3bct5")
+viewport_size = Vector2(500, 300)
 transparent = 0
 unshaded = true
 
@@ -120,10 +124,10 @@ player_calibrate_height = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+[node name="Mesh" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("PlaneMesh_hoiqd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+[node name="CollisionShape" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
@@ -144,8 +148,9 @@ rotation_period = 20.0
 mesh = SubResource("SphereMesh_gseub")
 
 [node name="Light" type="OmniLight3D" parent="System/Star"]
-light_energy = 16.0
-omni_range = 75.0
+light_energy = 10.0
+omni_range = 10.0
+script = ExtResource("16_wos71")
 
 [node name="Planet" parent="System" node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

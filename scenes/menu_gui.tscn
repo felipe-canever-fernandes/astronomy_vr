@@ -33,15 +33,47 @@ text = "Astronomy VR"
 layout_mode = 2
 text = "Play/Pause"
 
-[node name="NormalSpeed" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SpeedContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
+layout_mode = 2
+text = "Speed"
+horizontal_alignment = 1
+
+[node name="NormalSpeed" type="Button" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
 layout_mode = 2
 text = "1x"
 
-[node name="IncreaseSimulationSpeed" type="Button" parent="VBoxContainer"]
+[node name="IncreaseSimulationSpeed" type="Button" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
 layout_mode = 2
 text = "2x"
 
-[node name="DecreaseSimulationSpeed" type="Button" parent="VBoxContainer"]
+[node name="DecreaseSimulationSpeed" type="Button" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
+layout_mode = 2
+text = "0.5x"
+
+[node name="ScaleContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
+layout_mode = 2
+text = "Scale"
+horizontal_alignment = 1
+
+[node name="NormalScale" type="Button" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
+layout_mode = 2
+text = "1:1"
+
+[node name="IncreaseScale" type="Button" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
+layout_mode = 2
+text = "2x"
+
+[node name="DecreaseScale" type="Button" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
 layout_mode = 2
 text = "0.5x"
 
@@ -50,7 +82,10 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="button_up" from="VBoxContainer/Play" to="." method="_on_play_button_up"]
-[connection signal="button_up" from="VBoxContainer/NormalSpeed" to="." method="_on_normal_speed_button_up"]
-[connection signal="button_up" from="VBoxContainer/IncreaseSimulationSpeed" to="." method="_on_increase_simulation_speed_button_up"]
-[connection signal="button_up" from="VBoxContainer/DecreaseSimulationSpeed" to="." method="_on_decrease_simulation_speed_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/SpeedContainer/NormalSpeed" to="." method="_on_normal_speed_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/SpeedContainer/IncreaseSimulationSpeed" to="." method="_on_increase_simulation_speed_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/SpeedContainer/DecreaseSimulationSpeed" to="." method="_on_decrease_simulation_speed_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/ScaleContainer/NormalScale" to="." method="_on_normal_scale_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/ScaleContainer/IncreaseScale" to="." method="_on_increase_scale_button_up"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/ScaleContainer/DecreaseScale" to="." method="_on_decrease_scale_button_up"]
 [connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]

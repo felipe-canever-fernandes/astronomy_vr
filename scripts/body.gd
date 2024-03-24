@@ -24,13 +24,22 @@ const _AREA_OFFSET := 1
 @export var rotation_period: float
 
 var _mesh: MeshInstance3D
+var _shape: SphereShape3D
+
 
 var _size: Vector3:
 	get:
-		return _mesh.get_aabb().size
+		return _mesh.get_aabb().size * Game.simulation_scale
 
 
-var _orbital_distance: float = 0
+var _initial_orbital_distance: float
+
+
+var _orbital_distance: float:
+	get:
+		return _initial_orbital_distance * Game.simulation_scale
+
+
 var _orbital_angle: float = 0
 
 
@@ -45,16 +54,28 @@ var _rotation_angular_speed: float:
 
 
 func _ready() -> void:
+	_name_label.text = body_name
+	_description_panel.visible = false
+	_description_panel_gui.text = description
+	_set_initial_orbital_distance()
 	_find_mesh()
 	_create_area_shape()
-	_set_up_gui()
 	_set_up_orbit()
 
 
 func _process(delta: float) -> void:
+	_mesh.scale = Game.simulation_scale * Vector3.ONE
+	_shape.radius = _size.x / 2 + _AREA_OFFSET
+	_update_gui()
 	_set_description_panel_rotation()
 	_rotate(delta)
 	_orbit(delta)
+
+
+func _set_initial_orbital_distance() -> void:
+	if parent != null:
+		_initial_orbital_distance = \
+				parent.global_position.distance_to(global_position)
 
 
 func _find_mesh():
@@ -66,28 +87,22 @@ func _find_mesh():
 
 
 func _create_area_shape() -> void:
-	var shape := SphereShape3D.new()
-	shape.radius = _size.x / 2 + _AREA_OFFSET
-
-	_area_collision_shape.shape = shape
+	_shape = SphereShape3D.new()
+	_area_collision_shape.shape = _shape
 
 
-func _set_up_gui() -> void:
-	_name_label.text = body_name
+func _update_gui() -> void:
 	_name_label.position.y = _size.y / 2 + _GUI_OFFSET
-	
-	_description_panel.visible = false
-	_description_panel_gui.text = description
 
 	_description_panel_panel.position.x = \
-			_size.x / 2 + _description_panel_panel.screen_size.x / 2 + _GUI_OFFSET
+			_size.x / 2 \
+			+ _description_panel_panel.screen_size.x / 2 + _GUI_OFFSET
 	
 	
 func _set_up_orbit() -> void:
 	if parent == null:
 		return
 
-	_orbital_distance = parent.global_position.distance_to(global_position)
 	_orbital_angle = acos(global_position.x / _orbital_distance)
 
 
@@ -109,15 +124,15 @@ func _set_description_panel_rotation() -> void:
 func _rotate(delta: float) -> void:
 	_mesh.rotate(
 		Vector3.UP,
-		_rotation_angular_speed * delta * Game.simulation_speed_factor
+		_rotation_angular_speed * delta * Game.simulation_speed
 	)
 
 
 func _orbit(delta: float) -> void:
 	if parent == null:
 		return
-	
-	_orbital_angle += _orbital_angular_speed * delta * Game.simulation_speed_factor
+			
+	_orbital_angle += _orbital_angular_speed * delta * Game.simulation_speed
 	
 	if _orbital_angle >= 2 * PI:
 		_orbital_angle = 0

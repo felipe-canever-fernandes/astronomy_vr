@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxg7qliyo1b16"]
+[gd_scene load_steps=2 format=3 uid="uid://bxg7qliyo1b16"]
 
 [ext_resource type="Script" path="res://scripts/body.gd" id="1_4gxck"]
-[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_y7kcp"]
-[ext_resource type="PackedScene" uid="uid://bytbjn4vvxomr" path="res://scenes/body_info_gui.tscn" id="3_qkkfl"]
 
 [node name="Body" type="Node3D"]
 script = ExtResource("1_4gxck")
@@ -11,24 +9,3 @@ script = ExtResource("1_4gxck")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 pixel_size = 0.001
 billboard = 2
-
-[node name="DescriptionPanel" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
-visible = false
-
-[node name="Panel" parent="DescriptionPanel" instance=ExtResource("2_y7kcp")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.3, 0, 0)
-screen_size = Vector2(0.5, 0.6)
-scene = ExtResource("3_qkkfl")
-viewport_size = Vector2(512, 648)
-transparent = 0
-unshaded = true
-
-[node name="Area" type="Area3D" parent="."]
-collision_layer = 2
-collision_mask = 524288
-
-[node name="CollisionShape" type="CollisionShape3D" parent="Area"]
-
-[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
-[connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

@@ -19,7 +19,9 @@ const _AREA_OFFSET := 1
 ## The body around which this body orbits.
 @export var parent: Node3D
 ## The time it takes for this body to orbit around its parent, in seconds.
-@export var orbital_period: float = 30
+@export var orbital_period: float
+## The time it takes for this body to rotate around its own axis.
+@export var rotation_period: float
 
 var _mesh: MeshInstance3D
 
@@ -32,9 +34,14 @@ var _orbital_distance: float = 0
 var _orbital_angle: float = 0
 
 
-var _angular_speed: float:
+var _orbital_angular_speed: float:
 	get:
 		return 2 * PI / orbital_period
+
+
+var _rotation_angular_speed: float:
+	get:
+		return 2 * PI / rotation_period
 
 
 func _ready() -> void:
@@ -46,6 +53,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_set_description_panel_rotation()
+	_rotate(delta)
 	_orbit(delta)
 
 
@@ -98,11 +106,18 @@ func _set_description_panel_rotation() -> void:
 			-1 / exp(_size.x / 2 - log(offset)) + offset
 
 
+func _rotate(delta: float) -> void:
+	_mesh.rotate(
+		Vector3.UP,
+		_rotation_angular_speed * delta * Game.simulation_speed_factor
+	)
+
+
 func _orbit(delta: float) -> void:
 	if parent == null:
 		return
 	
-	_orbital_angle += _angular_speed * delta * Game.simulation_speed_factor
+	_orbital_angle += _orbital_angular_speed * delta * Game.simulation_speed_factor
 	
 	if _orbital_angle >= 2 * PI:
 		_orbital_angle = 0

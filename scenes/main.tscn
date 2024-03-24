@@ -117,6 +117,7 @@ shape = SubResource("BoxShape3D_nhc8g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 body_name = "Star"
 description = "A star is a luminous spheroid of plasma held together by self-gravity. The nearest star to Earth is the Sun. Many other stars are visible to the naked eye at night; their immense distances from Earth make them appear as fixed points of light. The most prominent stars have been categorised into constellations and asterisms, and many of the brightest stars have proper names. Astronomers have assembled star catalogues that identify the known stars and provide standardized stellar designations. The observable universe contains an estimated 1022 to 1024 stars. Only about 4,000 of these stars are visible to the naked eye—all within the Milky Way galaxy."
+rotation_period = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Star"]
 mesh = SubResource("SphereMesh_gseub")
@@ -131,6 +132,7 @@ body_name = "Planet"
 description = "A planet is a large, rounded astronomical body that is neither a star nor its remnant. The best available theory of planet formation is the nebular hypothesis, which posits that an interstellar cloud collapses out of a nebula to create a young protostar orbited by a protoplanetary disk. Planets grow in this disk by the gradual accumulation of material driven by gravity, a process called accretion. The Solar System has at least eight planets: the terrestrial planets Mercury, Venus, Earth, and Mars, and the giant planets Jupiter, Saturn, Uranus, and Neptune."
 parent = NodePath("../Star")
 orbital_period = 60.0
+rotation_period = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Planet"]
 mesh = SubResource("SphereMesh_kp8r6")
@@ -141,6 +143,7 @@ body_name = "Moon"
 description = "A natural satellite is, in the most common usage, an astronomical body that orbits a planet, dwarf planet, or small Solar System body (or sometimes another natural satellite). Natural satellites are colloquially referred to as moons, a derivation from the Moon of Earth."
 parent = NodePath("../Planet")
 orbital_period = 5.0
+rotation_period = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Moon"]
 mesh = SubResource("SphereMesh_cptbp")

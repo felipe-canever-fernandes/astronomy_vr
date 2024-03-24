@@ -84,6 +84,8 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_cc1m1")]
 hand_material_override = ExtResource("3_tmbjj")
 
+[node name="MovementTurn" parent="XROrigin3D/LeftController" instance=ExtResource("7_bbvjr")]
+
 [node name="FunctionTeleport" parent="XROrigin3D/LeftController" instance=ExtResource("4_mmhsi")]
 can_teleport_color = Color(1, 1, 1, 1)
 cant_teleport_color = Color(1, 0.654902, 0.6, 1)
@@ -105,8 +107,6 @@ tracker = &"right_hand"
 hand_material_override = ExtResource("3_tmbjj")
 
 [node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("5_uk2g3")]
-
-[node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("7_bbvjr")]
 
 [node name="FunctionPointer" parent="XROrigin3D/RightController" instance=ExtResource("9_yrm02")]
 active_button_action = "ax_button"

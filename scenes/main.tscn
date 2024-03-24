@@ -126,8 +126,9 @@ mesh = SubResource("PlaneMesh_hoiqd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
-[node name="Star" parent="." instance=ExtResource("13_e00vo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="System" type="Node3D" parent="."]
+
+[node name="Star" parent="System" instance=ExtResource("13_e00vo")]
 body_name = "Star"
 description = "A [b]star[/b] is a luminous spheroid of plasma held together by self-gravity. The nearest star to Earth is the Sun. Many other stars are visible to the naked eye at night; their immense distances from Earth make them appear as fixed points of light. The most prominent stars have been categorised into constellations and asterisms, and many of the brightest stars have proper names. Astronomers have assembled star catalogues that identify the known stars and provide standardized stellar designations. The observable universe contains an estimated 10^22 to 10^24 stars. Only about 4,000 of these stars are visible to the naked eye—all within the Milky Way galaxy.
 
@@ -138,15 +139,15 @@ Stellar nucleosynthesis in stars or their remnants creates almost all naturally 
 Stars can form orbital systems with other astronomical objects, as in planetary systems and star systems with two or more stars. When two such stars orbit closely, their gravitational interaction can significantly impact their evolution. Stars can form part of a much larger gravitationally bound structure, such as a star cluster or a galaxy."
 rotation_period = 20.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Star"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="System/Star"]
 mesh = SubResource("SphereMesh_gseub")
 
-[node name="Light" type="OmniLight3D" parent="Star"]
+[node name="Light" type="OmniLight3D" parent="System/Star"]
 light_energy = 16.0
 omni_range = 75.0
 
-[node name="Planet" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+[node name="Planet" parent="System" node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 body_name = "Planet"
 description = "A [b]planet[/b] is a large, rounded astronomical body that is neither a star nor its remnant. The best available theory of planet formation is the nebular hypothesis, which posits that an interstellar cloud collapses out of a nebula to create a young protostar orbited by a protoplanetary disk. Planets grow in this disk by the gradual accumulation of material driven by gravity, a process called accretion. The Solar System has at least eight planets: the terrestrial planets Mercury, Venus, Earth, and Mars, and the giant planets Jupiter, Saturn, Uranus, and Neptune.
 
@@ -159,11 +160,11 @@ parent = NodePath("../Star")
 orbital_period = 60.0
 rotation_period = 1.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Planet"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="System/Planet"]
 mesh = SubResource("SphereMesh_kp8r6")
 
-[node name="Moon" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.4)
+[node name="Moon" parent="System" node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.4)
 body_name = "Moon"
 description = "A [b]moon[/b] is, in the most common usage, an astronomical body that orbits a planet, dwarf planet, or small Solar System body (or sometimes another natural satellite). Natural satellites are colloquially referred to as moons, a derivation from the Moon of Earth.
 
@@ -174,7 +175,7 @@ parent = NodePath("../Planet")
 orbital_period = 5.0
 rotation_period = 2.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Moon"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="System/Moon"]
 mesh = SubResource("SphereMesh_cptbp")
 
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="." method="_on_left_controller_button_pressed"]

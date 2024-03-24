@@ -88,8 +88,6 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_cc1m1")]
 hand_material_override = ExtResource("3_tmbjj")
 
-[node name="MovementTurn" parent="XROrigin3D/LeftController" instance=ExtResource("7_bbvjr")]
-
 [node name="FunctionTeleport" parent="XROrigin3D/LeftController" instance=ExtResource("4_mmhsi")]
 can_teleport_color = Color(1, 1, 1, 1)
 cant_teleport_color = Color(1, 0.654902, 0.6, 1)
@@ -111,13 +109,15 @@ tracker = &"right_hand"
 [node name="RightHand" parent="XROrigin3D/RightController" instance=ExtResource("3_a1m3w")]
 hand_material_override = ExtResource("3_tmbjj")
 
-[node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("5_uk2g3")]
-
 [node name="FunctionPointer" parent="XROrigin3D/RightController" instance=ExtResource("9_yrm02")]
 active_button_action = "ax_button"
 laser_length = 1
 show_target = true
 target_radius = 0.005
+
+[node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("5_uk2g3")]
+
+[node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("7_bbvjr")]
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("2_htorm")]
 player_calibrate_height = false

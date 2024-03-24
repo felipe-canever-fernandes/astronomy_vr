@@ -1,5 +1,7 @@
 extends Control
 
+@onready var _speed_label: Label = $VBoxContainer/HBoxContainer/SpeedContainer/Label
+@onready var _scale_label: Label = $VBoxContainer/HBoxContainer/ScaleContainer/Label
 
 signal play_up
 signal normal_speed_up
@@ -9,6 +11,21 @@ signal normal_scale_up
 signal increase_scale_up
 signal decrease_scale_up
 signal quit_button_up
+
+
+func _process(_delta: float) -> void:
+	_speed_label.text = "Speed: %sx" % \
+			[_format_scale_value(Game.simulation_speed)]
+	
+	_scale_label.text = "Scale: %sx" % \
+			[_format_scale_value(Game.simulation_scale)]
+
+
+func _format_scale_value(value: float) -> String:
+	if value >= 1:
+		return str(value)
+	else:
+		return "1/%s" % [1 / value]
 
 
 func _on_play_button_up() -> void:

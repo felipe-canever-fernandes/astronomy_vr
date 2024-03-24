@@ -28,6 +28,7 @@ grow_vertical = 2
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Astronomy VR"
+horizontal_alignment = 1
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -42,7 +43,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
 layout_mode = 2
-text = "Speed"
+text = "Speed:"
 horizontal_alignment = 1
 
 [node name="NormalSpeed" type="Button" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
@@ -55,19 +56,19 @@ text = "2x"
 
 [node name="DecreaseSimulationSpeed" type="Button" parent="VBoxContainer/HBoxContainer/SpeedContainer"]
 layout_mode = 2
-text = "0.5x"
+text = "1/2x"
 
 [node name="ScaleContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
 layout_mode = 2
-text = "Scale"
+text = "Scale:"
 horizontal_alignment = 1
 
 [node name="NormalScale" type="Button" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
 layout_mode = 2
-text = "1:1"
+text = "1x"
 
 [node name="IncreaseScale" type="Button" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
 layout_mode = 2
@@ -75,7 +76,7 @@ text = "2x"
 
 [node name="DecreaseScale" type="Button" parent="VBoxContainer/HBoxContainer/ScaleContainer"]
 layout_mode = 2
-text = "0.5x"
+text = "1/2x"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2

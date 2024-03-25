@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 
 
 func _format_scale_value(value: float) -> String:
-	if value >= 1:
+	if value == 0 or value >= 1:
 		return str(value)
 	else:
 		return "1/%s" % [1 / value]

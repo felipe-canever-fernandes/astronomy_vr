@@ -5,3 +5,5 @@ android/build/*
 !android/build/AndroidManifest.xml
 
 *~lock~
+
+.vscode/

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=33 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bxg7qliyo1b16" path="res://scenes/body.tscn" id="13_e00vo"]
 [ext_resource type="Texture2D" uid="uid://mpqkhcyxtl64" path="res://textures/sun.jpg" id="14_ef8r8"]
 [ext_resource type="Texture2D" uid="uid://c2lsfiorg8q35" path="res://textures/mars.jpg" id="15_1f18s"]
+[ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="15_h2tmo"]
 [ext_resource type="Texture2D" uid="uid://5o6kv2yg1aqv" path="res://textures/moon.jpg" id="16_w7ary"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="16_wos71"]
 
@@ -54,7 +55,7 @@ emission_texture = ExtResource("14_ef8r8")
 [sub_resource type="SphereMesh" id="SphereMesh_gseub"]
 material = SubResource("StandardMaterial3D_lcw7w")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_j7qfu"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_ad52t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0eil"]
 albedo_texture = ExtResource("15_1f18s")
@@ -147,12 +148,10 @@ rotation_period = 20.0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Star"]
 mesh = SubResource("SphereMesh_gseub")
 
-[node name="Area3D" type="Area3D" parent="System/Star"]
-collision_layer = 1048576
-collision_mask = 1048576
+[node name="BodyArea" parent="System/Star" instance=ExtResource("15_h2tmo")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="System/Star/Area3D"]
-shape = SubResource("SphereShape3D_j7qfu")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="System/Star/BodyArea"]
+shape = SubResource("SphereShape3D_ad52t")
 
 [node name="Light" type="OmniLight3D" parent="System/Star"]
 light_energy = 10.0

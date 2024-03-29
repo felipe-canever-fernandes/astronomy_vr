@@ -9,7 +9,7 @@ class_name Body
 @export var rotation_period: float
 
 var _mesh: MeshInstance3D
-var _area: Area3D
+var _area: BodyArea
 var _initial_orbital_distance: float
 
 
@@ -53,7 +53,7 @@ func _find_nodes():
 	for node in get_children():
 		if node is MeshInstance3D:
 			_mesh = node
-		elif node is Area3D:
+		elif node is BodyArea:
 			_area = node
 	
 	
@@ -74,10 +74,13 @@ func _scale_nodes() -> void:
 
 
 func _rotate(delta: float) -> void:
-	_mesh.rotate(
-		Vector3.UP,
-		_rotation_angular_speed * delta * Game.simulation_speed
-	)
+	var delta_rotation: float = \
+			_rotation_angular_speed * delta * Game.simulation_speed
+
+	_mesh.rotate(Vector3.UP, delta_rotation)
+
+	if _area != null:
+		_area.rotate(Vector3.UP, delta_rotation)
 
 
 func _orbit(delta: float) -> void:

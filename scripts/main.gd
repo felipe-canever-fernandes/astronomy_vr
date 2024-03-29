@@ -178,10 +178,14 @@ func _on_menu_gui_quit_button_up() -> void:
 	get_tree().quit()
 
 func _on_body_area_pointer_event(event: XRToolsPointerEvent) -> void:
+	var body: Body = event.target.get_parent()
+	
 	match event.event_type:
 		XRToolsPointerEvent.Type.ENTERED:
-			var body: Body = event.target.get_parent()
+			body.selected = true
+			
 			_tooltip_gui.text = body.body_name
 			_tooltip.visible = true
 		XRToolsPointerEvent.Type.EXITED:
+			body.selected = false
 			_tooltip.visible = false

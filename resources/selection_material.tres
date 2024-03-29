@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ba0tblng3qpb6"]
+
+[resource]
+shading_mode = 0
+grow = true

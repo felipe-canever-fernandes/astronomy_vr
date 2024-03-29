@@ -1,0 +1,2 @@
+class_name BodySelection
+extends MeshInstance3D

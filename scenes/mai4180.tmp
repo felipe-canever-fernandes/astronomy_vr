@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=39 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c2lsfiorg8q35" path="res://textures/mars.jpg" id="15_1f18s"]
 [ext_resource type="PackedScene" uid="uid://dw7pxoybt2j6p" path="res://scenes/body_selection.tscn" id="15_7t78g"]
 [ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="15_h2tmo"]
+[ext_resource type="Material" uid="uid://ba0tblng3qpb6" path="res://resources/selection_material.tres" id="16_2yx8a"]
 [ext_resource type="Texture2D" uid="uid://5o6kv2yg1aqv" path="res://textures/moon.jpg" id="16_w7ary"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="16_wos71"]
 
@@ -48,7 +49,8 @@ size = Vector2(10000, 10000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nhc8g"]
 size = Vector3(10000, 1, 10000)
 
-[sub_resource type="SphereMesh" id="SphereMesh_6rjtd"]
+[sub_resource type="SphereMesh" id="SphereMesh_ocdii"]
+material = ExtResource("16_2yx8a")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcw7w"]
 albedo_texture = ExtResource("14_ef8r8")
@@ -61,10 +63,6 @@ material = SubResource("StandardMaterial3D_lcw7w")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ad52t"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_4l27u"]
-radius = 0.1
-height = 0.2
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0eil"]
 albedo_texture = ExtResource("15_1f18s")
 
@@ -75,10 +73,6 @@ height = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_p386h"]
 radius = 0.1
-
-[sub_resource type="SphereMesh" id="SphereMesh_f556k"]
-radius = 0.01
-height = 0.02
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_838hv"]
 albedo_texture = ExtResource("16_w7ary")
@@ -175,7 +169,7 @@ rotation_period = 20.0
 
 [node name="BodySelection" parent="System/Star" instance=ExtResource("15_7t78g")]
 visible = false
-mesh = SubResource("SphereMesh_6rjtd")
+mesh = SubResource("SphereMesh_ocdii")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Star"]
 mesh = SubResource("SphereMesh_gseub")
@@ -197,10 +191,6 @@ parent = NodePath("../Star")
 orbital_period = 60.0
 rotation_period = 1.0
 
-[node name="BodySelection" parent="System/Planet" instance=ExtResource("15_7t78g")]
-visible = false
-mesh = SubResource("SphereMesh_4l27u")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Planet"]
 mesh = SubResource("SphereMesh_kp8r6")
 
@@ -215,9 +205,6 @@ body_name = "Moon"
 parent = NodePath("../Planet")
 orbital_period = 5.0
 rotation_period = 2.0
-
-[node name="BodySelection" parent="System/Moon" instance=ExtResource("15_7t78g")]
-mesh = SubResource("SphereMesh_f556k")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Moon"]
 mesh = SubResource("SphereMesh_cptbp")

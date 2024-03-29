@@ -82,6 +82,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+current = true
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
@@ -94,15 +95,6 @@ hand_material_override = ExtResource("3_tmbjj")
 can_teleport_color = Color(1, 1, 1, 1)
 cant_teleport_color = Color(1, 0.654902, 0.6, 1)
 no_collision_color = Color(1, 1, 1, 1)
-
-[node name="Menu" parent="XROrigin3D/LeftController" instance=ExtResource("5_x4w6x")]
-transform = Transform3D(0.642402, 0.25, 0.724445, -0.482963, 0.866025, 0.12941, -0.595035, -0.433013, 0.677077, 0.165622, -0.0648957, -0.0706091)
-screen_size = Vector2(0.4, 0.225)
-collision_layer = 5242880
-scene = ExtResource("12_3bct5")
-viewport_size = Vector2(500, 300)
-transparent = 0
-unshaded = true
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
@@ -122,6 +114,7 @@ target_radius = 0.005
 [node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("7_bbvjr")]
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("2_htorm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
 player_calibrate_height = false
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -163,5 +156,17 @@ rotation_period = 2.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Moon"]
 mesh = SubResource("SphereMesh_cptbp")
+
+[node name="Menu" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+
+[node name="Screen" parent="Menu" instance=ExtResource("5_x4w6x")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
+screen_size = Vector2(0.8, 0.45)
+collision_layer = 5242880
+scene = ExtResource("12_3bct5")
+viewport_size = Vector2(1152, 648)
+transparent = 0
+unshaded = true
 
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="." method="_on_left_controller_button_pressed"]

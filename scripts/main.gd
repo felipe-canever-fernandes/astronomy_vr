@@ -1,15 +1,16 @@
 extends Node3D
 
-const _SYSTEM_HEIGHT_OFFSET := -0.3
+const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 
 @onready var _world_environment: WorldEnvironment = $WorldEnvironment
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
-@onready var _menu: Node3D = $XROrigin3D/LeftController/Menu
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _movement_direct: XRToolsMovementDirect = $XROrigin3D/RightController/MovementDirect
 @onready var _system: Node3D = $System
 @onready var _floor: StaticBody3D = $Floor
+@onready var _menu: Node3D = $Menu
+@onready var _menu_screen: Node3D = $Menu/Screen
 
 @onready var _environment: Environment = _world_environment.environment
 @onready var _initial_movement_speed: float = _movement_direct.max_speed
@@ -49,10 +50,25 @@ var _passthrough_enabled: bool:
 
 var _menu_enabled: bool:
 	get:
-		return _menu.visible
+		return _menu_screen.visible
 	set(value):
-		_menu.visible = value
-		_menu.enabled = value
+		if value == true:
+			_menu.position = Vector3(
+				_camera.global_position.x,
+				
+				clamp(
+					_camera.global_position.y,
+					_menu_screen.screen_size.y / 2,
+					_camera.global_position.y
+				),
+				
+				_camera.global_position.z
+			)
+			
+			_menu.global_rotation.y = _camera.global_rotation.y
+		
+		_menu_screen.visible = value
+		_menu_screen.enabled = value
 		
 		_pointer.visible = value
 		_pointer.enabled = value
@@ -84,15 +100,15 @@ func _set_up_xr() -> void:
 
 
 func _set_up_controls() -> void:
-	_menu.connect_scene_signal("play_up", _on_menu_gui_play_button_up)
-	_menu.connect_scene_signal("normal_speed_up", _on_menu_gui_normal_speed_button_up)
-	_menu.connect_scene_signal("increase_simulation_speed_up", _on_menu_gui_increase_simulation_speed_up)
-	_menu.connect_scene_signal("decrease_simulation_speed_up", _on_menu_gui_decrease_simulation_speed_up)
-	_menu.connect_scene_signal("normal_scale_up", _on_menu_gui_normal_scale_button_up)
-	_menu.connect_scene_signal("increase_scale_up", _on_menu_gui_increase_scale_up)
-	_menu.connect_scene_signal("decrease_scale_up", _on_menu_gui_decrease_scale_up)
-	_menu.connect_scene_signal("passthrough_toggled", _on_menu_gui_passthrough_toggled)
-	_menu.connect_scene_signal("quit_button_up", _on_menu_gui_quit_button_up)
+	_menu_screen.connect_scene_signal("play_up", _on_menu_gui_play_button_up)
+	_menu_screen.connect_scene_signal("normal_speed_up", _on_menu_gui_normal_speed_button_up)
+	_menu_screen.connect_scene_signal("increase_simulation_speed_up", _on_menu_gui_increase_simulation_speed_up)
+	_menu_screen.connect_scene_signal("decrease_simulation_speed_up", _on_menu_gui_decrease_simulation_speed_up)
+	_menu_screen.connect_scene_signal("normal_scale_up", _on_menu_gui_normal_scale_button_up)
+	_menu_screen.connect_scene_signal("increase_scale_up", _on_menu_gui_increase_scale_up)
+	_menu_screen.connect_scene_signal("decrease_scale_up", _on_menu_gui_decrease_scale_up)
+	_menu_screen.connect_scene_signal("passthrough_toggled", _on_menu_gui_passthrough_toggled)
+	_menu_screen.connect_scene_signal("quit_button_up", _on_menu_gui_quit_button_up)
 
 
 func _set_up_system() -> void:

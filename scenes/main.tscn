@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=31 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -52,6 +52,8 @@ emission_texture = ExtResource("14_ef8r8")
 
 [sub_resource type="SphereMesh" id="SphereMesh_gseub"]
 material = SubResource("StandardMaterial3D_lcw7w")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j7qfu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0eil"]
 albedo_texture = ExtResource("15_1f18s")
@@ -108,6 +110,7 @@ active_button_action = "ax_button"
 laser_length = 1
 show_target = true
 target_radius = 0.005
+collide_with_areas = true
 
 [node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("5_uk2g3")]
 
@@ -133,6 +136,13 @@ rotation_period = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Star"]
 mesh = SubResource("SphereMesh_gseub")
+
+[node name="Area3D" type="Area3D" parent="System/Star"]
+collision_layer = 1048576
+collision_mask = 1048576
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="System/Star/Area3D"]
+shape = SubResource("SphereShape3D_j7qfu")
 
 [node name="Light" type="OmniLight3D" parent="System/Star"]
 light_energy = 10.0

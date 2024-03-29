@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=32 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_htorm"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_a1m3w"]
+[ext_resource type="PackedScene" uid="uid://xnxbnk8pdj48" path="res://scenes/console_gui.tscn" id="3_m3f21"]
 [ext_resource type="Material" uid="uid://dvxp3kftr2x3u" path="res://resources/hand_material.tres" id="3_tmbjj"]
 [ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
@@ -85,6 +86,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
+
+[node name="Console" parent="XROrigin3D/XRCamera3D" instance=ExtResource("5_x4w6x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+screen_size = Vector2(0.8, 0.45)
+collision_layer = 0
+scene = ExtResource("3_m3f21")
+viewport_size = Vector2(1152, 648)
+input_keyboard = false
+unshaded = true
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)

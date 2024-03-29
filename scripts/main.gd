@@ -4,6 +4,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 
 @onready var _world_environment: WorldEnvironment = $WorldEnvironment
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
+@onready var _console: Node3D = $XROrigin3D/XRCamera3D/Console
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _movement_direct: XRToolsMovementDirect = $XROrigin3D/RightController/MovementDirect
@@ -75,6 +76,7 @@ var _menu_enabled: bool:
 
 
 func _ready() -> void:
+	Game.console = _console.scene_node
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()

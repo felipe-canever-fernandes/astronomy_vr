@@ -1,5 +1,7 @@
 extends Node
 
+var console: ConsoleGui
+
 var player_camera_position: Vector3
 
 var simulation_speed: float = 1

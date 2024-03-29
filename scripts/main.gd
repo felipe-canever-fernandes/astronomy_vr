@@ -8,6 +8,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _movement_direct: XRToolsMovementDirect = $XROrigin3D/RightController/MovementDirect
+@onready var _tooltip: Node3D = $XROrigin3D/XRCamera3D/Tooltip
 @onready var _system: Node3D = $System
 @onready var _floor: StaticBody3D = $Floor
 @onready var _menu: Node3D = $Menu
@@ -15,6 +16,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 
 @onready var _environment: Environment = _world_environment.environment
 @onready var _initial_movement_speed: float = _movement_direct.max_speed
+@onready var _tooltip_gui: TooltipGui = _tooltip.scene_node
 
 
 @export var simulation_speed: float:
@@ -81,6 +83,7 @@ func _ready() -> void:
 	_set_up_controls()
 	_set_up_system()
 	_menu_enabled = false
+	_tooltip.visible = false
 
 
 func _process(_delta: float) -> void:
@@ -173,3 +176,12 @@ func _on_menu_gui_decrease_scale_up() -> void:
 
 func _on_menu_gui_quit_button_up() -> void:
 	get_tree().quit()
+
+func _on_body_area_pointer_event(event: XRToolsPointerEvent) -> void:
+	match event.event_type:
+		XRToolsPointerEvent.Type.ENTERED:
+			var body: Body = event.target.get_parent()
+			_tooltip_gui.text = body.body_name
+			_tooltip.visible = true
+		XRToolsPointerEvent.Type.EXITED:
+			_tooltip.visible = false

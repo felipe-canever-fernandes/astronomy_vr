@@ -1,6 +1,7 @@
 extends Node3D
 class_name Body
 
+@export var body_name: String
 ## The body around which this body orbits.
 @export var parent: Node3D
 ## The time it takes for this body to orbit around its parent, in seconds.

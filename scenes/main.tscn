@@ -153,6 +153,7 @@ shape = SubResource("BoxShape3D_nhc8g")
 [node name="System" type="Node3D" parent="."]
 
 [node name="Star" parent="System" instance=ExtResource("13_e00vo")]
+body_name = "Star"
 rotation_period = 20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="System/Star"]
@@ -170,6 +171,7 @@ script = ExtResource("16_wos71")
 
 [node name="Planet" parent="System" node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+body_name = "Planet"
 parent = NodePath("../Star")
 orbital_period = 60.0
 rotation_period = 1.0
@@ -179,6 +181,7 @@ mesh = SubResource("SphereMesh_kp8r6")
 
 [node name="Moon" parent="System" node_paths=PackedStringArray("parent") instance=ExtResource("13_e00vo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.4)
+body_name = "Moon"
 parent = NodePath("../Planet")
 orbital_period = 5.0
 rotation_period = 2.0

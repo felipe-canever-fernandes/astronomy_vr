@@ -121,7 +121,7 @@ screen_size = Vector2(0.15, 0.085)
 enabled = false
 collision_layer = 5242880
 scene = ExtResource("11_x1iw8")
-viewport_size = Vector2(320, 240)
+viewport_size = Vector2(320, 180)
 unshaded = true
 
 [node name="LeftController" type="XRController3D" parent="XROrigin3D"]

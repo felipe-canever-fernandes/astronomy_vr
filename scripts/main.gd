@@ -6,6 +6,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
 @onready var _console: Node3D = $XROrigin3D/XRCamera3D/Console
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
+@onready var _right_controller: XRController3D = $XROrigin3D/RightController
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _movement_direct: XRToolsMovementDirect = $XROrigin3D/RightController/MovementDirect
 @onready var _tooltip: Node3D = $XROrigin3D/XRCamera3D/Tooltip
@@ -116,6 +117,10 @@ var _is_pointer_button_pressed: bool = false
 var _is_body_selected: bool = false
 var _selected_body: Body
 
+var _is_displacing_system: bool = false
+var _right_controller_initial_position: Vector3
+var _system_initial_position: Vector3
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -131,6 +136,7 @@ func _process(_delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_movement_speed()
+	_displace_system()
 
 
 func _set_up_xr() -> void:
@@ -172,6 +178,16 @@ func _set_movement_speed() -> void:
 				_initial_movement_speed * Game.simulation_scale
 
 
+func _displace_system() -> void:
+	if not _is_displacing_system:
+		return
+	
+	var displacement: Vector3 = \
+			_right_controller.global_position - _right_controller_initial_position
+	
+	_system.global_position = _system_initial_position + displacement
+	
+
 func _update_pointer_enabled() -> void:
 	var is_enabled: bool = \
 			_is_pointer_button_pressed \
@@ -188,19 +204,27 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 
 
 func _on_right_controller_button_pressed(button_name: String) -> void:
-	if button_name == "trigger_click":
-		_is_pointer_button_pressed = true
-		_update_pointer_enabled()
+	match button_name:
+		"trigger_click":
+			_is_pointer_button_pressed = true
+			_update_pointer_enabled()
+		"grip_click":
+			_is_displacing_system = true
+			_right_controller_initial_position = \
+					_right_controller.global_position
+			_system_initial_position = _system.global_position
 
 
 func _on_right_controller_button_released(button_name: String) -> void:
 	match button_name:
-		"trigger_click":
-			_is_pointer_button_pressed = false
-			_update_pointer_enabled()
 		"ax_button":
 			if _is_body_selected:
 				_is_info_panel_enabled = true
+		"trigger_click":
+			_is_pointer_button_pressed = false
+			_update_pointer_enabled()
+		"grip_click":
+			_is_displacing_system = false
 
 
 func _on_menu_gui_play_button_up() -> void:

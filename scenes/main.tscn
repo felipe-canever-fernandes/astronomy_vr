@@ -93,8 +93,6 @@ radius = 0.01
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
-simulation_speed = 1.0
-simulation_scale = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_82r61")
@@ -164,7 +162,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
 [node name="System" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="Star" parent="System" instance=ExtResource("13_e00vo")]
 body_name = "Star"
@@ -205,6 +202,7 @@ With the development of the telescope, the meaning of planet broadened to includ
 
 Further advances in astronomy led to the discovery of over five thousand planets outside the Solar System, termed exoplanets. These often show unusual features that the Solar System planets do not show, such as hot Jupiters—giant planets that orbit close to their parent stars, like 51 Pegasi b—and extremely eccentric orbits, such as HD 20782 b. The discovery of brown dwarfs and planets larger than Jupiter also spurred debate on the definition, regarding where exactly to draw the line between a planet and a star. Multiple exoplanets have been found to orbit in the habitable zones of their stars, but Earth remains the only planet known to support life."
 parent = NodePath("../Star")
+orbital_distance = 5.0
 orbital_period = 60.0
 rotation_period = 1.0
 
@@ -231,6 +229,7 @@ The lunar surface is covered in lunar dust and marked by mountains, impact crate
 
 For humans the Moon has been an important source of inspiration and knowledge, having been crucial to cosmography, mythology, religion, art, time keeping, natural science, and spaceflight. On September 13, 1959, the first human-made object to reach an extraterrestrial body arrived on the Moon, the Soviet Union's Luna 2 impactor. In 1966, the Moon became the first extraterrestrial body where soft landings and orbital insertions were achieved. On July 20, 1969, humans for the first time landed on the Moon and any extraterrestrial body, at Mare Tranquillitatis with the lander Eagle of the United States' Apollo 11 mission. Five more crews were sent between then and 1972, each with two men landing on the surface. The longest stay was 75 hours by the Apollo 17 crew. Since then, exploration of the Moon has continued robotically with crewed missions being planned to return beginning in the late 2020s."
 parent = NodePath("../Planet")
+orbital_distance = 1.0
 orbital_period = 5.0
 rotation_period = 2.0
 

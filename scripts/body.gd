@@ -1,13 +1,15 @@
 extends Node3D
 class_name Body
 
+const _PIVOT_NAME_SUFFIX: String = "Orbit"
 const _SELECTION_THICKNESS: float = 0.003
 
 @export var body_name: String
 @export_multiline var description: String
 ## The body around which this body orbits.
-@export var parent: Node3D
+@export var parent: Node3D = null
 ## The time it takes for this body to orbit around its parent, in seconds.
+@export var orbital_distance: float = 0
 @export var orbital_period: float
 ## The time it takes for this body to rotate around its own axis.
 @export var rotation_period: float
@@ -15,15 +17,6 @@ const _SELECTION_THICKNESS: float = 0.003
 var _mesh: MeshInstance3D
 var _selection: BodySelection
 var _area: BodyArea
-var _initial_orbital_distance: float
-
-
-var _orbital_distance: float:
-	get:
-		return _initial_orbital_distance * Game.simulation_scale
-
-
-var _orbital_angle: float = 0
 
 
 var _orbital_angular_speed: float:
@@ -43,8 +36,13 @@ var selected: bool:
 		_selection.visible = value
 
 
+var _pivot: Node3D = null
+
+
 func _ready() -> void:
-	_set_initial_orbital_distance()
+	Game.connect("simulation_scale_changed", _on_simulation_scale_changed)
+	
+	_set_position()
 	_find_nodes()
 	_set_up_selection()
 	_set_up_orbit()
@@ -72,10 +70,8 @@ func _create_selection_material() -> StandardMaterial3D:
 	return material
 
 
-func _set_initial_orbital_distance() -> void:
-	if parent != null:
-		_initial_orbital_distance = \
-				parent.global_position.distance_to(global_position)
+func _set_position() -> void:
+	_on_simulation_scale_changed(Game.simulation_scale)
 
 
 func _find_nodes():
@@ -92,7 +88,17 @@ func _set_up_orbit() -> void:
 	if parent == null:
 		return
 
-	_orbital_angle = acos(global_position.x / _orbital_distance)
+	_pivot = Node3D.new()
+	_pivot.name = name + _PIVOT_NAME_SUFFIX
+	
+	var system: Node3D = get_parent()
+	system.add_child.call_deferred(_pivot)
+	
+	_pivot.position = parent.position
+	
+	position = parent.position + orbital_distance * Vector3.BACK
+	reparent.call_deferred(_pivot)
+	
 
 
 func _scale_nodes() -> void:
@@ -124,14 +130,14 @@ func _rotate(delta: float) -> void:
 func _orbit(delta: float) -> void:
 	if parent == null:
 		return
-			
-	_orbital_angle += _orbital_angular_speed * delta * Game.simulation_speed
+		
+	_pivot.global_position = parent.global_position
 	
-	if _orbital_angle >= 2 * PI:
-		_orbital_angle = 0
+	_pivot.rotate(
+		Vector3.UP,
+		_orbital_angular_speed * delta * Game.simulation_speed
+	)
 
-	global_position.x = \
-			parent.global_position.x + _orbital_distance * cos(_orbital_angle)
 
-	global_position.z = \
-			parent.global_position.z + _orbital_distance * sin(_orbital_angle)
+func _on_simulation_scale_changed(new_scale: float) -> void:
+	position = orbital_distance * Vector3.BACK * new_scale

@@ -15,6 +15,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _menu_screen: Node3D = $Menu/Screen
 
 @onready var _environment: Environment = _world_environment.environment
+@onready var _initial_pointer_distance: float = _pointer.distance
 @onready var _initial_movement_speed: float = _movement_direct.max_speed
 @onready var _tooltip_gui: TooltipGui = _tooltip.scene_node
 
@@ -88,6 +89,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
+	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_movement_speed()
 
 

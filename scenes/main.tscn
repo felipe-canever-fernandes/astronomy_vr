@@ -144,6 +144,7 @@ tracker = &"right_hand"
 hand_material_override = ExtResource("3_tmbjj")
 
 [node name="FunctionPointer" parent="XROrigin3D/RightController" instance=ExtResource("9_yrm02")]
+distance = 100.0
 active_button_action = "ax_button"
 laser_length = 1
 show_target = true

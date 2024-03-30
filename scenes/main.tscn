@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=40 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_a1m3w"]
 [ext_resource type="PackedScene" uid="uid://xnxbnk8pdj48" path="res://scenes/console_gui.tscn" id="3_m3f21"]
 [ext_resource type="Material" uid="uid://dvxp3kftr2x3u" path="res://resources/hand_material.tres" id="3_tmbjj"]
-[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="4_mmhsi"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_x4w6x"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
@@ -132,11 +131,6 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_cc1m1")]
 hand_material_override = ExtResource("3_tmbjj")
 
-[node name="FunctionTeleport" parent="XROrigin3D/LeftController" instance=ExtResource("4_mmhsi")]
-can_teleport_color = Color(1, 1, 1, 1)
-cant_teleport_color = Color(1, 0.654902, 0.6, 1)
-no_collision_color = Color(1, 1, 1, 1)
-
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
 tracker = &"right_hand"
@@ -170,6 +164,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_nhc8g")
 
 [node name="System" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="Star" parent="System" instance=ExtResource("13_e00vo")]
 body_name = "Star"

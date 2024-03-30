@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd40nqq0ykhxa"]
+
+[ext_resource type="Script" path="res://scripts/info_panel_gui.gd" id="1_tf6yr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgu4x"]
+font_size = 32
+
+[node name="InfoPanelGui" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_tf6yr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "x"
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_jgu4x")
+horizontal_alignment = 1
+
+[node name="DescriptionTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Feugiat in fermentum posuere urna nec tincidunt praesent. Faucibus pulvinar elementum integer enim neque volutpat ac. Tellus orci ac auctor augue. Viverra nibh cras pulvinar mattis. Quam vulputate dignissim suspendisse in est. Lectus quam id leo in vitae turpis massa. Bibendum at varius vel pharetra vel turpis nunc eget. Imperdiet massa tincidunt nunc pulvinar sapien et ligula. Quis hendrerit dolor magna eget est lorem ipsum. Volutpat ac tincidunt vitae semper quis lectus nulla at. Placerat in egestas erat imperdiet sed. Id aliquet risus feugiat in ante metus dictum at. Gravida in fermentum et sollicitudin ac orci phasellus. Eu tincidunt tortor aliquam nulla facilisi cras. Semper viverra nam libero justo. Sed enim ut sem viverra aliquet eget sit.
+
+Fringilla ut morbi tincidunt augue. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Eget nullam non nisi est sit amet facilisis. Sapien et ligula ullamcorper malesuada proin. Lectus nulla at volutpat diam ut venenatis tellus in metus. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Eget magna fermentum iaculis eu non diam. Ut eu sem integer vitae justo. Quam viverra orci sagittis eu volutpat. Eget arcu dictum varius duis at. Consectetur purus ut faucibus pulvinar. Mattis aliquam faucibus purus in massa tempor nec feugiat nisl.
+
+Accumsan in nisl nisi scelerisque eu ultrices. Magna eget est lorem ipsum dolor sit. Eget est lorem ipsum dolor sit. Nec ullamcorper sit amet risus nullam. Vel turpis nunc eget lorem dolor sed viverra ipsum nunc. Mauris sit amet massa vitae tortor condimentum lacinia. Sed egestas egestas fringilla phasellus faucibus. Pellentesque pulvinar pellentesque habitant morbi tristique. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut consequat. Nascetur ridiculus mus mauris vitae ultricies leo. Dignissim suspendisse in est ante in nibh mauris cursus. Sed pulvinar proin gravida hendrerit lectus a. Nulla facilisi morbi tempus iaculis urna. Risus in hendrerit gravida rutrum quisque non.
+
+Maecenas ultricies mi eget mauris pharetra. Curabitur vitae nunc sed velit. Amet tellus cras adipiscing enim eu turpis egestas pretium. Pharetra magna ac placerat vestibulum lectus mauris. Nibh ipsum consequat nisl vel. Diam quam nulla porttitor massa id. In nulla posuere sollicitudin aliquam ultrices sagittis orci. Aliquet risus feugiat in ante metus dictum at tempor. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. Nulla pharetra diam sit amet. Turpis in eu mi bibendum neque egestas congue quisque egestas. Iaculis urna id volutpat lacus laoreet non. Commodo elit at imperdiet dui accumsan. Nulla porttitor massa id neque aliquam vestibulum. Vel eros donec ac odio tempor orci dapibus. At volutpat diam ut venenatis tellus in metus. Non nisi est sit amet facilisis magna etiam. Mi quis hendrerit dolor magna eget.
+
+Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique. Euismod lacinia at quis risus. Pellentesque habitant morbi tristique senectus et netus et malesuada. Tellus integer feugiat scelerisque varius morbi enim. Ut pharetra sit amet aliquam id diam. Nunc eget lorem dolor sed viverra. Elementum integer enim neque volutpat ac tincidunt vitae. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Duis ultricies lacus sed turpis tincidunt id. Integer vitae justo eget magna. Morbi tristique senectus et netus et malesuada fames. Justo eget magna fermentum iaculis eu non. Non odio euismod lacinia at quis risus sed. Massa vitae tortor condimentum lacinia quis vel eros donec ac."
+
+[connection signal="button_up" from="VBoxContainer/HFlowContainer/CloseButton" to="." method="_on_close_button_button_up"]

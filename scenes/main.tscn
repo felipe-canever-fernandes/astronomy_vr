@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=41 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="15_h2tmo"]
 [ext_resource type="Texture2D" uid="uid://5o6kv2yg1aqv" path="res://textures/moon.jpg" id="16_w7ary"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="16_wos71"]
+[ext_resource type="PackedScene" uid="uid://dd40nqq0ykhxa" path="res://scenes/info_panel_gui.tscn" id="22_qft3v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -236,6 +237,18 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -
 screen_size = Vector2(0.8, 0.45)
 collision_layer = 5242880
 scene = ExtResource("12_3bct5")
+viewport_size = Vector2(1152, 648)
+transparent = 0
+unshaded = true
+
+[node name="InfoPanel" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Screen" parent="InfoPanel" instance=ExtResource("5_x4w6x")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
+screen_size = Vector2(0.8, 0.45)
+collision_layer = 5242880
+scene = ExtResource("22_qft3v")
 viewport_size = Vector2(1152, 648)
 transparent = 0
 unshaded = true

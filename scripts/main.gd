@@ -13,11 +13,14 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _floor: StaticBody3D = $Floor
 @onready var _menu: Node3D = $Menu
 @onready var _menu_screen: Node3D = $Menu/Screen
+@onready var _info_panel: Node3D = $InfoPanel
+@onready var _info_panel_screen: Node3D = $InfoPanel/Screen
 
 @onready var _environment: Environment = _world_environment.environment
 @onready var _initial_pointer_distance: float = _pointer.distance
 @onready var _initial_movement_speed: float = _movement_direct.max_speed
 @onready var _tooltip_gui: TooltipGui = _tooltip.scene_node
+@onready var _info_panel_gui: InfoPanelGui = _info_panel_screen.scene_node
 
 
 @export var simulation_speed: float:
@@ -70,6 +73,7 @@ var _is_menu_enabled: bool:
 			)
 			
 			_menu.global_rotation.y = _camera.global_rotation.y
+			_is_info_panel_enabled = false
 		
 		_menu_screen.visible = value
 		_menu_screen.enabled = value
@@ -77,7 +81,39 @@ var _is_menu_enabled: bool:
 		_update_pointer_enabled()
 
 
+var _is_info_panel_enabled: bool:
+	get:
+		return _info_panel_screen.visible
+	set(value):
+		if value == true:
+			_info_panel.position = Vector3(
+				_camera.global_position.x,
+				
+				clamp(
+					_camera.global_position.y,
+					_info_panel_screen.screen_size.y / 2,
+					_camera.global_position.y
+				),
+				
+				_camera.global_position.z
+			)
+			
+			_info_panel.global_rotation.y = _camera.global_rotation.y
+			
+			_info_panel_gui.body_name = _selected_body.body_name
+			
+			_is_menu_enabled = false
+		
+		_info_panel_screen.visible = value
+		_info_panel_screen.enabled = value
+		
+		_update_pointer_enabled()
+
+
 var _is_pointer_button_pressed: bool = false
+
+var _is_body_selected: bool = false
+var _selected_body: Body
 
 
 func _ready() -> void:
@@ -86,6 +122,7 @@ func _ready() -> void:
 	_set_up_controls()
 	_set_up_system()
 	_is_menu_enabled = false
+	_is_info_panel_enabled = false
 	_tooltip.visible = false
 
 
@@ -118,6 +155,8 @@ func _set_up_controls() -> void:
 	_menu_screen.connect_scene_signal("decrease_scale_up", _on_menu_gui_decrease_scale_up)
 	_menu_screen.connect_scene_signal("passthrough_toggled", _on_menu_gui_passthrough_toggled)
 	_menu_screen.connect_scene_signal("quit_button_up", _on_menu_gui_quit_button_up)
+	
+	_info_panel_screen.connect_scene_signal("close_button_up", _on_info_panel_close_button_up)
 
 
 func _set_up_system() -> void:
@@ -133,7 +172,10 @@ func _set_movement_speed() -> void:
 
 
 func _update_pointer_enabled() -> void:
-	var is_enabled: bool = _is_pointer_button_pressed or _is_menu_enabled
+	var is_enabled: bool = \
+			_is_pointer_button_pressed \
+			or _is_menu_enabled \
+			or _is_info_panel_enabled
 	
 	_pointer.enabled = is_enabled
 	_pointer.visible = is_enabled
@@ -151,9 +193,13 @@ func _on_right_controller_button_pressed(button_name: String) -> void:
 
 
 func _on_right_controller_button_released(button_name: String) -> void:
-	if button_name == "trigger_click":
-		_is_pointer_button_pressed = false
-		_update_pointer_enabled()
+	match button_name:
+		"trigger_click":
+			_is_pointer_button_pressed = false
+			_update_pointer_enabled()
+		"ax_button":
+			if _is_body_selected:
+				_is_info_panel_enabled = true
 
 
 func _on_menu_gui_play_button_up() -> void:
@@ -200,15 +246,23 @@ func _on_menu_gui_decrease_scale_up() -> void:
 func _on_menu_gui_quit_button_up() -> void:
 	get_tree().quit()
 
+
+func _on_info_panel_close_button_up() -> void:
+	_is_info_panel_enabled = false
+
+
 func _on_body_area_pointer_event(event: XRToolsPointerEvent) -> void:
-	var body: Body = event.target.get_parent()
+	_selected_body = event.target.get_parent()
 	
 	match event.event_type:
 		XRToolsPointerEvent.Type.ENTERED:
-			body.selected = true
+			_selected_body.selected = true
 			
-			_tooltip_gui.text = body.body_name
+			_tooltip_gui.text = _selected_body.body_name
 			_tooltip.visible = true
+			
+			_is_body_selected = true
 		XRToolsPointerEvent.Type.EXITED:
-			body.selected = false
+			_selected_body.selected = false
 			_tooltip.visible = false
+			_is_body_selected = false

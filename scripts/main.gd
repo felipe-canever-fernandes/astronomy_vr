@@ -101,6 +101,7 @@ var _is_info_panel_enabled: bool:
 			_info_panel.global_rotation.y = _camera.global_rotation.y
 			
 			_info_panel_gui.body_name = _selected_body.body_name
+			_info_panel_gui.description = _selected_body.description
 			
 			_is_menu_enabled = false
 		

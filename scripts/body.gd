@@ -4,6 +4,7 @@ class_name Body
 const _SELECTION_THICKNESS: float = 0.003
 
 @export var body_name: String
+@export_multiline var description: String
 ## The body around which this body orbits.
 @export var parent: Node3D
 ## The time it takes for this body to orbit around its parent, in seconds.

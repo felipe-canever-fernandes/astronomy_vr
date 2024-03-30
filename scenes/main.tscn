@@ -267,10 +267,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="Screen" parent="InfoPanel" instance=ExtResource("5_x4w6x")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
-screen_size = Vector2(0.8, 0.45)
+screen_size = Vector2(0.3, 0.4)
 collision_layer = 5242880
 scene = ExtResource("22_qft3v")
-viewport_size = Vector2(1152, 648)
+viewport_size = Vector2(600, 800)
 transparent = 0
 unshaded = true
 

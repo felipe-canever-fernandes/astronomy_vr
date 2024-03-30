@@ -6,11 +6,10 @@
 font_size = 32
 
 [node name="InfoPanelGui" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(600, 800)
+offset_right = 133.0
+offset_bottom = 124.0
+pivot_offset = Vector2(200, 250)
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20

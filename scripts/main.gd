@@ -52,7 +52,7 @@ var _passthrough_enabled: bool:
 			_xr_interface.stop_passthrough()
 
 
-var _menu_enabled: bool:
+var _is_menu_enabled: bool:
 	get:
 		return _menu_screen.visible
 	set(value):
@@ -74,8 +74,10 @@ var _menu_enabled: bool:
 		_menu_screen.visible = value
 		_menu_screen.enabled = value
 		
-		_pointer.visible = value
-		_pointer.enabled = value
+		_update_pointer_enabled()
+
+
+var _is_pointer_button_pressed: bool = false
 
 
 func _ready() -> void:
@@ -83,7 +85,7 @@ func _ready() -> void:
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()
-	_menu_enabled = false
+	_is_menu_enabled = false
 	_tooltip.visible = false
 
 
@@ -128,11 +130,30 @@ func _set_movement_speed() -> void:
 	else:
 		_movement_direct.max_speed = \
 				_initial_movement_speed * Game.simulation_scale
+
+
+func _update_pointer_enabled() -> void:
+	var is_enabled: bool = _is_pointer_button_pressed or _is_menu_enabled
 	
+	_pointer.enabled = is_enabled
+	_pointer.visible = is_enabled
+
 
 func _on_left_controller_button_pressed(button_name: String) -> void:
 	if button_name == "ax_button":
-		_menu_enabled = not _menu_enabled
+		_is_menu_enabled = not _is_menu_enabled
+
+
+func _on_right_controller_button_pressed(button_name: String) -> void:
+	if button_name == "trigger_click":
+		_is_pointer_button_pressed = true
+		_update_pointer_enabled()
+
+
+func _on_right_controller_button_released(button_name: String) -> void:
+	if button_name == "trigger_click":
+		_is_pointer_button_pressed = false
+		_update_pointer_enabled()
 
 
 func _on_menu_gui_play_button_up() -> void:

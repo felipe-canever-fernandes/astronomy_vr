@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhm606i4ayof5"]
+
+[ext_resource type="Script" path="res://scripts/fading_label.gd" id="1_7yyd4"]
+
+[node name="FadingLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("1_7yyd4")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

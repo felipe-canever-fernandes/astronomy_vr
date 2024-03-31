@@ -9,7 +9,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _right_controller: XRController3D = $XROrigin3D/RightController
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _movement_direct: XRToolsMovementDirect = %MovementDirect
-@onready var _tooltip: Node3D = $XROrigin3D/XRCamera3D/Tooltip
+@onready var _hud: Node3D = %Hud
 @onready var _system: XRToolsPickable = %System
 @onready var _floor: StaticBody3D = $Floor
 @onready var _menu: Node3D = $Menu
@@ -20,7 +20,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _environment: Environment = _world_environment.environment
 @onready var _initial_pointer_distance: float = _pointer.distance
 @onready var _initial_movement_speed: float = _movement_direct.max_speed
-@onready var _tooltip_gui: TooltipGui = _tooltip.scene_node
+@onready var _hud_gui: HudGui = _hud.scene_node
 @onready var _info_panel_gui: InfoPanelGui = _info_panel_screen.scene_node
 
 
@@ -29,6 +29,9 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 		return Game.simulation_speed
 	set(value):
 		Game.simulation_speed = value
+
+
+@export var simulation_accelaration: float = 1
 
 
 @export var simulation_scale: float:
@@ -124,6 +127,8 @@ var _is_scale_button_pressed: bool = false
 var _left_controller_initial_position: Vector3 = Vector3.ZERO
 var _system_initial_scale: float = 0
 
+var _is_player_direct_moving: bool = false
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -132,13 +137,12 @@ func _ready() -> void:
 	_set_up_system()
 	_is_menu_enabled = false
 	_is_info_panel_enabled = false
-	_tooltip.visible = false
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
-	_set_movement_speed()
+	_set_movement_speed(delta)
 	_scale_system()
 
 
@@ -173,12 +177,13 @@ func _set_up_system() -> void:
 	_system.position.y = _camera.global_position.y + _SYSTEM_HEIGHT_OFFSET
 
 
-func _set_movement_speed() -> void:
-	if not _left_controller.is_button_pressed("grip_click"):
-		_movement_direct.max_speed = _initial_movement_speed
+func _set_movement_speed(delta: float) -> void:
+	if _is_player_direct_moving:
+		if _is_speed_button_pressed:
+			_movement_direct.max_speed += simulation_accelaration * delta
+			_hud_gui.display_speed(_movement_direct.max_speed)
 	else:
-		_movement_direct.max_speed = \
-				_initial_movement_speed * Game.simulation_scale
+		_movement_direct.max_speed = _initial_movement_speed
 
 
 func _scale_system() -> void:
@@ -215,6 +220,8 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 	match button_name:
 		"ax_button":
 			_is_menu_enabled = not _is_menu_enabled
+		"trigger_click":
+			_is_speed_button_pressed = true
 		"grip_click":
 			_is_scale_button_pressed = true
 			_left_controller_initial_position = \
@@ -224,9 +231,17 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 
 func _on_left_controller_button_released(button_name: String) -> void:
 	match button_name:
+		"trigger_click":
+			_is_speed_button_pressed = false
 		"grip_click":
 			_is_scale_button_pressed = false
 
+
+func _on_left_controller_input_vector_2_changed(
+	_button_name: String,
+	value: Vector2
+) -> void:
+	_is_player_direct_moving = value.y != 0
 
 
 func _on_right_controller_button_pressed(button_name: String) -> void:
@@ -310,12 +325,8 @@ func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:
 	match event.event_type:
 		XRToolsPointerEvent.Type.ENTERED:
 			_selected_body.selected = true
-			
-			_tooltip_gui.text = _selected_body.body_name
-			_tooltip.visible = true
-			
+			_hud_gui.display_body_name(_selected_body.body_name)
 			_is_body_selected = true
 		XRToolsPointerEvent.Type.EXITED:
 			_selected_body.selected = false
-			_tooltip.visible = false
 			_is_body_selected = false

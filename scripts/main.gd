@@ -117,9 +117,8 @@ var _is_pointer_button_pressed: bool = false
 var _is_body_selected: bool = false
 var _selected_body: Body
 
-var _is_displacement_button_pressed: bool = false
+var _is_speed_button_pressed: bool = false
 var _right_controller_initial_position: Vector3 = Vector3.ZERO
-var _system_initial_position: Vector3 = Vector3.ZERO
 
 var _is_scale_button_pressed: bool = false
 var _left_controller_initial_position: Vector3 = Vector3.ZERO
@@ -140,7 +139,6 @@ func _process(_delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_movement_speed()
-	_displace_system()
 	_scale_system()
 
 
@@ -183,18 +181,8 @@ func _set_movement_speed() -> void:
 				_initial_movement_speed * Game.simulation_scale
 
 
-func _displace_system() -> void:
-	if not (_is_displacement_button_pressed and not _is_scale_button_pressed):
-		return
-	
-	var displacement: Vector3 = \
-			_right_controller.global_position - _right_controller_initial_position
-	
-	_system.global_position = _system_initial_position + displacement
-
-
 func _scale_system() -> void:
-	if not (_is_displacement_button_pressed and _is_scale_button_pressed):
+	if not (_is_speed_button_pressed and _is_scale_button_pressed):
 		_system.enabled = true
 		return
 	
@@ -247,10 +235,9 @@ func _on_right_controller_button_pressed(button_name: String) -> void:
 			_is_pointer_button_pressed = true
 			_update_pointer_enabled()
 		"grip_click":
-			_is_displacement_button_pressed = true
+			_is_speed_button_pressed = true
 			_right_controller_initial_position = \
 					_right_controller.global_position
-			_system_initial_position = _system.global_position
 
 
 func _on_right_controller_button_released(button_name: String) -> void:
@@ -262,7 +249,7 @@ func _on_right_controller_button_released(button_name: String) -> void:
 			_is_pointer_button_pressed = false
 			_update_pointer_enabled()
 		"grip_click":
-			_is_displacement_button_pressed = false
+			_is_speed_button_pressed = false
 
 
 func _on_menu_gui_play_button_up() -> void:

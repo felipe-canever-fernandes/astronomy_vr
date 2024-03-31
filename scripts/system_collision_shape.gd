@@ -6,4 +6,7 @@ func _ready() -> void:
 
 
 func _on_game_simulation_scale_changed(new_scale: float) -> void:
+	if new_scale < 1:
+		new_scale = 1
+
 	scale = new_scale * Vector3.ONE

@@ -10,7 +10,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _movement_direct: XRToolsMovementDirect = $XROrigin3D/RightController/MovementDirect
 @onready var _tooltip: Node3D = $XROrigin3D/XRCamera3D/Tooltip
-@onready var _system: Node3D = $System
+@onready var _system: XRToolsPickable = %System
 @onready var _floor: StaticBody3D = $Floor
 @onready var _menu: Node3D = $Menu
 @onready var _menu_screen: Node3D = $Menu/Screen
@@ -195,7 +195,10 @@ func _displace_system() -> void:
 
 func _scale_system() -> void:
 	if not (_is_displacement_button_pressed and _is_scale_button_pressed):
+		_system.enabled = true
 		return
+	
+	_system.enabled = false
 	
 	var initial_distance: float = _left_controller_initial_position\
 			.distance_to(_right_controller_initial_position)
@@ -309,9 +312,12 @@ func _on_menu_gui_quit_button_up() -> void:
 
 func _on_info_panel_close_button_up() -> void:
 	_is_info_panel_enabled = false
+	
 
-
-func _on_body_area_pointer_event(event: XRToolsPointerEvent) -> void:
+func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:
+	if not (event.target is BodyArea):
+		return 
+	
 	_selected_body = event.target.get_parent()
 	
 	match event.event_type:

@@ -81,7 +81,10 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_cc1m1")]
 hand_material_override = ExtResource("3_tmbjj")
 
-[node name="FunctionPickup" parent="XROrigin3D/LeftController" instance=ExtResource("7_q8y7u")]
+[node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("5_uk2g3")]
+unique_name_in_owner = true
+
+[node name="MovementTurn" parent="XROrigin3D/LeftController" instance=ExtResource("7_bbvjr")]
 
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
@@ -98,9 +101,8 @@ show_target = true
 target_radius = 0.005
 collide_with_areas = true
 
-[node name="MovementDirect" parent="XROrigin3D/RightController" instance=ExtResource("5_uk2g3")]
-
-[node name="MovementTurn" parent="XROrigin3D/RightController" instance=ExtResource("7_bbvjr")]
+[node name="FunctionPickup" parent="XROrigin3D/RightController" instance=ExtResource("7_q8y7u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("2_htorm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)

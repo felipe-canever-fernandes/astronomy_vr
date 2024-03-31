@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scripts/body_selection.gd" id="1_3d03e"]
 
 [node name="BodySelection" type="MeshInstance3D"]
+cast_shadow = 0
 script = ExtResource("1_3d03e")

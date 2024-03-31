@@ -4,21 +4,21 @@
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
 [ext_resource type="PackedScene" uid="uid://bxg7qliyo1b16" path="res://scenes/body.tscn" id="2_wjxkg"]
 [ext_resource type="PackedScene" uid="uid://dw7pxoybt2j6p" path="res://scenes/body_selection.tscn" id="3_cwcqk"]
-[ext_resource type="Texture2D" uid="uid://mpqkhcyxtl64" path="res://textures/sun.jpg" id="4_pejri"]
+[ext_resource type="Texture2D" uid="uid://1de0dhntf5oe" path="res://textures/sun.jpg" id="4_pejri"]
 [ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="5_nucrf"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="6_mwi5q"]
-[ext_resource type="Texture2D" uid="uid://c2lsfiorg8q35" path="res://textures/mars.jpg" id="7_eb3lp"]
-[ext_resource type="Texture2D" uid="uid://5o6kv2yg1aqv" path="res://textures/moon.jpg" id="8_b1fpj"]
+[ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/mars.jpg" id="7_eb3lp"]
+[ext_resource type="Texture2D" uid="uid://dpr0yjaiynrmr" path="res://textures/moon.jpg" id="8_b1fpj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 100.0
+radius = 10.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcw7w"]
 albedo_texture = ExtResource("4_pejri")
 emission_enabled = true
-emission = Color(0.470588, 0.470588, 0.470588, 1)
+emission = Color(0.701961, 0.701961, 0.701961, 1)
 emission_texture = ExtResource("4_pejri")
 
 [sub_resource type="SphereMesh" id="SphereMesh_0ebod"]
@@ -30,11 +30,11 @@ material = SubResource("StandardMaterial3D_lcw7w")
 radius = 0.1
 height = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0eil"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsacj"]
 albedo_texture = ExtResource("7_eb3lp")
 
 [sub_resource type="SphereMesh" id="SphereMesh_xkeb7"]
-material = SubResource("StandardMaterial3D_v0eil")
+material = SubResource("StandardMaterial3D_hsacj")
 radius = 0.1
 height = 0.2
 

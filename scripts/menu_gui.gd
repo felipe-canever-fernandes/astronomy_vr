@@ -15,18 +15,8 @@ signal quit_button_up
 
 
 func _process(_delta: float) -> void:
-	_speed_label.text = "Speed: %sx" % \
-			[_format_scale_value(Game.simulation_speed)]
-	
-	_scale_label.text = "Scale: %sx" % \
-			[_format_scale_value(Game.simulation_scale)]
-
-
-func _format_scale_value(value: float) -> String:
-	if value == 0 or value >= 1:
-		return str(value)
-	else:
-		return "1/%s" % [1 / value]
+	_speed_label.text = "Speed: %sx" % Game.simulation_speed
+	_scale_label.text = "Scale: %sx" % Game.simulation_scale
 
 
 func _on_play_button_up() -> void:

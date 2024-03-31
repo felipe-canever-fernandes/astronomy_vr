@@ -117,9 +117,13 @@ var _is_pointer_button_pressed: bool = false
 var _is_body_selected: bool = false
 var _selected_body: Body
 
-var _is_displacing_system: bool = false
-var _right_controller_initial_position: Vector3
-var _system_initial_position: Vector3
+var _is_displacement_button_pressed: bool = false
+var _right_controller_initial_position: Vector3 = Vector3.ZERO
+var _system_initial_position: Vector3 = Vector3.ZERO
+
+var _is_scale_button_pressed: bool = false
+var _left_controller_initial_position: Vector3 = Vector3.ZERO
+var _system_initial_scale: float = 0
 
 
 func _ready() -> void:
@@ -137,6 +141,7 @@ func _process(_delta: float) -> void:
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_movement_speed()
 	_displace_system()
+	_scale_system()
 
 
 func _set_up_xr() -> void:
@@ -179,13 +184,30 @@ func _set_movement_speed() -> void:
 
 
 func _displace_system() -> void:
-	if not _is_displacing_system:
+	if not (_is_displacement_button_pressed and not _is_scale_button_pressed):
 		return
 	
 	var displacement: Vector3 = \
 			_right_controller.global_position - _right_controller_initial_position
 	
 	_system.global_position = _system_initial_position + displacement
+
+
+func _scale_system() -> void:
+	if not (_is_displacement_button_pressed and _is_scale_button_pressed):
+		return
+	
+	var initial_distance: float = _left_controller_initial_position\
+			.distance_to(_right_controller_initial_position)
+	
+	var final_distance: float = _left_controller.global_position\
+			.distance_to(_right_controller.global_position)
+	
+	if initial_distance <= 0:
+		return
+	
+	var ratio: float = final_distance / initial_distance
+	Game.simulation_scale = _system_initial_scale * ratio
 	
 
 func _update_pointer_enabled() -> void:
@@ -199,8 +221,21 @@ func _update_pointer_enabled() -> void:
 
 
 func _on_left_controller_button_pressed(button_name: String) -> void:
-	if button_name == "ax_button":
-		_is_menu_enabled = not _is_menu_enabled
+	match button_name:
+		"ax_button":
+			_is_menu_enabled = not _is_menu_enabled
+		"grip_click":
+			_is_scale_button_pressed = true
+			_left_controller_initial_position = \
+					_left_controller.global_position
+			_system_initial_scale = Game.simulation_scale
+
+
+func _on_left_controller_button_released(button_name: String) -> void:
+	match button_name:
+		"grip_click":
+			_is_scale_button_pressed = false
+
 
 
 func _on_right_controller_button_pressed(button_name: String) -> void:
@@ -209,7 +244,7 @@ func _on_right_controller_button_pressed(button_name: String) -> void:
 			_is_pointer_button_pressed = true
 			_update_pointer_enabled()
 		"grip_click":
-			_is_displacing_system = true
+			_is_displacement_button_pressed = true
 			_right_controller_initial_position = \
 					_right_controller.global_position
 			_system_initial_position = _system.global_position
@@ -224,7 +259,7 @@ func _on_right_controller_button_released(button_name: String) -> void:
 			_is_pointer_button_pressed = false
 			_update_pointer_enabled()
 		"grip_click":
-			_is_displacing_system = false
+			_is_displacement_button_pressed = false
 
 
 func _on_menu_gui_play_button_up() -> void:

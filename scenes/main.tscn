@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=25 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
+[ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/sky.jpg" id="2_c3tb5"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_htorm"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_y6p13"]
@@ -18,22 +19,23 @@
 [ext_resource type="PackedScene" uid="uid://d25ivxqix60bc" path="res://scenes/system.tscn" id="13_fo6c5"]
 [ext_resource type="PackedScene" uid="uid://dd40nqq0ykhxa" path="res://scenes/info_panel_gui.tscn" id="22_qft3v"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n2jip"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kyjvu"]
+panorama = ExtResource("2_c3tb5")
 
 [sub_resource type="Sky" id="Sky_d8oc5"]
-sky_material = SubResource("ProceduralSkyMaterial_n2jip")
+sky_material = SubResource("PanoramaSkyMaterial_kyjvu")
+radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_82r61"]
-background_mode = 1
+background_mode = 2
+background_energy_multiplier = 0.1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxqlp"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.196078)
+albedo_color = Color(1, 1, 1, 0.0196078)
 albedo_texture = ExtResource("9_03vxy")
 uv1_triplanar = true
 

@@ -18,6 +18,8 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _info_panel_screen: Node3D = $InfoPanel/Screen
 
 @onready var _environment: Environment = _world_environment.environment
+@onready var _initial_sky_energy_multiplier: float = \
+		_environment.background_energy_multiplier
 @onready var _initial_pointer_distance: float = _pointer.distance
 @onready var _initial_movement_speed: float = _movement_direct.max_speed
 @onready var _hud_gui: HudGui = _hud.scene_node
@@ -52,9 +54,12 @@ var _passthrough_enabled: bool:
 		_floor.visible = not value
 		
 		if value:
+			_environment.background_energy_multiplier = 0
 			_environment.background_color.a = 0
 			_xr_interface.start_passthrough()
 		else:
+			_environment.background_energy_multiplier = \
+					_initial_sky_energy_multiplier
 			_environment.background_color.a = 1
 			_xr_interface.stop_passthrough()
 

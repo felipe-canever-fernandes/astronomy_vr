@@ -186,7 +186,7 @@ func _set_movement_speed(delta: float) -> void:
 	if _is_player_direct_moving:
 		if _is_speed_button_pressed:
 			_movement_direct.max_speed += simulation_accelaration * delta
-			_hud_gui.display_speed(_movement_direct.max_speed)
+			_hud_gui.display_movement_speed(_movement_direct.max_speed)
 	else:
 		_movement_direct.max_speed = _initial_movement_speed
 

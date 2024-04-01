@@ -10,5 +10,5 @@ func display_body_name(body_name: String) -> void:
 
 
 func display_speed(speed: float) -> void:
-	var formatted_speed: String = "Speed: %.2fx" % speed
+	var formatted_speed: String = "Speed: %.1fx" % speed
 	_speed_label.display(formatted_speed)

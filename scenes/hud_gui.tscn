@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cttyjmt7g11lp"]
+[gd_scene load_steps=7 format=3 uid="uid://cttyjmt7g11lp"]
 
 [ext_resource type="Script" path="res://scripts/hud_gui.gd" id="1_d6iey"]
 [ext_resource type="PackedScene" uid="uid://bhm606i4ayof5" path="res://scenes/fading_label.tscn" id="2_dahaf"]
@@ -14,6 +14,11 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6285"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sd4sp"]
 font_size = 32
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -79,5 +84,24 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Simulation scale: 1x"
 label_settings = SubResource("LabelSettings_g6285")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SimulationSpeedLabel" parent="." instance=ExtResource("2_dahaf")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -45.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Simulation speed: 1x"
+label_settings = SubResource("LabelSettings_sd4sp")
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -138,6 +138,7 @@ var _is_player_direct_moving: bool = false
 func _ready() -> void:
 	Game.console = _console.scene_node
 	Game.connect("simulation_scale_changed", _on_game_simulation_scale_changed)
+	Game.connect("simulation_speed_changed", _on_game_simulation_speed_changed)
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()
@@ -340,3 +341,7 @@ func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:
 
 func _on_game_simulation_scale_changed(new_scale: float) -> void:
 	_hud_gui.display_simulation_scale(new_scale)
+
+
+func _on_game_simulation_speed_changed(new_speed: float) -> void:
+	_hud_gui.display_simulation_speed(new_speed)

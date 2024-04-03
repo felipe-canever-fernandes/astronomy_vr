@@ -235,6 +235,8 @@ func _update_pointer_enabled() -> void:
 
 func _on_left_controller_button_pressed(button_name: String) -> void:
 	match button_name:
+		"ax_button":
+			_passthrough_enabled = not _passthrough_enabled
 		"by_button":
 			_is_menu_enabled = not _is_menu_enabled
 		"trigger_click":

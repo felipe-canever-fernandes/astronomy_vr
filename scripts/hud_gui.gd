@@ -3,6 +3,7 @@ extends Control
 
 @onready var _body_name_label: FadingLabel = %BodyNameLabel
 @onready var _movement_speed_label: FadingLabel = %MovementSpeedLabel
+@onready var _simulation_scale_label: FadingLabel = %SimulationScaleLabel
 
 
 func display_body_name(body_name: String) -> void:
@@ -12,3 +13,7 @@ func display_body_name(body_name: String) -> void:
 func display_movement_speed(speed: float) -> void:
 	var formatted_speed: String = "Movement speed: %.1fx" % speed
 	_movement_speed_label.display(formatted_speed)
+
+func display_simulation_scale(simulation_scale: float) -> void:
+	var formatted_simulation_scale: String = "Simulation scale: %.1fx" % simulation_scale
+	_simulation_scale_label.display(formatted_simulation_scale)

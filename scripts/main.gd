@@ -253,6 +253,8 @@ func _on_left_controller_input_vector_2_changed(
 
 func _on_right_controller_button_pressed(button_name: String) -> void:
 	match button_name:
+		"by_button":
+			_toggle_is_game_paused()
 		"trigger_click":
 			_is_pointer_button_pressed = true
 			_update_pointer_enabled()
@@ -274,7 +276,7 @@ func _on_right_controller_button_released(button_name: String) -> void:
 			_is_speed_button_pressed = false
 
 
-func _on_menu_gui_play_button_up() -> void:
+func _toggle_is_game_paused() -> void:
 	_is_game_paused = not _is_game_paused
 
 	if _is_game_paused:
@@ -282,6 +284,10 @@ func _on_menu_gui_play_button_up() -> void:
 		Game.simulation_speed = 0
 	else:
 		Game.simulation_speed = _old_simulation_speed_factor
+
+
+func _on_menu_gui_play_button_up() -> void:
+	_toggle_is_game_paused()
 
 
 func _on_menu_gui_normal_speed_button_up() -> void:

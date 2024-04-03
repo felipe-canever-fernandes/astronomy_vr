@@ -34,6 +34,7 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 
 
 @export var simulation_accelaration: float = 1
+@export var simulation_speed_accelaration: float = 2
 
 
 @export var simulation_scale: float:
@@ -134,6 +135,8 @@ var _system_initial_scale: float = 0
 
 var _is_player_direct_moving: bool = false
 
+var _simulation_speed_input_direction: float = 0
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -150,6 +153,7 @@ func _process(delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_movement_speed(delta)
+	_set_simulation_speed(delta)
 	_scale_system()
 
 
@@ -191,6 +195,12 @@ func _set_movement_speed(delta: float) -> void:
 			_hud_gui.display_movement_speed(_movement_direct.max_speed)
 	else:
 		_movement_direct.max_speed = _initial_movement_speed
+
+
+func _set_simulation_speed(delta: float) -> void:
+	Game.simulation_speed += \
+			simulation_speed_accelaration \
+			* _simulation_speed_input_direction * delta
 
 
 func _scale_system() -> void:
@@ -276,6 +286,13 @@ func _on_right_controller_button_released(button_name: String) -> void:
 			_update_pointer_enabled()
 		"grip_click":
 			_is_speed_button_pressed = false
+
+
+func _on_right_controller_input_vector_2_changed(
+	_button_name: String,
+	value: Vector2
+) -> void:
+	_simulation_speed_input_direction = value.x
 
 
 func _toggle_is_game_paused() -> void:

@@ -253,6 +253,8 @@ func _on_left_controller_input_vector_2_changed(
 
 func _on_right_controller_button_pressed(button_name: String) -> void:
 	match button_name:
+		"primary_click":
+			Game.simulation_speed = 1
 		"by_button":
 			_toggle_is_game_paused()
 		"trigger_click":

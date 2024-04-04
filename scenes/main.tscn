@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=30 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/sky.jpg" id="2_c3tb5"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_q8y7u"]
 [ext_resource type="Texture2D" uid="uid://dxxjoruv6liek" path="res://textures/floor.png" id="9_03vxy"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="9_yrm02"]
-[ext_resource type="PackedScene" uid="uid://bkx8teft6wc0v" path="res://scenes/menu_gui.tscn" id="12_3bct5"]
 [ext_resource type="PackedScene" uid="uid://d25ivxqix60bc" path="res://scenes/system.tscn" id="13_fo6c5"]
 [ext_resource type="Script" path="res://scripts/floor.gd" id="16_2uxxn"]
 [ext_resource type="Script" path="res://scripts/walls.gd" id="17_4kbgh"]
@@ -162,18 +161,6 @@ shape = SubResource("WorldBoundaryShape3D_3lu1x")
 
 [node name="System" parent="." instance=ExtResource("13_fo6c5")]
 unique_name_in_owner = true
-
-[node name="Menu" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
-
-[node name="Screen" parent="Menu" instance=ExtResource("5_x4w6x")]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
-screen_size = Vector2(0.8, 0.45)
-collision_layer = 5242880
-scene = ExtResource("12_3bct5")
-viewport_size = Vector2(1152, 648)
-transparent = 0
-unshaded = true
 
 [node name="InfoPanel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

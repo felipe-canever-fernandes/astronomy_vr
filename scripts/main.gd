@@ -12,8 +12,6 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _hud: Node3D = %Hud
 @onready var _system: XRToolsPickable = %System
 @onready var _floor: StaticBody3D = %Floor
-@onready var _menu: Node3D = $Menu
-@onready var _menu_screen: Node3D = $Menu/Screen
 @onready var _info_panel: Node3D = $InfoPanel
 @onready var _info_panel_screen: Node3D = $InfoPanel/Screen
 
@@ -65,32 +63,6 @@ var _passthrough_enabled: bool:
 			_xr_interface.stop_passthrough()
 
 
-var _is_menu_enabled: bool:
-	get:
-		return _menu_screen.visible
-	set(value):
-		if value == true:
-			_menu.position = Vector3(
-				_camera.global_position.x,
-				
-				clamp(
-					_camera.global_position.y,
-					_menu_screen.screen_size.y / 2,
-					_camera.global_position.y
-				),
-				
-				_camera.global_position.z
-			)
-			
-			_menu.global_rotation.y = _camera.global_rotation.y
-			_is_info_panel_enabled = false
-		
-		_menu_screen.visible = value
-		_menu_screen.enabled = value
-		
-		_update_pointer_enabled()
-
-
 var _is_info_panel_enabled: bool:
 	get:
 		return _info_panel_screen.visible
@@ -112,8 +84,6 @@ var _is_info_panel_enabled: bool:
 			
 			_info_panel_gui.body_name = _selected_body.body_name
 			_info_panel_gui.description = _selected_body.description
-			
-			_is_menu_enabled = false
 		
 		_info_panel_screen.visible = value
 		_info_panel_screen.enabled = value
@@ -145,7 +115,6 @@ func _ready() -> void:
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()
-	_is_menu_enabled = false
 	_is_info_panel_enabled = false
 
 
@@ -171,16 +140,6 @@ func _set_up_xr() -> void:
 
 
 func _set_up_controls() -> void:
-	_menu_screen.connect_scene_signal("play_up", _on_menu_gui_play_button_up)
-	_menu_screen.connect_scene_signal("normal_speed_up", _on_menu_gui_normal_speed_button_up)
-	_menu_screen.connect_scene_signal("increase_simulation_speed_up", _on_menu_gui_increase_simulation_speed_up)
-	_menu_screen.connect_scene_signal("decrease_simulation_speed_up", _on_menu_gui_decrease_simulation_speed_up)
-	_menu_screen.connect_scene_signal("normal_scale_up", _on_menu_gui_normal_scale_button_up)
-	_menu_screen.connect_scene_signal("increase_scale_up", _on_menu_gui_increase_scale_up)
-	_menu_screen.connect_scene_signal("decrease_scale_up", _on_menu_gui_decrease_scale_up)
-	_menu_screen.connect_scene_signal("passthrough_toggled", _on_menu_gui_passthrough_toggled)
-	_menu_screen.connect_scene_signal("quit_button_up", _on_menu_gui_quit_button_up)
-	
 	_info_panel_screen.connect_scene_signal("close_button_up", _on_info_panel_close_button_up)
 
 
@@ -224,10 +183,7 @@ func _scale_system() -> void:
 	
 
 func _update_pointer_enabled() -> void:
-	var is_enabled: bool = \
-			_is_pointer_button_pressed \
-			or _is_menu_enabled \
-			or _is_info_panel_enabled
+	var is_enabled: bool = _is_pointer_button_pressed or _is_info_panel_enabled
 	
 	_pointer.enabled = is_enabled
 	_pointer.visible = is_enabled
@@ -237,8 +193,6 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 	match button_name:
 		"ax_button":
 			_passthrough_enabled = not _passthrough_enabled
-		"by_button":
-			_is_menu_enabled = not _is_menu_enabled
 		"trigger_click":
 			_is_speed_button_pressed = true
 		"grip_click":
@@ -305,45 +259,6 @@ func _toggle_is_game_paused() -> void:
 		Game.simulation_speed = 0
 	else:
 		Game.simulation_speed = _old_simulation_speed_factor
-
-
-func _on_menu_gui_play_button_up() -> void:
-	_toggle_is_game_paused()
-
-
-func _on_menu_gui_normal_speed_button_up() -> void:
-	if not _is_game_paused:
-		Game.simulation_speed = 1
-
-
-func _on_menu_gui_increase_simulation_speed_up() -> void:
-	if not _is_game_paused:
-		Game.simulation_speed *= 2
-
-
-func _on_menu_gui_decrease_simulation_speed_up() -> void:
-	if not _is_game_paused:
-		Game.simulation_speed /= 2
-
-
-func _on_menu_gui_normal_scale_button_up() -> void:
-	Game.simulation_scale = 1
-
-
-func _on_menu_gui_increase_scale_up() -> void:
-	Game.simulation_scale *= 2
-
-
-func _on_menu_gui_passthrough_toggled(toggled_on: bool) -> void:
-	_passthrough_enabled = toggled_on
-
-
-func _on_menu_gui_decrease_scale_up() -> void:
-	Game.simulation_scale /= 2
-
-
-func _on_menu_gui_quit_button_up() -> void:
-	get_tree().quit()
 
 
 func _on_info_panel_close_button_up() -> void:

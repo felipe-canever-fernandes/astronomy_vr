@@ -106,6 +106,7 @@ var _system_initial_scale: float = 0
 var _is_player_direct_moving: bool = false
 
 var _simulation_speed_input_direction: float = 0
+var _previous_simulation_speed_input_direction: float = 0
 
 
 func _ready() -> void:
@@ -157,9 +158,14 @@ func _set_movement_speed(delta: float) -> void:
 
 
 func _set_simulation_speed(delta: float) -> void:
-	Game.simulation_speed += \
-			simulation_speed_accelaration \
-			* _simulation_speed_input_direction * delta
+	if _simulation_speed_input_direction \
+			!= _previous_simulation_speed_input_direction:
+		Game.simulation_speed += \
+				simulation_speed_accelaration \
+				* _simulation_speed_input_direction * delta
+	
+	_previous_simulation_speed_input_direction = \
+			_simulation_speed_input_direction
 
 
 func _scale_system() -> void:

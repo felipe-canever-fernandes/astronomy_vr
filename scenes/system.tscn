@@ -13,8 +13,8 @@
 radius = 10.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
-radius = 0.696
-height = 1.392
+radius = 6.96
+height = 13.92
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcw7w"]
 albedo_texture = ExtResource("4_pejri")
@@ -24,11 +24,11 @@ emission_texture = ExtResource("4_pejri")
 
 [sub_resource type="SphereMesh" id="SphereMesh_0ebod"]
 material = SubResource("StandardMaterial3D_lcw7w")
-radius = 0.696
-height = 1.392
+radius = 6.96
+height = 13.92
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_curjq"]
-radius = 0.696
+radius = 6.96
 
 [sub_resource type="SphereMesh" id="SphereMesh_llkbt"]
 radius = 0.1

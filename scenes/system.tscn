@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=22 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="5_nucrf"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="6_mwi5q"]
 [ext_resource type="Texture2D" uid="uid://dpeh45xdjnauq" path="res://textures/mercury.jpg" id="8_m5lvy"]
+[ext_resource type="Texture2D" uid="uid://dlioslxer2edv" path="res://textures/venus.jpg" id="9_e3ie1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 20.0
+radius = 30.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 radius = 6.96
@@ -43,7 +44,19 @@ radius = 0.024
 height = 0.049
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ev4h1"]
-radius = 0.024
+radius = 0.061
+
+[sub_resource type="SphereMesh" id="SphereMesh_ra271"]
+radius = 0.061
+height = 0.122
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57ff2"]
+albedo_texture = ExtResource("9_e3ie1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3ukhf"]
+material = SubResource("StandardMaterial3D_57ff2")
+radius = 0.061
+height = 0.122
 
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
@@ -74,7 +87,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 20.0
+omni_range = 30.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -96,4 +109,25 @@ mesh = SubResource("SphereMesh_xkeb7")
 [node name="BodyArea" parent="Mercury" index="2" instance=ExtResource("5_nucrf")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mercury/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_ev4h1")
+
+[node name="Venus" parent="." index="3" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+body_name = "Venus"
+description = "Venus is the second planet from the Sun. It is a terrestrial planet and is the closest in mass and size to its orbital neighbour Earth. Venus is notable for having the densest atmosphere of the terrestrial planets, composed mostly of carbon dioxide with a thick, global sulfuric acid cloud cover. At the surface it has a mean temperature of 737 K (464 °C; 867 °F) and a pressure of 92 times that of Earth's at sea level. These conditions are extreme enough to compress carbon dioxide into a supercritical state close to Venus's surface."
+parent = NodePath("../Sun")
+orbital_distance = 21.764
+orbital_period = 225.0
+rotation_period = 243.0
+
+[node name="BodySelection" parent="Venus" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_ra271")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Venus" index="1"]
+mesh = SubResource("SphereMesh_3ukhf")
+
+[node name="BodyArea" parent="Venus" index="2" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Venus/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_ev4h1")

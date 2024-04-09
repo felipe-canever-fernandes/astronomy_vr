@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=18 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="5_nucrf"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="6_mwi5q"]
 [ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/mars.jpg" id="7_eb3lp"]
-[ext_resource type="Texture2D" uid="uid://dpr0yjaiynrmr" path="res://textures/moon.jpg" id="8_b1fpj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
 radius = 10.0
@@ -45,21 +44,6 @@ height = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ev4h1"]
 radius = 0.1
-
-[sub_resource type="SphereMesh" id="SphereMesh_ehye3"]
-radius = 0.01
-height = 0.02
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_838hv"]
-albedo_texture = ExtResource("8_b1fpj")
-
-[sub_resource type="SphereMesh" id="SphereMesh_410ni"]
-material = SubResource("StandardMaterial3D_838hv")
-radius = 0.01
-height = 0.02
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_mqabu"]
-radius = 0.01
 
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
@@ -119,29 +103,3 @@ mesh = SubResource("SphereMesh_xkeb7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_ev4h1")
-
-[node name="Moon" parent="." index="3" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.4)
-body_name = "Moon"
-description = "The Moon is Earth's only natural satellite. It orbits at an average distance of 384,400 km (238,900 mi), about 30 times the diameter of Earth. Over time Earth's gravity has caused tidal locking, causing the same side of the Moon to always face Earth. Because of this, the lunar day and the lunar month are the same length, at 29.5 Earth days. The Moon's gravitational pull – and to a lesser extent, the Sun's – are the main drivers of Earth's tides.
-
-In geophysical terms the Moon is a planetary-mass object or satellite planet. Its mass is 1.2% that of the Earth, and its diameter is 3,474 km (2,159 mi), roughly one-quarter of Earth's (about as wide as Australia.) Within the Solar System, it is the largest and most massive satellite in relation to its parent planet, the fifth largest and most massive moon overall, and larger and more massive than all known dwarf planets. Its surface gravity is about one sixth of Earth's, about half of that of Mars, and the second highest among all Solar System moons, after Jupiter's moon Io. The body of the Moon is differentiated and terrestrial, with no significant hydrosphere, atmosphere, or magnetic field. It formed 4.51 billion years ago, not long after Earth's formation, out of the debris from a giant impact between Earth and a hypothesized Mars-sized body called Theia.
-
-The lunar surface is covered in lunar dust and marked by mountains, impact craters, their ejecta, ray-like streaks and, mostly on the near side of the Moon, by dark maria (\"seas\"), which are plains of cooled magma. These maria were formed when molten lava flowed into ancient impact basins. The Moon is, beside when passing through Earth's shadow during a lunar eclipse, always illuminated by the Sun, but from Earth the visible illumination shifts during its orbit, producing the lunar phases. The Moon is the brightest celestial object in Earth's night sky. This is mainly due to its large angular diameter, while the reflectance of the lunar surface is comparable to that of asphalt. The apparent size is nearly the same as that of the Sun, allowing it to cover the Sun almost completely during a total solar eclipse. From Earth about 59% of the lunar surface is visible over time due to cyclical shifts in perspective (libration), making parts of the far side of the Moon visible.
-
-For humans the Moon has been an important source of inspiration and knowledge, having been crucial to cosmography, mythology, religion, art, time keeping, natural science, and spaceflight. On September 13, 1959, the first human-made object to reach an extraterrestrial body arrived on the Moon, the Soviet Union's Luna 2 impactor. In 1966, the Moon became the first extraterrestrial body where soft landings and orbital insertions were achieved. On July 20, 1969, humans for the first time landed on the Moon and any extraterrestrial body, at Mare Tranquillitatis with the lander Eagle of the United States' Apollo 11 mission. Five more crews were sent between then and 1972, each with two men landing on the surface. The longest stay was 75 hours by the Apollo 17 crew. Since then, exploration of the Moon has continued robotically with crewed missions being planned to return beginning in the late 2020s."
-parent = NodePath("../Planet")
-orbital_distance = 1.0
-orbital_period = 5.0
-rotation_period = 2.0
-
-[node name="BodySelection" parent="Moon" index="0" instance=ExtResource("3_cwcqk")]
-mesh = SubResource("SphereMesh_ehye3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Moon" index="1"]
-mesh = SubResource("SphereMesh_410ni")
-
-[node name="BodyArea" parent="Moon" index="2" instance=ExtResource("5_nucrf")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Moon/BodyArea" index="0"]
-shape = SubResource("SphereShape3D_mqabu")

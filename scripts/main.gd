@@ -11,7 +11,6 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _movement_direct: XRToolsMovementDirect = %MovementDirect
 @onready var _hud: Node3D = %Hud
 @onready var _system: XRToolsPickable = %System
-@onready var _floor: StaticBody3D = %Floor
 @onready var _info_panel: Node3D = $InfoPanel
 @onready var _info_panel_screen: Node3D = $InfoPanel/Screen
 
@@ -50,8 +49,6 @@ var _passthrough_enabled: bool:
 	get:
 		return _xr_interface.is_passthrough_enabled()
 	set(value):
-		_floor.visible = not value
-		
 		if value:
 			_environment.background_energy_multiplier = 0
 			_environment.background_color.a = 0

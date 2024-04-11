@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=21 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/sky.jpg" id="2_c3tb5"]
@@ -13,11 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_x4w6x"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_q8y7u"]
-[ext_resource type="Texture2D" uid="uid://dxxjoruv6liek" path="res://textures/floor.png" id="9_03vxy"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="9_yrm02"]
 [ext_resource type="PackedScene" uid="uid://d25ivxqix60bc" path="res://scenes/system.tscn" id="13_fo6c5"]
-[ext_resource type="Script" path="res://scripts/floor.gd" id="16_2uxxn"]
-[ext_resource type="Script" path="res://scripts/walls.gd" id="17_4kbgh"]
 [ext_resource type="PackedScene" uid="uid://dd40nqq0ykhxa" path="res://scenes/info_panel_gui.tscn" id="22_qft3v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kyjvu"]
@@ -33,30 +30,7 @@ background_energy_multiplier = 0.1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oxqlp"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.0196078)
-albedo_texture = ExtResource("9_03vxy")
-uv1_triplanar = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_hoiqd"]
-material = SubResource("StandardMaterial3D_oxqlp")
-size = Vector2(100, 100)
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vpi3"]
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ts73e"]
-plane = Plane(0, 0, 1, 0)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ppki6"]
-plane = Plane(0, 0, -1, 0)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i28xf"]
-plane = Plane(1, 0, 0, 0)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3lu1x"]
-plane = Plane(-1, 0, 0, 0)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -128,36 +102,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
 collision_mask = 993
 player_calibrate_height = false
 
-[node name="Boundary" type="Node3D" parent="."]
+[node name="Floor" type="StaticBody3D" parent="."]
 
-[node name="Floor" type="StaticBody3D" parent="Boundary"]
-unique_name_in_owner = true
-
-[node name="Mesh" type="MeshInstance3D" parent="Boundary/Floor"]
-mesh = SubResource("PlaneMesh_hoiqd")
-script = ExtResource("16_2uxxn")
-
-[node name="Floor" type="CollisionShape3D" parent="Boundary/Floor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_8vpi3")
-
-[node name="Walls" type="StaticBody3D" parent="Boundary"]
-script = ExtResource("17_4kbgh")
-
-[node name="Front" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
-shape = SubResource("WorldBoundaryShape3D_ts73e")
-
-[node name="Back" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
-shape = SubResource("WorldBoundaryShape3D_ppki6")
-
-[node name="Left" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_i28xf")
-
-[node name="Right" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_3lu1x")
 
 [node name="System" parent="." instance=ExtResource("13_fo6c5")]
 unique_name_in_owner = true

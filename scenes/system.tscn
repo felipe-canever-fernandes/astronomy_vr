@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=27 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -9,9 +9,10 @@
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="6_mwi5q"]
 [ext_resource type="Texture2D" uid="uid://dpeh45xdjnauq" path="res://textures/mercury.jpg" id="8_m5lvy"]
 [ext_resource type="Texture2D" uid="uid://dlioslxer2edv" path="res://textures/venus.jpg" id="9_e3ie1"]
+[ext_resource type="Texture2D" uid="uid://dn0i616gdwmcd" path="res://textures/earth.jpg" id="10_fpv51"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 30.0
+radius = 40.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 radius = 6.96
@@ -58,6 +59,21 @@ material = SubResource("StandardMaterial3D_57ff2")
 radius = 0.061
 height = 0.122
 
+[sub_resource type="SphereMesh" id="SphereMesh_8p87a"]
+radius = 0.064
+height = 0.128
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgnv7"]
+albedo_texture = ExtResource("10_fpv51")
+
+[sub_resource type="SphereMesh" id="SphereMesh_fprpx"]
+material = SubResource("StandardMaterial3D_mgnv7")
+radius = 0.064
+height = 0.128
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_71fgl"]
+radius = 0.064
+
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
 gravity_scale = 0.0
@@ -87,7 +103,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 30.0
+omni_range = 40.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -131,3 +147,24 @@ mesh = SubResource("SphereMesh_3ukhf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Venus/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_ev4h1")
+
+[node name="Earth" parent="." index="4" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+body_name = "Earth"
+description = "Earth is the third planet from the Sun and the only astronomical object known to harbor life. This is enabled by Earth being a water world, the only one in the Solar System sustaining liquid surface water. Almost all of Earth's water is contained in its global ocean, covering 70.8% of Earth's crust. The remaining 29.2% of Earth's crust is land, most of which is located in the form of continental landmasses within Earth's land hemisphere. Most of Earth's land is somewhat humid and covered by vegetation, while large sheets of ice at Earth's polar deserts retain more water than Earth's groundwater, lakes, rivers and atmospheric water combined. Earth's crust consists of slowly moving tectonic plates, which interact to produce mountain ranges, volcanoes, and earthquakes. Earth has a liquid outer core that generates a magnetosphere capable of deflecting most of the destructive solar winds and cosmic radiation."
+parent = NodePath("../Sun")
+orbital_distance = 29.974
+orbital_period = 365.0
+rotation_period = 24.0
+
+[node name="BodySelection" parent="Earth" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_8p87a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Earth" index="1"]
+mesh = SubResource("SphereMesh_fprpx")
+
+[node name="BodyArea" parent="Earth" index="2" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Earth/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_71fgl")

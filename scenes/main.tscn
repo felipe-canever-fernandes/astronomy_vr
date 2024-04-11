@@ -42,7 +42,7 @@ uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hoiqd"]
 material = SubResource("StandardMaterial3D_oxqlp")
-size = Vector2(60, 60)
+size = Vector2(100, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vpi3"]
 
@@ -144,19 +144,19 @@ shape = SubResource("WorldBoundaryShape3D_8vpi3")
 script = ExtResource("17_4kbgh")
 
 [node name="Front" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 shape = SubResource("WorldBoundaryShape3D_ts73e")
 
 [node name="Back" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 shape = SubResource("WorldBoundaryShape3D_ppki6")
 
 [node name="Left" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_i28xf")
 
 [node name="Right" type="CollisionShape3D" parent="Boundary/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_3lu1x")
 
 [node name="System" parent="." instance=ExtResource("13_fo6c5")]

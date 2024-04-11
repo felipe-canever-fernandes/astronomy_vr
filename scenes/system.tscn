@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=32 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -10,9 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://dpeh45xdjnauq" path="res://textures/mercury.jpg" id="8_m5lvy"]
 [ext_resource type="Texture2D" uid="uid://dlioslxer2edv" path="res://textures/venus.jpg" id="9_e3ie1"]
 [ext_resource type="Texture2D" uid="uid://dn0i616gdwmcd" path="res://textures/earth.jpg" id="10_fpv51"]
+[ext_resource type="Texture2D" uid="uid://dpr0yjaiynrmr" path="res://textures/moon.jpg" id="11_4wbh5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 40.0
+radius = 50.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 radius = 6.96
@@ -74,6 +75,21 @@ height = 0.128
 [sub_resource type="SphereShape3D" id="SphereShape3D_71fgl"]
 radius = 0.064
 
+[sub_resource type="SphereMesh" id="SphereMesh_6lngk"]
+radius = 0.017
+height = 0.034
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuo56"]
+albedo_texture = ExtResource("11_4wbh5")
+
+[sub_resource type="SphereMesh" id="SphereMesh_0n8yv"]
+material = SubResource("StandardMaterial3D_yuo56")
+radius = 0.017
+height = 0.034
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_op5jb"]
+radius = 0.017
+
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
 gravity_scale = 0.0
@@ -103,7 +119,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 40.0
+omni_range = 50.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -168,3 +184,24 @@ mesh = SubResource("SphereMesh_fprpx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Earth/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_71fgl")
+
+[node name="Moon" parent="." index="5" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.2)
+body_name = "Moon"
+description = "The Moon is Earth's only natural satellite. It orbits at an average distance of 384,400 km (238,900 mi), about 30 times the diameter of Earth. Over time Earth's gravity has caused tidal locking, causing the same side of the Moon to always face Earth. Because of this, the lunar day and the lunar month are the same length, at 29.5 Earth days. The Moon's gravitational pull – and to a lesser extent, the Sun's – are the main drivers of Earth's tides."
+parent = NodePath("../Earth")
+orbital_distance = 0.077
+orbital_period = 27.0
+rotation_period = 27.3
+
+[node name="BodySelection" parent="Moon" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_6lngk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Moon" index="1"]
+mesh = SubResource("SphereMesh_0n8yv")
+
+[node name="BodyArea" parent="Moon" index="2" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Moon/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_op5jb")

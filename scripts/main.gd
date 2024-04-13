@@ -3,6 +3,7 @@ extends Node3D
 const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 
 @onready var _world_environment: WorldEnvironment = $WorldEnvironment
+@onready var _origin: XROrigin3D = %XROrigin3D
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
 @onready var _console: Node3D = $XROrigin3D/XRCamera3D/Console
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
@@ -37,6 +38,9 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 		return Game.simulation_scale
 	set(value):
 		Game.simulation_scale = value
+
+
+@export var movement_speed: float
 
 var _xr_interface: XRInterface
 var _is_game_paused: bool = false
@@ -117,6 +121,7 @@ func _process(delta: float) -> void:
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_simulation_speed(delta)
 	_scale_system()
+	_move(delta)
 
 
 func _set_up_xr() -> void:
@@ -169,7 +174,18 @@ func _scale_system() -> void:
 	
 	var ratio: float = final_distance / initial_distance
 	Game.simulation_scale = _system_initial_scale * ratio
+
+
+func _move(delta: float) -> void:
+	var movement_vector: Vector2 = _left_controller.get_vector2("primary")
+	var movement_direction: Vector3 = -_camera.basis.z
 	
+	_origin.position += \
+			movement_vector.y \
+			* movement_direction \
+			* movement_speed \
+			* delta
+
 
 func _update_pointer_enabled() -> void:
 	var is_enabled: bool = _is_pointer_button_pressed or _is_info_panel_enabled

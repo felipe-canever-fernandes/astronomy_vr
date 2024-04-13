@@ -1,17 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=17 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/sky.jpg" id="2_c3tb5"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
-[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="2_htorm"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_y6p13"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_a1m3w"]
 [ext_resource type="PackedScene" uid="uid://xnxbnk8pdj48" path="res://scenes/console_gui.tscn" id="3_m3f21"]
 [ext_resource type="Material" uid="uid://dvxp3kftr2x3u" path="res://resources/hand_material.tres" id="3_tmbjj"]
 [ext_resource type="PackedScene" uid="uid://cttyjmt7g11lp" path="res://scenes/hud_gui.tscn" id="4_1bxaa"]
-[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_uk2g3"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_x4w6x"]
-[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="7_bbvjr"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_q8y7u"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="9_yrm02"]
 [ext_resource type="PackedScene" uid="uid://d25ivxqix60bc" path="res://scenes/system.tscn" id="13_fo6c5"]
@@ -29,8 +26,6 @@ background_mode = 2
 background_energy_multiplier = 0.1
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8vpi3"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -74,11 +69,6 @@ tracker = &"left_hand"
 [node name="LeftHand" parent="XROrigin3D/LeftController" instance=ExtResource("2_cc1m1")]
 hand_material_override = ExtResource("3_tmbjj")
 
-[node name="MovementDirect" parent="XROrigin3D/LeftController" instance=ExtResource("5_uk2g3")]
-unique_name_in_owner = true
-
-[node name="MovementTurn" parent="XROrigin3D/LeftController" instance=ExtResource("7_bbvjr")]
-
 [node name="RightController" type="XRController3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
 tracker = &"right_hand"
@@ -97,16 +87,6 @@ collide_with_areas = true
 [node name="FunctionPickup" parent="XROrigin3D/RightController" instance=ExtResource("7_q8y7u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
-[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("2_htorm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7)
-collision_mask = 993
-player_calibrate_height = false
-
-[node name="Floor" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("WorldBoundaryShape3D_8vpi3")
-
 [node name="System" parent="." instance=ExtResource("13_fo6c5")]
 unique_name_in_owner = true
 
@@ -124,7 +104,6 @@ unshaded = true
 
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="." method="_on_left_controller_button_pressed"]
 [connection signal="button_released" from="XROrigin3D/LeftController" to="." method="_on_left_controller_button_released"]
-[connection signal="input_vector2_changed" from="XROrigin3D/LeftController" to="." method="_on_left_controller_input_vector_2_changed"]
 [connection signal="button_pressed" from="XROrigin3D/RightController" to="." method="_on_right_controller_button_pressed"]
 [connection signal="button_released" from="XROrigin3D/RightController" to="." method="_on_right_controller_button_released"]
 [connection signal="input_vector2_changed" from="XROrigin3D/RightController" to="." method="_on_right_controller_input_vector_2_changed"]

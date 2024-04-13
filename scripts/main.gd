@@ -8,7 +8,6 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
 @onready var _right_controller: XRController3D = $XROrigin3D/RightController
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
-@onready var _movement_direct: XRToolsMovementDirect = %MovementDirect
 @onready var _hud: Node3D = %Hud
 @onready var _system: XRToolsPickable = %System
 @onready var _info_panel: Node3D = $InfoPanel
@@ -18,7 +17,6 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _initial_sky_energy_multiplier: float = \
 		_environment.background_energy_multiplier
 @onready var _initial_pointer_distance: float = _pointer.distance
-@onready var _initial_movement_speed: float = _movement_direct.max_speed
 @onready var _hud_gui: HudGui = _hud.scene_node
 @onready var _info_panel_gui: InfoPanelGui = _info_panel_screen.scene_node
 
@@ -100,8 +98,6 @@ var _is_scale_button_pressed: bool = false
 var _left_controller_initial_position: Vector3 = Vector3.ZERO
 var _system_initial_scale: float = 0
 
-var _is_player_direct_moving: bool = false
-
 var _simulation_speed_input_direction: float = 0
 var _previous_simulation_speed_input_direction: float = 0
 
@@ -119,7 +115,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
-	_set_movement_speed(delta)
 	_set_simulation_speed(delta)
 	_scale_system()
 
@@ -143,15 +138,6 @@ func _set_up_controls() -> void:
 
 func _set_up_system() -> void:
 	_system.position.y = _camera.global_position.y + _SYSTEM_HEIGHT_OFFSET
-
-
-func _set_movement_speed(delta: float) -> void:
-	if _is_player_direct_moving:
-		if _is_speed_button_pressed:
-			_movement_direct.max_speed += simulation_accelaration * delta
-			_hud_gui.display_movement_speed(_movement_direct.max_speed)
-	else:
-		_movement_direct.max_speed = _initial_movement_speed
 
 
 func _set_simulation_speed(delta: float) -> void:
@@ -211,13 +197,6 @@ func _on_left_controller_button_released(button_name: String) -> void:
 			_is_speed_button_pressed = false
 		"grip_click":
 			_is_scale_button_pressed = false
-
-
-func _on_left_controller_input_vector_2_changed(
-	_button_name: String,
-	value: Vector2
-) -> void:
-	_is_player_direct_moving = value.y != 0
 
 
 func _on_right_controller_button_pressed(button_name: String) -> void:

@@ -127,6 +127,9 @@ func _process(delta: float) -> void:
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_simulation_speed(delta)
 	_scale_system()
+
+
+func _physics_process(delta: float) -> void:
 	_move(delta)
 
 

@@ -12,7 +12,7 @@ func display_body_name(body_name: String) -> void:
 
 
 func display_movement_speed(speed: float) -> void:
-	var formatted_speed: String = "Movement speed: %sx" % speed
+	var formatted_speed: String = "Movement speed: %.3fx" % speed
 	_movement_speed_label.display(formatted_speed)
 
 

@@ -200,6 +200,8 @@ func _move(delta: float) -> void:
 			* movement_direction \
 			* _movement_speed \
 			* delta
+	
+	_hud_gui.display_movement_speed(_movement_speed)
 
 
 func _update_pointer_enabled() -> void:

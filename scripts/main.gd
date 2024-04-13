@@ -21,6 +21,8 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _hud_gui: HudGui = _hud.scene_node
 @onready var _info_panel_gui: InfoPanelGui = _info_panel_screen.scene_node
 
+@onready var _movement_speed: float = 0
+
 
 @export var simulation_speed: float:
 	get:
@@ -40,7 +42,8 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 		Game.simulation_scale = value
 
 
-@export var movement_speed: float
+@export var initial_movement_speed: float = 0
+@export var movement_acceleration: float = 0
 
 var _xr_interface: XRInterface
 var _is_game_paused: bool = false
@@ -95,7 +98,7 @@ var _is_pointer_button_pressed: bool = false
 var _is_body_selected: bool = false
 var _selected_body: Body
 
-var _is_speed_button_pressed: bool = false
+var _is_pickup_button_pressed: bool = false
 var _right_controller_initial_position: Vector3 = Vector3.ZERO
 
 var _is_scale_button_pressed: bool = false
@@ -105,6 +108,7 @@ var _system_initial_scale: float = 0
 var _simulation_speed_input_direction: float = 0
 var _previous_simulation_speed_input_direction: float = 0
 
+var _is_movement_speed_button_pressed: bool = false
 var _previous_direction_x: int = 0
 
 
@@ -159,7 +163,7 @@ func _set_simulation_speed(delta: float) -> void:
 
 
 func _scale_system() -> void:
-	if not (_is_speed_button_pressed and _is_scale_button_pressed):
+	if not (_is_pickup_button_pressed and _is_scale_button_pressed):
 		_system.enabled = true
 		return
 	
@@ -180,12 +184,21 @@ func _scale_system() -> void:
 
 func _move(delta: float) -> void:
 	var movement_vector: Vector2 = _left_controller.get_vector2("primary")
+	var direction_y: float = movement_vector.y
+	
+	if not is_zero_approx(direction_y):
+		if _is_movement_speed_button_pressed:
+			_movement_speed += movement_acceleration * delta
+	else:
+		_movement_speed = initial_movement_speed
+		return
+	
 	var movement_direction: Vector3 = -_camera.global_basis.z
 	
 	_origin.position += \
-			movement_vector.y \
+			direction_y \
 			* movement_direction \
-			* movement_speed \
+			* _movement_speed \
 			* delta
 
 
@@ -201,7 +214,7 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 		"ax_button":
 			_passthrough_enabled = not _passthrough_enabled
 		"trigger_click":
-			_is_speed_button_pressed = true
+			_is_movement_speed_button_pressed = true
 		"grip_click":
 			_is_scale_button_pressed = true
 			_left_controller_initial_position = \
@@ -212,7 +225,7 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 func _on_left_controller_button_released(button_name: String) -> void:
 	match button_name:
 		"trigger_click":
-			_is_speed_button_pressed = false
+			_is_movement_speed_button_pressed = false
 		"grip_click":
 			_is_scale_button_pressed = false
 
@@ -243,7 +256,7 @@ func _on_right_controller_button_pressed(button_name: String) -> void:
 			_is_pointer_button_pressed = true
 			_update_pointer_enabled()
 		"grip_click":
-			_is_speed_button_pressed = true
+			_is_pickup_button_pressed = true
 			_right_controller_initial_position = \
 					_right_controller.global_position
 
@@ -257,7 +270,7 @@ func _on_right_controller_button_released(button_name: String) -> void:
 			_is_pointer_button_pressed = false
 			_update_pointer_enabled()
 		"grip_click":
-			_is_speed_button_pressed = false
+			_is_pickup_button_pressed = false
 
 
 func _on_right_controller_input_vector_2_changed(

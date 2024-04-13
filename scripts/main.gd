@@ -105,6 +105,8 @@ var _system_initial_scale: float = 0
 var _simulation_speed_input_direction: float = 0
 var _previous_simulation_speed_input_direction: float = 0
 
+var _previous_direction_x: int = 0
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -178,7 +180,7 @@ func _scale_system() -> void:
 
 func _move(delta: float) -> void:
 	var movement_vector: Vector2 = _left_controller.get_vector2("primary")
-	var movement_direction: Vector3 = -_camera.basis.z
+	var movement_direction: Vector3 = -_camera.global_basis.z
 	
 	_origin.position += \
 			movement_vector.y \
@@ -213,6 +215,22 @@ func _on_left_controller_button_released(button_name: String) -> void:
 			_is_speed_button_pressed = false
 		"grip_click":
 			_is_scale_button_pressed = false
+
+
+func _on_left_controller_input_vector_2_changed(
+	button_name: String,
+	value: Vector2
+) -> void:
+	if button_name != "primary":
+		return
+	
+	var direction_x: int = round(abs(value.x)) * sign(value.x)
+	
+	if direction_x == _previous_direction_x:
+		return
+	
+	_origin.rotate_y(deg_to_rad(15) * -direction_x)
+	_previous_direction_x = direction_x
 
 
 func _on_right_controller_button_pressed(button_name: String) -> void:

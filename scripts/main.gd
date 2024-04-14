@@ -86,8 +86,7 @@ var _is_info_panel_enabled: bool:
 			
 			_info_panel.global_rotation.y = _camera.global_rotation.y
 			
-			_info_panel_gui.body_name = _selected_body.body_name
-			_info_panel_gui.description = _selected_body.description
+			_info_panel_gui.body = _selected_body
 		
 		_info_panel_screen.visible = value
 		_info_panel_screen.enabled = value
@@ -156,6 +155,7 @@ func _set_up_xr() -> void:
 
 func _set_up_controls() -> void:
 	_info_panel_screen.connect_scene_signal("close_button_up", _on_info_panel_close_button_up)
+	_info_panel_screen.connect_scene_signal("follow_button_up", _on_info_panel_follow_button_up)
 
 
 func _set_up_system() -> void:
@@ -310,6 +310,11 @@ func _toggle_is_game_paused() -> void:
 
 func _on_info_panel_close_button_up() -> void:
 	_is_info_panel_enabled = false
+
+
+func _on_info_panel_follow_button_up(body: Body) -> void:
+	_is_info_panel_enabled = false
+	Game.console.write("Follow %s!" % body.body_name)
 	
 
 func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:

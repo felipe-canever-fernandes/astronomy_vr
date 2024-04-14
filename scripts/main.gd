@@ -112,7 +112,26 @@ var _previous_simulation_speed_input_direction: float = 0
 var _is_movement_speed_button_pressed: bool = false
 var _previous_direction_x: int = 0
 
-var _body_following: Body = null
+var _position_following: Vector3:
+	get:
+		return Vector3.ZERO \
+				if _body_following == null \
+				else _body_following.global_position
+
+
+var __body_following: Body = null
+
+
+var _body_following: Body:
+	get:
+		return __body_following
+	set(value):
+		__body_following = value
+		
+		_initial_body_following_direction = \
+					_position_following - _origin.global_position
+
+
 var _initial_body_following_direction: Vector3 = Vector3.ZERO
 
 
@@ -124,6 +143,7 @@ func _ready() -> void:
 	_set_up_controls()
 	_set_up_system()
 	_is_info_panel_enabled = false
+	_body_following = null
 
 
 func _physics_process(delta: float) -> void:
@@ -198,11 +218,8 @@ func _scale_system() -> void:
 
 
 func _follow_body() -> void:
-	if _body_following == null:
-		return
-	
 	_origin.global_position = \
-			_body_following.global_position - _initial_body_following_direction
+			_position_following - _initial_body_following_direction
 
 
 func _move(delta: float) -> void:
@@ -218,11 +235,13 @@ func _move(delta: float) -> void:
 	
 	var movement_direction: Vector3 = -_camera.global_basis.z
 	
-	_origin.global_position +=  \
+	var final_velocity: Vector3 = \
 			direction_y \
 			* movement_direction \
 			* _movement_speed \
 			* delta
+	
+	_initial_body_following_direction -= final_velocity
 	
 	_hud_gui.display_movement_speed(_movement_speed)
 
@@ -328,11 +347,7 @@ func _on_info_panel_close_button_up() -> void:
 
 func _on_info_panel_follow_button_up(body: Body) -> void:
 	_is_info_panel_enabled = false
-	
 	_body_following = body
-	
-	_initial_body_following_direction = \
-			body.global_position - _origin.global_position
 	
 
 func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:

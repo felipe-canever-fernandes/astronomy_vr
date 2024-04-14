@@ -30,6 +30,7 @@ tonemap_mode = 2
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
 simulation_accelaration = 10.0
+simulation_speed_accelaration = 4.0
 initial_movement_speed = 3.0
 movement_acceleration = 10.0
 

@@ -7,7 +7,9 @@ const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
 @onready var _console: Node3D = $XROrigin3D/XRCamera3D/Console
 @onready var _left_controller: XRController3D = $XROrigin3D/LeftController
+@onready var _left_hand: XRToolsHand = $XROrigin3D/LeftController/LeftHand
 @onready var _right_controller: XRController3D = $XROrigin3D/RightController
+@onready var _right_hand: XRToolsHand = $XROrigin3D/RightController/RightHand
 @onready var _pointer: XRToolsFunctionPointer = $XROrigin3D/RightController/FunctionPointer
 @onready var _hud: Node3D = %Hud
 @onready var _system: XRToolsPickable = %System
@@ -123,11 +125,20 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var original_origin_position: Vector3 = _origin.position
+	
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_simulation_speed(delta)
 	_scale_system()
 	_move(delta)
+	
+	var new_origin_position: Vector3 = _origin.position
+	
+	var origin_displacement: Vector3 = \
+			new_origin_position - original_origin_position
+	
+	_sync_hands(origin_displacement)
 
 
 func _set_up_xr() -> void:
@@ -195,13 +206,18 @@ func _move(delta: float) -> void:
 	
 	var movement_direction: Vector3 = -_camera.global_basis.z
 	
-	_origin.position += \
+	_origin.global_position +=  \
 			direction_y \
 			* movement_direction \
 			* _movement_speed \
 			* delta
 	
 	_hud_gui.display_movement_speed(_movement_speed)
+
+
+func _sync_hands(displacement: Vector3) -> void:
+	_left_hand.position += displacement
+	_right_hand.position += displacement
 
 
 func _update_pointer_enabled() -> void:

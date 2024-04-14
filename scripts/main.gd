@@ -112,6 +112,9 @@ var _previous_simulation_speed_input_direction: float = 0
 var _is_movement_speed_button_pressed: bool = false
 var _previous_direction_x: int = 0
 
+var _body_following: Body = null
+var _initial_body_following_direction: Vector3 = Vector3.ZERO
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -130,6 +133,7 @@ func _physics_process(delta: float) -> void:
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
 	_set_simulation_speed(delta)
 	_scale_system()
+	_follow_body()
 	_move(delta)
 	
 	var new_origin_position: Vector3 = _origin.position
@@ -191,6 +195,14 @@ func _scale_system() -> void:
 	
 	var ratio: float = final_distance / initial_distance
 	Game.simulation_scale = _system_initial_scale * ratio
+
+
+func _follow_body() -> void:
+	if _body_following == null:
+		return
+	
+	_origin.global_position = \
+			_body_following.global_position - _initial_body_following_direction
 
 
 func _move(delta: float) -> void:
@@ -314,7 +326,11 @@ func _on_info_panel_close_button_up() -> void:
 
 func _on_info_panel_follow_button_up(body: Body) -> void:
 	_is_info_panel_enabled = false
-	Game.console.write("Follow %s!" % body.body_name)
+	
+	_body_following = body
+	
+	_initial_body_following_direction = \
+			body.global_position - _origin.global_position
 	
 
 func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:

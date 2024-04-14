@@ -243,6 +243,8 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 	match button_name:
 		"ax_button":
 			_passthrough_enabled = not _passthrough_enabled
+		"primary_click":
+			_body_following = null
 		"trigger_click":
 			_is_movement_speed_button_pressed = true
 		"grip_click":

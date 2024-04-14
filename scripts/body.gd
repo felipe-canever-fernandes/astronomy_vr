@@ -49,6 +49,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	await get_tree().create_timer(0.1).timeout
 	_scale_nodes()
 	_rotate(delta)
 	_orbit(delta)

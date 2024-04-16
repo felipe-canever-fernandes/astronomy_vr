@@ -84,6 +84,9 @@ var _is_info_panel_enabled: bool:
 				_camera.global_position.z
 			)
 			
+			_initial_info_panel_body_following_direction = \
+					_position_following - _info_panel.global_position
+			
 			_info_panel.global_rotation.y = _camera.global_rotation.y
 			
 			_info_panel_gui.body = _selected_body
@@ -128,11 +131,15 @@ var _body_following: Body:
 	set(value):
 		__body_following = value
 		
-		_initial_body_following_direction = \
+		_initial_player_body_following_direction = \
 					_position_following - _origin.global_position
+		
+		_initial_info_panel_body_following_direction = \
+					_position_following - _info_panel.global_position
 
 
-var _initial_body_following_direction: Vector3 = Vector3.ZERO
+var _initial_player_body_following_direction: Vector3 = Vector3.ZERO
+var _initial_info_panel_body_following_direction: Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -219,7 +226,12 @@ func _scale_system() -> void:
 
 func _follow_body() -> void:
 	_origin.global_position = \
-			_position_following - _initial_body_following_direction
+			_position_following - _initial_player_body_following_direction
+	
+	if _is_info_panel_enabled:
+		_info_panel.global_position = \
+				_position_following \
+				- _initial_info_panel_body_following_direction
 
 
 func _move(delta: float) -> void:
@@ -241,7 +253,7 @@ func _move(delta: float) -> void:
 			* _movement_speed \
 			* delta
 	
-	_initial_body_following_direction -= final_velocity
+	_initial_player_body_following_direction -= final_velocity
 	
 	_hud_gui.display_movement_speed(_movement_speed)
 

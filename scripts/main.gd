@@ -136,6 +136,11 @@ var _body_following: Body:
 		
 		_initial_info_panel_body_following_direction = \
 					_position_following - _info_panel.global_position
+		
+		if value == null:
+			_hud_gui.hide_following_body_name()
+		else:
+			_hud_gui.display_following_body_name(__body_following.body_name)
 
 
 var _initial_player_body_following_direction: Vector3 = Vector3.ZERO

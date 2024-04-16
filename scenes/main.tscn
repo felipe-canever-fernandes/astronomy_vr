@@ -58,8 +58,8 @@ unshaded = true
 
 [node name="Hud" parent="XROrigin3D/XRCamera3D" instance=ExtResource("5_x4w6x")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0999999, -0.5)
-screen_size = Vector2(0.4, 0.225)
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, -0.0043416, -0.78404)
+screen_size = Vector2(0.8, 0.45)
 enabled = false
 collision_layer = 5242880
 scene = ExtResource("4_1bxaa")

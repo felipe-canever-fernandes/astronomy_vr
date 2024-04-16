@@ -1,7 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cttyjmt7g11lp"]
+[gd_scene load_steps=9 format=3 uid="uid://cttyjmt7g11lp"]
 
 [ext_resource type="Script" path="res://scripts/hud_gui.gd" id="1_d6iey"]
 [ext_resource type="PackedScene" uid="uid://bhm606i4ayof5" path="res://scenes/fading_label.tscn" id="2_dahaf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c0y5i"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q5wkb"]
+font_size = 48
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_1oai8"]
 font_size = 64
@@ -30,24 +40,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 script = ExtResource("1_d6iey")
+
+[node name="FollowingBodyNameContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="FollowingBodyNameContainer"]
+layout_mode = 2
+text = "Following"
+label_settings = SubResource("LabelSettings_c0y5i")
+horizontal_alignment = 1
+
+[node name="FollowingBodyNameLabel" type="Label" parent="FollowingBodyNameContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Body Name"
+label_settings = SubResource("LabelSettings_q5wkb")
+horizontal_alignment = 1
 
 [node name="BodyNameLabel" parent="." instance=ExtResource("2_dahaf")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
+offset_left = -178.5
+offset_top = -148.0
+offset_right = 178.5
+offset_bottom = -60.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 text = "Body Name"
 label_settings = SubResource("LabelSettings_1oai8")
 horizontal_alignment = 1

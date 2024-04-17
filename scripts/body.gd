@@ -32,8 +32,12 @@ const _SELECTION_THICKNESS: float = 0.003
 ## The time it takes for this body to rotate around its own axis.
 @export var rotation_period: float
 
-var _mesh: MeshInstance3D
-var _selection: BodySelection
+var _meshes: Array
+var _meshes_initial_scales: Array
+
+var _selections: Array
+var _selections_initial_scales: Array
+
 var _area: BodyArea
 
 
@@ -49,9 +53,10 @@ var _rotation_angular_speed: float:
 
 var selected: bool:
 	get:
-		return _selection.visible
+		return _selections[0].visible
 	set(value):
-		_selection.visible = value
+		for selection in _selections:
+			selection.visible = value
 
 
 var _pivot: Node3D = null
@@ -74,8 +79,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _set_up_selection() -> void:
-	_selection.mesh.flip_faces = true
-	_selection.mesh.material = _create_selection_material()
+	for selection in _selections:
+		selection.mesh.flip_faces = true
+		selection.mesh.material = _create_selection_material()
 	
 	selected = false
 
@@ -96,9 +102,11 @@ func _set_position() -> void:
 func _find_nodes():
 	for node in get_children():
 		if node is BodySelection:
-			_selection = node
+			_selections.append(node)
+			_selections_initial_scales.append(node.scale)
 		elif node is MeshInstance3D:
-			_mesh = node
+			_meshes.append(node)
+			_meshes_initial_scales.append(node.scale)
 		elif node is BodyArea:
 			_area = node
 	
@@ -123,8 +131,12 @@ func _set_up_orbit() -> void:
 func _scale_nodes() -> void:
 	var new_scale: Vector3 = Game.simulation_scale * Vector3.ONE
 	
-	_mesh.scale = new_scale
-	_selection.scale = new_scale
+	for i in len(_meshes):
+		_meshes[i].scale = _meshes_initial_scales[i] * new_scale
+
+	for i in len(_selections):
+		_selections[i].scale = _selections_initial_scales[i] * new_scale
+
 	_area.scale = new_scale
 	
 	var distance_to_player = \
@@ -133,7 +145,8 @@ func _scale_nodes() -> void:
 	var selection_tickness: float = \
 			_SELECTION_THICKNESS * distance_to_player / Game.simulation_scale
 	
-	_selection.mesh.material.grow_amount = -selection_tickness
+	for selection in _selections:
+		selection.mesh.material.grow_amount = -selection_tickness
 	
 
 
@@ -141,8 +154,12 @@ func _rotate(delta: float) -> void:
 	var delta_rotation: float = \
 			_rotation_angular_speed * delta * Game.simulation_speed
 
-	_mesh.rotate(Vector3.UP, delta_rotation)
-	_selection.rotate(Vector3.UP, delta_rotation)
+	for mesh in _meshes:
+		mesh.rotate(Vector3.UP, delta_rotation)
+	
+	for selection in _selections:
+		selection.rotate(Vector3.UP, delta_rotation)
+
 	_area.rotate(Vector3.UP, delta_rotation)
 
 

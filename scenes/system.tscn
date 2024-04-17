@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=43 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -16,9 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://b70ri2q4s46b" path="res://textures/pictures/venus.jpg" id="11_w3orm"]
 [ext_resource type="Texture2D" uid="uid://cwiidw6u6uhex" path="res://textures/pictures/earth.jpg" id="13_6imsl"]
 [ext_resource type="Texture2D" uid="uid://bc3ads1rgghj7" path="res://textures/pictures/moon.jpg" id="15_1fufj"]
+[ext_resource type="Texture2D" uid="uid://8dqxjxp6i7j6" path="res://textures/pictures/mars.png" id="17_5cwgo"]
+[ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/bodies/mars.jpg" id="18_e1rjy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 7.0
+radius = 10.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 
@@ -90,6 +92,21 @@ height = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_op5jb"]
 radius = 0.025
 
+[sub_resource type="SphereMesh" id="SphereMesh_v4nvx"]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeowk"]
+albedo_texture = ExtResource("18_e1rjy")
+
+[sub_resource type="SphereMesh" id="SphereMesh_agcks"]
+material = SubResource("StandardMaterial3D_oeowk")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wyufv"]
+radius = 0.1
+
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
 gravity_scale = 0.0
@@ -126,7 +143,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 7.0
+omni_range = 10.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -252,3 +269,34 @@ mesh = SubResource("SphereMesh_0n8yv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Moon/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_op5jb")
+
+[node name="Mars" parent="." index="6" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+picture = ExtResource("17_5cwgo")
+body_name = "Mars"
+type = 1
+description = "Mars is the fourth planet from the Sun. The surface of Mars is orange-red because it is covered in iron(III) oxide dust, giving it the nickname \"the Red Planet\". Mars is among the brightest objects in Earth's sky and its high-contrast albedo features have made it a common subject for telescope viewing. It is classified as a terrestrial planet and is the second smallest of the Solar System's planets with a diameter of 6,779 km (4,212 mi). In terms of orbital motion, a Martian solar day (sol) is equal to 24.5 hours and a Martian solar year is equal to 1.88 Earth years (687 Earth days). Mars has two natural satellites that are small and irregular in shape: Phobos and Deimos."
+average_orbital_distance = 2.3e+08
+info_orbital_period = 687.0
+info_rotation_period = 1.027
+radius = 3390.0
+mass = 641710.0
+surface_gravity = 3.721
+average_surface_temperature = -60.0
+parent = NodePath("../Sun")
+orbital_distance = 8.0
+orbital_period = 687.0
+rotation_period = 1.027
+metadata/_edit_group_ = true
+
+[node name="BodySelection" parent="Mars" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_v4nvx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mars" index="1"]
+mesh = SubResource("SphereMesh_agcks")
+
+[node name="BodyArea" parent="Mars" index="2" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mars/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_wyufv")

@@ -1,11 +1,18 @@
 class_name InfoPanelGui
 extends MarginContainer
 
+var _type_names: Dictionary = {
+	Body.Type.STAR: "Star",
+	Body.Type.PLANET: "Planet",
+	Body.Type.MOON: "Moon"
+}
+
 signal close_button_up
 signal follow_button_up(body: Body)
 
 @onready var _picture_texture_rect: TextureRect = %PictureTextureRect
 @onready var _name_label: Label = %NameLabel
+@onready var _type_label: Label = %TypeLabel
 
 @onready var _average_orbital_distance_value_label: Label = \
 		%AverageOrbitalDistanceValueLabel
@@ -34,6 +41,7 @@ var body: Body:
 		if _body != null:
 			_picture_texture_rect.texture = _body.picture
 			_name_label.text = _body.body_name
+			_type_label.text = _type_names[_body.type]
 			
 			_average_orbital_distance_value_label.text = \
 					"%s km" % _format_number(_body.average_orbital_distance)

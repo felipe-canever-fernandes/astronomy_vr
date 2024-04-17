@@ -1,12 +1,19 @@
 extends Node3D
 class_name Body
 
+enum Type {
+	STAR,
+	PLANET,
+	MOON
+}
+
 const _PIVOT_NAME_SUFFIX: String = "Orbit"
 const _SELECTION_THICKNESS: float = 0.003
 
 @export_group("Info")
 @export var picture: Texture2D
 @export var body_name: String
+@export var type: Type
 @export_multiline var description: String
 @export var average_orbital_distance: float
 @export var info_orbital_period: float

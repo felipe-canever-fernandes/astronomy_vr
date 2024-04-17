@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=49 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -18,9 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://bc3ads1rgghj7" path="res://textures/pictures/moon.jpg" id="15_1fufj"]
 [ext_resource type="Texture2D" uid="uid://8dqxjxp6i7j6" path="res://textures/pictures/mars.png" id="17_5cwgo"]
 [ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/bodies/mars.jpg" id="18_e1rjy"]
+[ext_resource type="Texture2D" uid="uid://mgrmtrrwxstr" path="res://textures/pictures/jupiter.jpg" id="19_vjare"]
+[ext_resource type="Texture2D" uid="uid://dd3kl0g66mdtn" path="res://textures/bodies/jupiter.jpg" id="20_n6tlb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 10.0
+radius = 16.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 
@@ -107,6 +109,21 @@ height = 0.2
 [sub_resource type="SphereShape3D" id="SphereShape3D_wyufv"]
 radius = 0.1
 
+[sub_resource type="SphereMesh" id="SphereMesh_0hugi"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i071"]
+albedo_texture = ExtResource("20_n6tlb")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8gc38"]
+material = SubResource("StandardMaterial3D_7i071")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onbid"]
+radius = 0.3
+
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
 gravity_scale = 0.0
@@ -143,7 +160,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 10.0
+omni_range = 16.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -300,3 +317,34 @@ mesh = SubResource("SphereMesh_agcks")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mars/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_wyufv")
+
+[node name="Jupiter" parent="." index="7" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+picture = ExtResource("19_vjare")
+body_name = "Jupiter"
+type = 1
+description = "Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass more than two and a half times that of all the other planets in the Solar System combined, and slightly less than one one-thousandth the mass of the Sun. Jupiter orbits the Sun at a distance of 5.20 AU (778.5 Gm) with an orbital period of 11.86 years. Jupiter is the third brightest natural object in the Earth's night sky after the Moon and Venus, and it has been observed since prehistoric times. It was named after Jupiter, the chief deity of ancient Roman religion."
+average_orbital_distance = 7.78e+08
+info_orbital_period = 4332.59
+info_rotation_period = 0.414
+radius = 69911.0
+mass = 1.8982e+09
+surface_gravity = 24.79
+average_surface_temperature = -108.0
+parent = NodePath("../Sun")
+orbital_distance = 12.0
+orbital_period = 4332.59
+rotation_period = 0.414
+metadata/_edit_group_ = true
+
+[node name="BodySelection" parent="Jupiter" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_0hugi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter" index="1"]
+mesh = SubResource("SphereMesh_8gc38")
+
+[node name="BodyArea" parent="Jupiter" index="2" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_onbid")

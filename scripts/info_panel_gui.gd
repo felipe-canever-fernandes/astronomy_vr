@@ -4,6 +4,7 @@ extends MarginContainer
 var _type_names: Dictionary = {
 	Body.Type.STAR: "Star",
 	Body.Type.PLANET: "Planet",
+	Body.Type.DWARF_PLANET: "Dwarf Planet",
 	Body.Type.MOON: "Moon"
 }
 

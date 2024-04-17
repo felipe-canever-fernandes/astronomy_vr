@@ -4,6 +4,7 @@ class_name Body
 enum Type {
 	STAR,
 	PLANET,
+	DWARF_PLANET,
 	MOON
 }
 

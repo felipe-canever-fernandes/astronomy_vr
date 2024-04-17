@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=65 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -23,9 +23,11 @@
 [ext_resource type="Texture2D" uid="uid://bgcvtl81h6mtq" path="res://textures/pictures/saturn.jpg" id="21_gejy7"]
 [ext_resource type="Texture2D" uid="uid://c4qikcget3e5p" path="res://textures/bodies/saturn.jpg" id="22_b1n1h"]
 [ext_resource type="Texture2D" uid="uid://dmuqakd4ny86i" path="res://textures/bodies/saturn_rings.png" id="23_yc77p"]
+[ext_resource type="Texture2D" uid="uid://v578dpebrf6j" path="res://textures/pictures/uranus.png" id="24_8modx"]
+[ext_resource type="Texture2D" uid="uid://ddfa806gbnb06" path="res://textures/bodies/uranus.jpg" id="25_aiwlm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 28.0
+radius = 32.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 radius = 1.0
@@ -151,6 +153,21 @@ ring_segments = 3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a6b1s"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_adq7n"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djepl"]
+albedo_texture = ExtResource("25_aiwlm")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3jyr0"]
+material = SubResource("StandardMaterial3D_djepl")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_njgux"]
+radius = 0.3
+
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
 gravity_scale = 0.0
@@ -187,7 +204,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 28.0
+omni_range = 32.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -416,3 +433,34 @@ skeleton = NodePath("../Body")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Saturn/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_a6b1s")
+
+[node name="Uranus" parent="." index="9" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
+picture = ExtResource("24_8modx")
+body_name = "Uranus"
+type = 1
+description = "Uranus is the seventh planet from the Sun. It is a gaseous cyan-coloured ice giant. Most of the planet is made of water, ammonia, and methane in a supercritical phase of matter, which in astronomy is called 'ice' or volatiles. The planet's atmosphere has a complex layered cloud structure and has the lowest minimum temperature of 49 K (−224 °C; −371 °F) out of all the Solar System's planets. It has a marked axial tilt of 82.23° with a retrograde rotation period of 17 hours and 14 minutes. This means that in an 84-Earth-year orbital period around the Sun, its poles get around 42 years of continuous sunlight, followed by 42 years of continuous darkness."
+average_orbital_distance = 3e+09
+info_orbital_period = 30688.5
+info_rotation_period = -0.718
+radius = 25362.0
+mass = 8.681e+07
+surface_gravity = 8.69
+average_surface_temperature = -195.0
+parent = NodePath("../Sun")
+orbital_distance = 28.0
+orbital_period = 30688.5
+rotation_period = -0.718
+metadata/_edit_group_ = true
+
+[node name="BodySelection" parent="Uranus" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_adq7n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Uranus" index="1"]
+mesh = SubResource("SphereMesh_3jyr0")
+
+[node name="BodyArea" parent="Uranus" index="2" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Uranus/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_njgux")

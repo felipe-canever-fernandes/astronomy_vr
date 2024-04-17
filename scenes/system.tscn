@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=59 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -20,9 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/bodies/mars.jpg" id="18_e1rjy"]
 [ext_resource type="Texture2D" uid="uid://mgrmtrrwxstr" path="res://textures/pictures/jupiter.jpg" id="19_vjare"]
 [ext_resource type="Texture2D" uid="uid://dd3kl0g66mdtn" path="res://textures/bodies/jupiter.jpg" id="20_n6tlb"]
+[ext_resource type="Texture2D" uid="uid://bgcvtl81h6mtq" path="res://textures/pictures/saturn.jpg" id="21_gejy7"]
+[ext_resource type="Texture2D" uid="uid://c4qikcget3e5p" path="res://textures/bodies/saturn.jpg" id="22_b1n1h"]
+[ext_resource type="Texture2D" uid="uid://dmuqakd4ny86i" path="res://textures/bodies/saturn_rings.png" id="23_yc77p"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 24.0
+radius = 28.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
 radius = 1.0
@@ -124,6 +127,30 @@ material = SubResource("StandardMaterial3D_7i071")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_onbid"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_4nrcn"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_slk3c"]
+inner_radius = 0.6
+outer_radius = 1.141
+ring_segments = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7b6y"]
+albedo_texture = ExtResource("22_b1n1h")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8y4u5"]
+material = SubResource("StandardMaterial3D_f7b6y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i68p"]
+transparency = 1
+albedo_texture = ExtResource("23_yc77p")
+
+[sub_resource type="TorusMesh" id="TorusMesh_glt5e"]
+material = SubResource("StandardMaterial3D_6i68p")
+outer_radius = 1.141
+ring_segments = 3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a6b1s"]
+
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
 gravity_scale = 0.0
@@ -160,7 +187,7 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 24.0
+omni_range = 28.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
@@ -348,3 +375,44 @@ mesh = SubResource("SphereMesh_8gc38")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_onbid")
+
+[node name="Saturn" parent="." index="8" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24)
+picture = ExtResource("21_gejy7")
+body_name = "Saturn"
+type = 1
+description = "Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine-and-a-half times that of Earth. It has only one-eighth the average density of Earth, but is over 95 times more massive. Even though Saturn is nearly the size of Jupiter, Saturn has less than one-third of Jupiter's mass. Saturn orbits the Sun at a distance of 9.59 AU (1,434 million km) with an orbital period of 29.45 years."
+average_orbital_distance = 1.4e+09
+info_orbital_period = 10755.7
+info_rotation_period = 0.439
+radius = 58232.0
+mass = 5.6834e+08
+surface_gravity = 10.44
+average_surface_temperature = -143.0
+parent = NodePath("../Sun")
+orbital_distance = 24.0
+orbital_period = 10755.7
+rotation_period = 0.439
+metadata/_edit_group_ = true
+
+[node name="BodySelection" parent="Saturn" index="0" instance=ExtResource("3_cwcqk")]
+visible = false
+mesh = SubResource("SphereMesh_4nrcn")
+
+[node name="RingsSelection" parent="Saturn" index="1" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("TorusMesh_slk3c")
+
+[node name="Body" type="MeshInstance3D" parent="Saturn" index="2"]
+mesh = SubResource("SphereMesh_8y4u5")
+
+[node name="Rings" type="MeshInstance3D" parent="Saturn" index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("TorusMesh_glt5e")
+skeleton = NodePath("../Body")
+
+[node name="BodyArea" parent="Saturn" index="4" instance=ExtResource("5_nucrf")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Saturn/BodyArea" index="0"]
+shape = SubResource("SphereShape3D_a6b1s")

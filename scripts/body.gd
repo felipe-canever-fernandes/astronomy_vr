@@ -4,8 +4,19 @@ class_name Body
 const _PIVOT_NAME_SUFFIX: String = "Orbit"
 const _SELECTION_THICKNESS: float = 0.003
 
+@export_group("Info")
+@export var picture: Texture2D
 @export var body_name: String
 @export_multiline var description: String
+@export var average_orbital_distance: float
+@export var info_orbital_period: float
+@export var info_rotation_period: float
+@export var radius: float
+@export var mass: float
+@export var surface_gravity: float
+@export var average_surface_temperature: float
+
+@export_group("Simulation")
 ## The body around which this body orbits.
 @export var parent: Node3D = null
 ## The time it takes for this body to orbit around its parent, in seconds.

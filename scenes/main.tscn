@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
-[ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/sky.jpg" id="2_c3tb5"]
+[ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/bodies/sky.jpg" id="2_c3tb5"]
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_cc1m1"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="2_y6p13"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_a1m3w"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=80 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://b70ri2q4s46b" path="res://textures/pictures/venus.jpg" id="11_w3orm"]
 [ext_resource type="Texture2D" uid="uid://cwiidw6u6uhex" path="res://textures/pictures/earth.jpg" id="13_6imsl"]
 [ext_resource type="Texture2D" uid="uid://bc3ads1rgghj7" path="res://textures/pictures/moon.jpg" id="15_1fufj"]
+[ext_resource type="Texture2D" uid="uid://ci4gry4fe8ihu" path="res://textures/bodies/earth_clouds.jpg" id="15_5d55y"]
 [ext_resource type="Texture2D" uid="uid://8dqxjxp6i7j6" path="res://textures/pictures/mars.png" id="17_5cwgo"]
 [ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/bodies/mars.jpg" id="18_e1rjy"]
 [ext_resource type="Texture2D" uid="uid://mgrmtrrwxstr" path="res://textures/pictures/jupiter.jpg" id="19_vjare"]
@@ -89,6 +90,16 @@ albedo_texture = ExtResource("10_fpv51")
 material = SubResource("StandardMaterial3D_mgnv7")
 radius = 0.1
 height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq0r"]
+transparency = 1
+blend_mode = 1
+albedo_texture = ExtResource("15_5d55y")
+
+[sub_resource type="SphereMesh" id="SphereMesh_l4spq"]
+material = SubResource("StandardMaterial3D_0wq0r")
+radius = 0.101
+height = 0.202
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_71fgl"]
 radius = 0.1
@@ -326,10 +337,13 @@ metadata/_edit_group_ = true
 visible = false
 mesh = SubResource("SphereMesh_8p87a")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Earth" index="1"]
+[node name="Body" type="MeshInstance3D" parent="Earth" index="1"]
 mesh = SubResource("SphereMesh_fprpx")
 
-[node name="BodyArea" parent="Earth" index="2" instance=ExtResource("5_nucrf")]
+[node name="Clouds" type="MeshInstance3D" parent="Earth" index="2"]
+mesh = SubResource("SphereMesh_l4spq")
+
+[node name="BodyArea" parent="Earth" index="3" instance=ExtResource("5_nucrf")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Earth/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_71fgl")

@@ -44,7 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 current = true
-far = 40.0
+far = 80.0
 script = ExtResource("2_y6p13")
 
 [node name="Console" parent="XROrigin3D/XRCamera3D" instance=ExtResource("5_x4w6x")]

@@ -268,6 +268,7 @@ average_surface_temperature = 167.0
 parent = NodePath("../Sun")
 orbital_distance = 4.0
 orbital_period = 88.0
+initial_orbital_angle = -2.402
 rotation_period = 176.0
 metadata/_edit_group_ = true
 
@@ -299,6 +300,7 @@ average_surface_temperature = 465.0
 parent = NodePath("../Sun")
 orbital_distance = 8.0
 orbital_period = 225.0
+initial_orbital_angle = -0.026
 rotation_period = -117.0
 metadata/_edit_group_ = true
 
@@ -330,6 +332,7 @@ average_surface_temperature = 15.0
 parent = NodePath("../Sun")
 orbital_distance = 12.0
 orbital_period = 365.0
+initial_orbital_angle = -2.643
 rotation_period = 1.0
 metadata/_edit_group_ = true
 
@@ -364,6 +367,7 @@ average_surface_temperature = -15.0
 parent = NodePath("../Earth")
 orbital_distance = 1.0
 orbital_period = 27.0
+initial_orbital_angle = 2.507
 rotation_period = 29.53
 metadata/_edit_group_ = true
 
@@ -395,6 +399,7 @@ average_surface_temperature = -60.0
 parent = NodePath("../Sun")
 orbital_distance = 16.0
 orbital_period = 687.0
+initial_orbital_angle = -0.624
 rotation_period = 1.027
 metadata/_edit_group_ = true
 
@@ -426,6 +431,7 @@ average_surface_temperature = -108.0
 parent = NodePath("../Sun")
 orbital_distance = 20.0
 orbital_period = 4332.59
+initial_orbital_angle = 0.966
 rotation_period = 0.414
 metadata/_edit_group_ = true
 
@@ -457,6 +463,7 @@ average_surface_temperature = -143.0
 parent = NodePath("../Sun")
 orbital_distance = 24.0
 orbital_period = 10755.7
+initial_orbital_angle = -0.329
 rotation_period = 0.439
 metadata/_edit_group_ = true
 
@@ -498,6 +505,7 @@ average_surface_temperature = -195.0
 parent = NodePath("../Sun")
 orbital_distance = 28.0
 orbital_period = 30688.5
+initial_orbital_angle = 0.918
 rotation_period = -0.718
 metadata/_edit_group_ = true
 
@@ -529,6 +537,7 @@ average_surface_temperature = -214.0
 parent = NodePath("../Sun")
 orbital_distance = 32.0
 orbital_period = 60195.0
+initial_orbital_angle = -0.049
 rotation_period = 0.671
 metadata/_edit_group_ = true
 
@@ -560,6 +569,7 @@ average_surface_temperature = -232.0
 parent = NodePath("../Sun")
 orbital_distance = 36.0
 orbital_period = 90560.0
+initial_orbital_angle = -1.044
 rotation_period = -6.387
 metadata/_edit_group_ = true
 

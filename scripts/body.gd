@@ -30,6 +30,7 @@ const _SELECTION_THICKNESS: float = 0.003
 ## The time it takes for this body to orbit around its parent, in seconds.
 @export var orbital_distance: float = 0
 @export var orbital_period: float
+@export var initial_orbital_angle: float = 0
 ## The time it takes for this body to rotate around its own axis.
 @export var rotation_period: float
 
@@ -126,6 +127,8 @@ func _set_up_orbit() -> void:
 	
 	position = parent.position + orbital_distance * Vector3.BACK
 	reparent.call_deferred(_pivot)
+	
+	_pivot.rotate.call_deferred(Vector3.UP, initial_orbital_angle)
 	
 
 

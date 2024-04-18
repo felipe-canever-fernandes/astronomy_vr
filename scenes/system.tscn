@@ -235,13 +235,16 @@ rotation_period = 27.0
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Sun" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.991894, -0.127065, 0, 0.127065, 0.991894, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_yhy8b")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Sun" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.991894, -0.127065, 0, 0.127065, 0.991894, 0, 0, 0)
 mesh = SubResource("SphereMesh_0ebod")
 
 [node name="BodyArea" parent="Sun" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.991894, -0.127065, 0, 0.127065, 0.991894, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sun/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_curjq")
@@ -273,13 +276,16 @@ rotation_period = 176.0
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Mercury" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_llkbt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mercury" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0)
 mesh = SubResource("SphereMesh_xkeb7")
 
 [node name="BodyArea" parent="Mercury" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mercury/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_ev4h1")
@@ -301,17 +307,20 @@ parent = NodePath("../Sun")
 orbital_distance = 8.0
 orbital_period = 225.0
 initial_orbital_angle = -0.026
-rotation_period = -117.0
+rotation_period = 117.0
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Venus" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, -0.99863, -0.052336, 0, 0.052336, -0.99863, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_ra271")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Venus" index="1"]
+transform = Transform3D(1, 0, 0, 0, -0.99863, -0.052336, 0, 0.052336, -0.99863, 0, 0, 0)
 mesh = SubResource("SphereMesh_3ukhf")
 
 [node name="BodyArea" parent="Venus" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, -0.99863, -0.052336, 0, 0.052336, -0.99863, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Venus/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_ev4h1")
@@ -337,16 +346,20 @@ rotation_period = 1.0
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Earth" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.920505, -0.390731, 0, 0.390731, 0.920505, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_8p87a")
 
 [node name="Body" type="MeshInstance3D" parent="Earth" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.920505, -0.390731, 0, 0.390731, 0.920505, 0, 0, 0)
 mesh = SubResource("SphereMesh_fprpx")
 
 [node name="Clouds" type="MeshInstance3D" parent="Earth" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.920505, -0.390731, 0, 0.390731, 0.920505, 0, 0, 0)
 mesh = SubResource("SphereMesh_l4spq")
 
 [node name="BodyArea" parent="Earth" index="3" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.920505, -0.390731, 0, 0.390731, 0.920505, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Earth/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_71fgl")
@@ -372,13 +385,16 @@ rotation_period = 29.53
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Moon" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.996041, -0.0888943, 0, 0.0888943, 0.996041, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_6lngk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Moon" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.996041, -0.0888943, 0, 0.0888943, 0.996041, 0, 0, 0)
 mesh = SubResource("SphereMesh_0n8yv")
 
 [node name="BodyArea" parent="Moon" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.996041, -0.0888943, 0, 0.0888943, 0.996041, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Moon/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_op5jb")
@@ -404,13 +420,16 @@ rotation_period = 1.027
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Mars" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_v4nvx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Mars" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0)
 mesh = SubResource("SphereMesh_agcks")
 
 [node name="BodyArea" parent="Mars" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mars/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_wyufv")
@@ -436,13 +455,16 @@ rotation_period = 0.414
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Jupiter" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_0hugi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Jupiter" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0)
 mesh = SubResource("SphereMesh_8gc38")
 
 [node name="BodyArea" parent="Jupiter" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Jupiter/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_onbid")
@@ -468,23 +490,26 @@ rotation_period = 0.439
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Saturn" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.891007, -0.453991, 0, 0.453991, 0.891007, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_4nrcn")
 
 [node name="RingsSelection" parent="Saturn" index="1" instance=ExtResource("3_cwcqk")]
-transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.00891007, -0.453991, 0, 0.00453991, 0.891007, 0, 0, 0)
 visible = false
 mesh = SubResource("TorusMesh_slk3c")
 
 [node name="Body" type="MeshInstance3D" parent="Saturn" index="2"]
+transform = Transform3D(1, 0, 0, 0, 0.891007, -0.453991, 0, 0.453991, 0.891007, 0, 0, 0)
 mesh = SubResource("SphereMesh_8y4u5")
 
 [node name="Rings" type="MeshInstance3D" parent="Saturn" index="3"]
-transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.00891007, -0.453991, 0, 0.00453991, 0.891007, 0, 0, 0)
 mesh = SubResource("TorusMesh_glt5e")
 skeleton = NodePath("../Body")
 
 [node name="BodyArea" parent="Saturn" index="4" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.891007, -0.453991, 0, 0.453991, 0.891007, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Saturn/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_a6b1s")
@@ -506,17 +531,20 @@ parent = NodePath("../Sun")
 orbital_distance = 28.0
 orbital_period = 30688.5
 initial_orbital_angle = 0.918
-rotation_period = -0.718
+rotation_period = 0.718
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Uranus" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, -0.139173, -0.990268, 0, 0.990268, -0.139173, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_adq7n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Uranus" index="1"]
+transform = Transform3D(1, 0, 0, 0, -0.139173, -0.990268, 0, 0.990268, -0.139173, 0, 0, 0)
 mesh = SubResource("SphereMesh_3jyr0")
 
 [node name="BodyArea" parent="Uranus" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, -0.139173, -0.990268, 0, 0.990268, -0.139173, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Uranus/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_njgux")
@@ -542,13 +570,16 @@ rotation_period = 0.671
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Neptune" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_1fbt8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Neptune" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
 mesh = SubResource("SphereMesh_58kai")
 
 [node name="BodyArea" parent="Neptune" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Neptune/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_7w1ce")
@@ -570,17 +601,20 @@ parent = NodePath("../Sun")
 orbital_distance = 36.0
 orbital_period = 90560.0
 initial_orbital_angle = -1.044
-rotation_period = -6.387
+rotation_period = 6.387
 metadata/_edit_group_ = true
 
 [node name="BodySelection" parent="Pluto" index="0" instance=ExtResource("3_cwcqk")]
+transform = Transform3D(1, 0, 0, 0, -0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0)
 visible = false
 mesh = SubResource("SphereMesh_sml37")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pluto" index="1"]
+transform = Transform3D(1, 0, 0, 0, -0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_kxy6g")
 
 [node name="BodyArea" parent="Pluto" index="2" instance=ExtResource("5_nucrf")]
+transform = Transform3D(1, 0, 0, 0, -0.5, -0.866025, 0, 0.866025, -0.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pluto/BodyArea" index="0"]
 shape = SubResource("SphereShape3D_efcn6")

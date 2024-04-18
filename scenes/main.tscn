@@ -23,7 +23,7 @@ radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_82r61"]
 background_mode = 2
-background_energy_multiplier = 0.1
+background_energy_multiplier = 0.03
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
 

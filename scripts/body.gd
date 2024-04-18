@@ -159,12 +159,12 @@ func _rotate(delta: float) -> void:
 			_rotation_angular_speed * delta * Game.simulation_speed
 
 	for mesh in _meshes:
-		mesh.rotate(Vector3.UP, delta_rotation)
+		mesh.rotate(mesh.basis.y.normalized(), delta_rotation)
 	
 	for selection in _selections:
-		selection.rotate(Vector3.UP, delta_rotation)
+		selection.rotate(selection.basis.y.normalized(), delta_rotation)
 
-	_area.rotate(Vector3.UP, delta_rotation)
+	_area.rotate(_area.basis.y, delta_rotation)
 
 
 func _orbit(delta: float) -> void:
@@ -173,10 +173,11 @@ func _orbit(delta: float) -> void:
 		
 	_pivot.global_position = parent.global_position
 	
-	_pivot.rotate(
-		Vector3.UP,
-		_orbital_angular_speed * delta * Game.simulation_speed
-	)
+	var final_angle_speed: float = \
+			_orbital_angular_speed * delta * Game.simulation_speed
+	
+	_pivot.rotate(Vector3.UP, final_angle_speed)
+	rotate(Vector3.UP, -final_angle_speed)
 
 
 func _on_simulation_scale_changed(new_scale: float) -> void:

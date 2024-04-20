@@ -81,7 +81,7 @@ height = 0.2
 
 [sub_resource type="SphereMesh" id="SphereMesh_8p87a"]
 radius = 0.1
-height = 0.2
+height = 0.199
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgnv7"]
 albedo_texture = ExtResource("10_fpv51")
@@ -89,7 +89,7 @@ albedo_texture = ExtResource("10_fpv51")
 [sub_resource type="SphereMesh" id="SphereMesh_fprpx"]
 material = SubResource("StandardMaterial3D_mgnv7")
 radius = 0.1
-height = 0.2
+height = 0.199
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq0r"]
 transparency = 1
@@ -99,7 +99,7 @@ albedo_texture = ExtResource("15_5d55y")
 [sub_resource type="SphereMesh" id="SphereMesh_l4spq"]
 material = SubResource("StandardMaterial3D_0wq0r")
 radius = 0.101
-height = 0.202
+height = 0.201
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_71fgl"]
 radius = 0.1
@@ -121,7 +121,7 @@ radius = 0.025
 
 [sub_resource type="SphereMesh" id="SphereMesh_v4nvx"]
 radius = 0.075
-height = 0.15
+height = 0.149
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeowk"]
 albedo_texture = ExtResource("18_e1rjy")
@@ -129,22 +129,25 @@ albedo_texture = ExtResource("18_e1rjy")
 [sub_resource type="SphereMesh" id="SphereMesh_agcks"]
 material = SubResource("StandardMaterial3D_oeowk")
 radius = 0.075
-height = 0.15
+height = 0.149
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wyufv"]
 radius = 0.075
 
 [sub_resource type="SphereMesh" id="SphereMesh_0hugi"]
+height = 0.935
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i071"]
 albedo_texture = ExtResource("20_n6tlb")
 
 [sub_resource type="SphereMesh" id="SphereMesh_8gc38"]
 material = SubResource("StandardMaterial3D_7i071")
+height = 0.935
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_onbid"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_4nrcn"]
+height = 0.902
 
 [sub_resource type="TorusMesh" id="TorusMesh_slk3c"]
 inner_radius = 0.6
@@ -156,6 +159,7 @@ albedo_texture = ExtResource("22_b1n1h")
 
 [sub_resource type="SphereMesh" id="SphereMesh_8y4u5"]
 material = SubResource("StandardMaterial3D_f7b6y")
+height = 0.902
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i68p"]
 transparency = 1
@@ -170,7 +174,7 @@ ring_segments = 3
 
 [sub_resource type="SphereMesh" id="SphereMesh_adq7n"]
 radius = 0.3
-height = 0.6
+height = 0.586
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djepl"]
 albedo_texture = ExtResource("25_aiwlm")
@@ -178,14 +182,14 @@ albedo_texture = ExtResource("25_aiwlm")
 [sub_resource type="SphereMesh" id="SphereMesh_3jyr0"]
 material = SubResource("StandardMaterial3D_djepl")
 radius = 0.3
-height = 0.6
+height = 0.586
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_njgux"]
 radius = 0.3
 
 [sub_resource type="SphereMesh" id="SphereMesh_1fbt8"]
 radius = 0.3
-height = 0.6
+height = 0.59
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xtsu"]
 albedo_texture = ExtResource("27_f04sc")
@@ -193,7 +197,7 @@ albedo_texture = ExtResource("27_f04sc")
 [sub_resource type="SphereMesh" id="SphereMesh_58kai"]
 material = SubResource("StandardMaterial3D_8xtsu")
 radius = 0.3
-height = 0.6
+height = 0.59
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7w1ce"]
 radius = 0.3

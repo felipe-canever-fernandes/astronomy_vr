@@ -199,10 +199,14 @@ func _set_up_system() -> void:
 
 
 func _set_simulation_speed(delta: float) -> void:
+	var acceleration: float = simulation_speed_accelaration \
+			if abs(Game.simulation_speed) > 1 \
+			else simulation_speed_accelaration / 10
+	
 	if _simulation_speed_input_direction \
 			!= _previous_simulation_speed_input_direction:
 		Game.simulation_speed += \
-				simulation_speed_accelaration \
+				acceleration \
 				* _simulation_speed_input_direction * delta
 	
 	_previous_simulation_speed_input_direction = \

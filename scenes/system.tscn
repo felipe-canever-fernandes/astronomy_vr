@@ -65,7 +65,7 @@ radius = 0.025
 height = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ev4h1"]
-radius = 0.025
+radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_ra271"]
 radius = 0.1

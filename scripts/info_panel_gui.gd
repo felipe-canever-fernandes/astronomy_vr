@@ -11,6 +11,7 @@ var _type_names: Dictionary = {
 signal close_button_up
 signal go_to_button_up(body: Body)
 signal follow_button_up(body: Body)
+signal go_to_follow_button_up(body: Body)
 
 @onready var _picture_texture_rect: TextureRect = %PictureTextureRect
 @onready var _name_label: Label = %NameLabel
@@ -83,6 +84,10 @@ func _on_go_to_button_button_up() -> void:
 	go_to_button_up.emit(body)
 
 
+func _on_go_to_follow_button_button_up() -> void:
+	go_to_follow_button_up.emit(body)
+
+
 func _on_follow_button_button_up() -> void:
 	follow_button_up.emit(body)
 
@@ -118,3 +123,4 @@ func _format_number(number: float) -> String:
 			formatted_before_dot = " " + formatted_before_dot
 	
 	return sign_symbol + formatted_before_dot + dot_symbol + after_dot
+

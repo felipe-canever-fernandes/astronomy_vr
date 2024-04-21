@@ -93,6 +93,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Follow"
 
+[node name="GoToFollowButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Go To + Follow"
+
 [node name="ButtonHSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -212,3 +217,4 @@ Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique. Euis
 [connection signal="button_up" from="VBoxContainer/HFlowContainer/CloseButton" to="." method="_on_close_button_button_up"]
 [connection signal="button_up" from="VBoxContainer/ButtonsContainer/GoToButton" to="." method="_on_go_to_button_button_up"]
 [connection signal="button_up" from="VBoxContainer/ButtonsContainer/FollowButton" to="." method="_on_follow_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/GoToFollowButton" to="." method="_on_go_to_follow_button_button_up"]

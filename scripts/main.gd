@@ -194,6 +194,7 @@ func _set_up_controls() -> void:
 	_info_panel_screen.connect_scene_signal("close_button_up", _on_info_panel_close_button_up)
 	_info_panel_screen.connect_scene_signal("go_to_button_up", _on_info_panel_go_to_button_up)
 	_info_panel_screen.connect_scene_signal("follow_button_up", _on_info_panel_follow_button_up)
+	_info_panel_screen.connect_scene_signal("go_to_follow_button_up", _on_info_panel_go_to_follow_button_up)
 
 
 func _set_up_system() -> void:
@@ -370,23 +371,18 @@ func _on_info_panel_close_button_up() -> void:
 
 func _on_info_panel_go_to_button_up(body: Body) -> void:
 	_is_info_panel_enabled = false
-	
-	var direction: Vector3 = \
-			_camera.global_position.direction_to(body.global_position)
-	
-	var distance: float = max(1, body.longest_axis_size)
-	var offset: Vector3 = direction * distance
-	
-	var final_position: Vector3 = \
-			body.global_position - _camera.position - offset
-	
-	_initial_player_body_following_direction = \
-			_position_following - final_position
+	_go_to_body(body)
 
 
 func _on_info_panel_follow_button_up(body: Body) -> void:
 	_is_info_panel_enabled = false
 	_body_following = body
+
+
+func _on_info_panel_go_to_follow_button_up(body: Body) -> void:
+	_is_info_panel_enabled = false
+	_body_following = body
+	_go_to_body(body)
 	
 
 func _on_function_pointer_pointing_event(event: XRToolsPointerEvent) -> void:
@@ -411,3 +407,17 @@ func _on_game_simulation_scale_changed(new_scale: float) -> void:
 
 func _on_game_simulation_speed_changed(new_speed: float) -> void:
 	_hud_gui.display_simulation_speed(new_speed)
+
+
+func _go_to_body(body: Body) -> void:
+	var direction: Vector3 = \
+			_camera.global_position.direction_to(body.global_position)
+	
+	var distance: float = max(1, body.longest_axis_size)
+	var offset: Vector3 = direction * distance
+	
+	var final_position: Vector3 = \
+			body.global_position - _camera.position - offset
+	
+	_initial_player_body_following_direction = \
+			_position_following - final_position

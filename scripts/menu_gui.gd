@@ -1,15 +1,28 @@
 class_name MenuGui
 extends Control
 
+signal simulation_scale_slider_changed(value: int)
 signal simulation_speed_slider_changed(value: int)
 signal labels_check_button_toggled(toggled_on: bool)
 signal passthrough_check_button_toggled(toggled_on: bool)
 
+@onready var _simulation_scale_slider: HSlider = %SimulationScaleSlider
+@onready var _simulation_scale_value_label: Label = %SimulationScaleValueLabel
 @onready var _simulation_speed_slider: HSlider = %SimulationSpeedSlider
 @onready var _simulation_speed_value_label: Label = %SimulationSpeedValueLabel
 @onready var _passthrough_check_button: CheckButton = %PassthroughCheckButton
 
+var _simulation_scales: Array
 var _simulation_speeds: Array[float]
+
+
+func set_up_simulation_scale_slider(
+	values: Array,
+	initial_index: int
+) -> void:
+	_simulation_scales = values
+	_simulation_scale_slider.max_value = len(values) - 1
+	_simulation_scale_slider.value = initial_index
 
 
 func set_up_simulation_speed_slider(
@@ -21,12 +34,26 @@ func set_up_simulation_speed_slider(
 	_simulation_speed_slider.value = initial_index
 
 
+func set_simulation_scale_slider_value(value: int) -> void:
+	_simulation_scale_slider.value = value
+
+
 func set_simulation_speed_slider_value(value: int) -> void:
 	_simulation_speed_slider.value = value
 
 
 func set_passthrough_check_button(toggled_on: bool) -> void:
 	_passthrough_check_button.button_pressed = toggled_on
+
+
+func _on_simulation_scale_slider_value_changed(value: float) -> void:
+	var simulation_scale: float = _simulation_scales[value]
+	
+	_simulation_scale_value_label.text = "{scale}x".format({
+		"scale": simulation_scale
+	})
+	
+	simulation_scale_slider_changed.emit(value)
 
 
 func _on_simulation_speed_slider_value_changed(value: float) -> void:

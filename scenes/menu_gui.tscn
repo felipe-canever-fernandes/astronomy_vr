@@ -16,21 +16,42 @@ script = ExtResource("1_ey3p8")
 layout_mode = 2
 columns = 2
 
+[node name="SimulationScaleLabel" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Simulation Scale"
+
+[node name="SimulationScaleContainer" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="SimulationScaleSlider" type="HSlider" parent="GridContainer/SimulationScaleContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+tick_count = 2
+ticks_on_borders = true
+
+[node name="SimulationScaleValueLabel" type="Label" parent="GridContainer/SimulationScaleContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+text = "1000x"
+horizontal_alignment = 2
+
 [node name="SimulationSpeedLabel" type="Label" parent="GridContainer"]
 layout_mode = 2
 text = "Simulation Speed"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+[node name="SimulationSpeedContainer" type="HBoxContainer" parent="GridContainer"]
 layout_mode = 2
 
-[node name="SimulationSpeedSlider" type="HSlider" parent="GridContainer/HBoxContainer"]
+[node name="SimulationSpeedSlider" type="HSlider" parent="GridContainer/SimulationSpeedContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 tick_count = 3
 ticks_on_borders = true
 
-[node name="SimulationSpeedValueLabel" type="Label" parent="GridContainer/HBoxContainer"]
+[node name="SimulationSpeedValueLabel" type="Label" parent="GridContainer/SimulationSpeedContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(55, 0)
 layout_mode = 2
@@ -52,6 +73,7 @@ text = "Passthrough"
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="value_changed" from="GridContainer/HBoxContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
+[connection signal="value_changed" from="GridContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
+[connection signal="value_changed" from="GridContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
 [connection signal="toggled" from="GridContainer/LabelsCheckButton" to="." method="_on_labels_check_button_toggled"]
 [connection signal="toggled" from="GridContainer/PassthroughCheckButton" to="." method="_on_passthrough_check_button_toggled"]

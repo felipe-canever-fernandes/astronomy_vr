@@ -308,11 +308,17 @@ func _set_up_xr() -> void:
 
 
 func _set_up_controls() -> void:
+	_menu_gui.set_up_simulation_scale_slider(
+		_simulation_scales,
+		_normal_simulation_scale_index,
+	)
+	
 	_menu_gui.set_up_simulation_speed_slider(
 		_SIMULATION_SPEEDS,
 		_normal_simulation_speed_index,
 	)
 	
+	_menu_screen.connect_scene_signal("simulation_scale_slider_changed", _on_menu_simulation_scale_slider_changed)
 	_menu_screen.connect_scene_signal("simulation_speed_slider_changed", _on_menu_simulation_speed_slider_changed)
 	_menu_screen.connect_scene_signal("labels_check_button_toggled", _on_menu_labels_check_button_toggled)
 	_menu_screen.connect_scene_signal("passthrough_check_button_toggled", _on_menu_passthrough_check_button_toggled)
@@ -348,8 +354,9 @@ func _scale_system() -> void:
 	var index_difference: int = \
 			int(difference * _SIMULATION_SPEED_INDICES_PER_METER)
 	
-	_simulation_scale_index = \
-			_initial_simulation_scale_index + index_difference
+	_menu_gui.set_simulation_scale_slider_value(
+		_initial_simulation_scale_index + index_difference
+	)
 
 
 func _follow_body() -> void:
@@ -509,6 +516,10 @@ func _toggle_is_game_paused() -> void:
 		_menu_gui.set_simulation_speed_slider_value(
 			_old_simulation_speed_index
 		)
+
+
+func _on_menu_simulation_scale_slider_changed(value: int) -> void:
+	_simulation_scale_index = value
 
 
 func _on_menu_simulation_speed_slider_changed(value: int) -> void:

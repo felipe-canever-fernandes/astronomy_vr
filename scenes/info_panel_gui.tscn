@@ -80,8 +80,17 @@ label_settings = SubResource("LabelSettings_gqi6r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FollowButton" type="Button" parent="VBoxContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="GoToButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Go To"
+
+[node name="FollowButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Follow"
 
 [node name="ButtonHSeparator" type="HSeparator" parent="VBoxContainer"]
@@ -201,4 +210,5 @@ Maecenas ultricies mi eget mauris pharetra. Curabitur vitae nunc sed velit. Amet
 Sit amet consectetur adipiscing elit pellentesque habitant morbi tristique. Euismod lacinia at quis risus. Pellentesque habitant morbi tristique senectus et netus et malesuada. Tellus integer feugiat scelerisque varius morbi enim. Ut pharetra sit amet aliquam id diam. Nunc eget lorem dolor sed viverra. Elementum integer enim neque volutpat ac tincidunt vitae. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Duis ultricies lacus sed turpis tincidunt id. Integer vitae justo eget magna. Morbi tristique senectus et netus et malesuada fames. Justo eget magna fermentum iaculis eu non. Non odio euismod lacinia at quis risus sed. Massa vitae tortor condimentum lacinia quis vel eros donec ac."
 
 [connection signal="button_up" from="VBoxContainer/HFlowContainer/CloseButton" to="." method="_on_close_button_button_up"]
-[connection signal="button_up" from="VBoxContainer/FollowButton" to="." method="_on_follow_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/ButtonsContainer/GoToButton" to="." method="_on_go_to_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/ButtonsContainer/FollowButton" to="." method="_on_follow_button_button_up"]

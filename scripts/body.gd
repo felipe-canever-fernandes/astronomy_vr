@@ -61,6 +61,19 @@ var selected: bool:
 			selection.visible = value
 
 
+var longest_axis_size: float:
+	get:
+		var longest_size: float = 0
+		
+		for mesh in _meshes:
+			var size: float = mesh.get_aabb().get_longest_axis_size()
+			
+			if size > longest_size:
+				longest_size = size
+		
+		return longest_size * Game.simulation_scale
+
+
 var _pivot: Node3D = null
 
 

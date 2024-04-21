@@ -82,7 +82,9 @@ var _pivot: Node3D = null
 
 func _ready() -> void:
 	_name_label.text = body_name
+	
 	Game.connect("simulation_scale_changed", _on_simulation_scale_changed)
+	Game.connect("labels_enabled_changed", _on_labels_enabled_changed)
 	
 	_set_position()
 	_find_nodes()
@@ -209,3 +211,7 @@ func _set_name_label_position() -> void:
 
 func _on_simulation_scale_changed(new_scale: float) -> void:
 	position = orbital_distance * Vector3.BACK * new_scale
+
+
+func _on_labels_enabled_changed(are_labels_enabled: bool) -> void:
+	_name_label.visible = are_labels_enabled

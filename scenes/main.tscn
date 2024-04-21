@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=18 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/bodies/sky.jpg" id="2_c3tb5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_x4w6x"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="7_q8y7u"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="9_yrm02"]
+[ext_resource type="PackedScene" uid="uid://c04kwua8fsk7h" path="res://scenes/menu_gui.tscn" id="13_26tua"]
 [ext_resource type="PackedScene" uid="uid://d25ivxqix60bc" path="res://scenes/system.tscn" id="13_fo6c5"]
 [ext_resource type="PackedScene" uid="uid://dd40nqq0ykhxa" path="res://scenes/info_panel_gui.tscn" id="22_qft3v"]
 
@@ -93,6 +94,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
 
 [node name="System" parent="." instance=ExtResource("13_fo6c5")]
 unique_name_in_owner = true
+
+[node name="Menu" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="MenuScreen" parent="Menu" instance=ExtResource("5_x4w6x")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
+screen_size = Vector2(0.245, 0.1)
+scene = ExtResource("13_26tua")
+viewport_size = Vector2(98, 40)
+transparent = 0
+unshaded = true
 
 [node name="InfoPanel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

@@ -119,7 +119,7 @@ var _is_info_panel_enabled: bool:
 			_initial_info_panel_body_following_direction = \
 					_position_following - _info_panel.global_position
 			
-			_info_panel.global_rotation.y = _camera.global_rotation.y
+			_info_panel.global_rotation = _camera.global_rotation
 			
 			_info_panel_gui.body = _selected_body
 		

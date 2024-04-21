@@ -175,6 +175,8 @@ func _physics_process(delta: float) -> void:
 			new_origin_position - original_origin_position
 	
 	_sync_hands(origin_displacement)
+	_environment.sky_rotation = _system.global_rotation
+	
 
 
 func _set_up_xr() -> void:

@@ -3,6 +3,44 @@ extends Node3D
 const _SYSTEM_HEIGHT_OFFSET: float = -0.3
 const _GO_TO_MINIMUM_OFFSET: float = 1
 
+const _SIMULATION_SPEEDS: Array[float] = [
+	-5000,
+	-2500,
+	-1000,
+	-500,
+	-250,
+	-100,
+	-50,
+	-25,
+	-10,
+	-5,
+	-1,
+	-0.75,
+	-0.5,
+	-0.25,
+	-0.1,
+	-0.05,
+	-0.01,
+	0,
+	0.01,
+	0.05,
+	0.1,
+	0.25,
+	0.5,
+	0.75,
+	1,
+	5,
+	10,
+	25,
+	50,
+	100,
+	250,
+	500,
+	1000,
+	2500,
+	5000,
+]
+
 @onready var _world_environment: WorldEnvironment = $WorldEnvironment
 @onready var _origin: XROrigin3D = %XROrigin3D
 @onready var _camera: XRCamera3D = $XROrigin3D/XRCamera3D
@@ -27,13 +65,6 @@ const _GO_TO_MINIMUM_OFFSET: float = 1
 @onready var _movement_speed: float = 0
 
 
-@export var simulation_speed: float:
-	get:
-		return Game.simulation_speed
-	set(value):
-		Game.simulation_speed = value
-
-
 @export var simulation_accelaration: float = 1
 @export var simulation_speed_accelaration: float = 2
 
@@ -50,7 +81,7 @@ const _GO_TO_MINIMUM_OFFSET: float = 1
 
 var _xr_interface: XRInterface
 var _is_game_paused: bool = false
-var _old_simulation_speed_factor: float
+var _old_simulation_speed_index: int
 
 
 var _passthrough_enabled: bool:
@@ -110,11 +141,10 @@ var _is_scale_button_pressed: bool = false
 var _left_controller_initial_position: Vector3 = Vector3.ZERO
 var _system_initial_scale: float = 0
 
-var _simulation_speed_input_direction: float = 0
-var _previous_simulation_speed_input_direction: float = 0
-
 var _is_movement_speed_button_pressed: bool = false
-var _previous_direction_x: int = 0
+
+var _previous_right_direction_x: int = 0
+var _previous_left_direction_x: int = 0
 
 var _position_following: Vector3:
 	get:
@@ -147,6 +177,18 @@ var _body_following: Body:
 var _initial_player_body_following_direction: Vector3 = Vector3.ZERO
 var _initial_info_panel_body_following_direction: Vector3 = Vector3.ZERO
 
+var __simulation_speed_index: int = 0
+
+var _simulation_speed_index: int:
+	get:
+		return __simulation_speed_index
+	set(value):
+		if value < 0 or value >= len(_SIMULATION_SPEEDS):
+			return
+		
+		__simulation_speed_index = value
+		Game.simulation_speed = _SIMULATION_SPEEDS[__simulation_speed_index]
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -155,6 +197,7 @@ func _ready() -> void:
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()
+	_set_normal_simulation_speed()
 	_is_info_panel_enabled = false
 	_body_following = null
 
@@ -164,7 +207,6 @@ func _physics_process(delta: float) -> void:
 	
 	Game.player_camera_position = _camera.global_position
 	_pointer.distance = _initial_pointer_distance * Game.simulation_scale
-	_set_simulation_speed(delta)
 	_scale_system()
 	_follow_body()
 	_move(delta)
@@ -176,7 +218,6 @@ func _physics_process(delta: float) -> void:
 	
 	_sync_hands(origin_displacement)
 	_environment.sky_rotation = _system.global_rotation
-	
 
 
 func _set_up_xr() -> void:
@@ -203,20 +244,8 @@ func _set_up_system() -> void:
 	_system.position.y = _camera.global_position.y + _SYSTEM_HEIGHT_OFFSET
 
 
-func _set_simulation_speed(delta: float) -> void:
-	var acceleration: float = simulation_speed_accelaration \
-			if abs(Game.simulation_speed) > 1 \
-			else simulation_speed_accelaration / 10
-	
-	if _simulation_speed_input_direction \
-			!= _previous_simulation_speed_input_direction:
-		Game.simulation_speed += \
-				acceleration \
-				* _simulation_speed_input_direction * delta
-	
-	_previous_simulation_speed_input_direction = \
-			_simulation_speed_input_direction
-
+func _set_normal_simulation_speed() -> void:
+	_simulation_speed_index = _SIMULATION_SPEEDS.find(1)
 
 func _scale_system() -> void:
 	if not (_is_pickup_button_pressed and _is_scale_button_pressed):
@@ -316,17 +345,17 @@ func _on_left_controller_input_vector_2_changed(
 	
 	var direction_x: int = round(abs(value.x)) * sign(value.x)
 	
-	if direction_x == _previous_direction_x:
+	if direction_x == _previous_left_direction_x:
 		return
 	
 	_origin.rotate_y(deg_to_rad(15) * -direction_x)
-	_previous_direction_x = direction_x
+	_previous_left_direction_x = direction_x
 
 
 func _on_right_controller_button_pressed(button_name: String) -> void:
 	match button_name:
 		"primary_click":
-			Game.simulation_speed = 1
+			_set_normal_simulation_speed()
 		"by_button":
 			_toggle_is_game_paused()
 		"trigger_click":
@@ -351,20 +380,29 @@ func _on_right_controller_button_released(button_name: String) -> void:
 
 
 func _on_right_controller_input_vector_2_changed(
-	_button_name: String,
+	button_name: String,
 	value: Vector2
 ) -> void:
-	_simulation_speed_input_direction = value.x
+	if button_name != "primary":
+		return
+	
+	var direction_x: int = round(abs(value.x)) * sign(value.x)
+	
+	if direction_x == _previous_right_direction_x:
+		return
+	
+	_simulation_speed_index += direction_x
+	_previous_right_direction_x = direction_x
 
 
 func _toggle_is_game_paused() -> void:
 	_is_game_paused = not _is_game_paused
 
 	if _is_game_paused:
-		_old_simulation_speed_factor = Game.simulation_speed
-		Game.simulation_speed = 0
+		_old_simulation_speed_index = _simulation_speed_index
+		_simulation_speed_index = _SIMULATION_SPEEDS.find(0)
 	else:
-		Game.simulation_speed = _old_simulation_speed_factor
+		_simulation_speed_index = _old_simulation_speed_index
 
 
 func _on_info_panel_close_button_up() -> void:

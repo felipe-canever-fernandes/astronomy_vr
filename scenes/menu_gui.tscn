@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" path="res://scripts/menu_gui.gd" id="1_ey3p8"]
 
-[node name="MenuGui" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="MenuGui" type="MarginContainer"]
+offset_right = 186.0
+offset_bottom = 92.0
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 script = ExtResource("1_ey3p8")
 
 [node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 columns = 2
 
 [node name="LabelsLabel" type="Label" parent="GridContainer"]

@@ -223,21 +223,24 @@ var _simulation_speed_index: int:
 	get:
 		return __simulation_speed_index
 	set(value):
-		if value < 0 or value >= len(_SIMULATION_SPEEDS):
-			return
-		
 		__simulation_speed_index = value
 		Game.simulation_speed = _SIMULATION_SPEEDS[__simulation_speed_index]
+
+
+var _paused_simulation_speed_index: int = 0
+var _normal_simulation_speed_index: int = 0
 
 
 func _ready() -> void:
 	Game.console = _console.scene_node
 	Game.connect("simulation_scale_changed", _on_game_simulation_scale_changed)
 	Game.connect("simulation_speed_changed", _on_game_simulation_speed_changed)
+	_paused_simulation_speed_index = _SIMULATION_SPEEDS.find(0)
+	_normal_simulation_speed_index = _SIMULATION_SPEEDS.find(1)
+	_simulation_speed_index = _normal_simulation_speed_index
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()
-	_set_normal_simulation_speed()
 	Game.labels_enabled = false
 	_is_menu_enabled = false
 	_is_info_panel_enabled = false
@@ -276,6 +279,12 @@ func _set_up_xr() -> void:
 
 
 func _set_up_controls() -> void:
+	_menu_gui.set_up_simulation_speed_slider(
+		_SIMULATION_SPEEDS,
+		_normal_simulation_speed_index,
+	)
+	
+	_menu_screen.connect_scene_signal("simulation_speed_slider_changed", _on_menu_simulation_speed_slider_changed)
 	_menu_screen.connect_scene_signal("labels_check_button_toggled", _on_menu_labels_check_button_toggled)
 	_menu_screen.connect_scene_signal("passthrough_check_button_toggled", _on_menu_passthrough_check_button_toggled)
 	
@@ -288,9 +297,6 @@ func _set_up_controls() -> void:
 func _set_up_system() -> void:
 	_system.position.y = _camera.global_position.y + _SYSTEM_HEIGHT_OFFSET
 
-
-func _set_normal_simulation_speed() -> void:
-	_simulation_speed_index = _SIMULATION_SPEEDS.find(1)
 
 func _scale_system() -> void:
 	if not (_is_pickup_button_pressed and _is_scale_button_pressed):
@@ -410,7 +416,9 @@ func _on_left_controller_input_vector_2_changed(
 func _on_right_controller_button_pressed(button_name: String) -> void:
 	match button_name:
 		"primary_click":
-			_set_normal_simulation_speed()
+			_menu_gui.set_simulation_speed_slider_value(
+				_normal_simulation_speed_index
+			)
 		"by_button":
 			_toggle_is_game_paused()
 		"trigger_click":
@@ -438,6 +446,7 @@ func _on_right_controller_input_vector_2_changed(
 	button_name: String,
 	value: Vector2
 ) -> void:
+	
 	if button_name != "primary":
 		return
 	
@@ -446,7 +455,10 @@ func _on_right_controller_input_vector_2_changed(
 	if direction_x == _previous_right_direction_x:
 		return
 	
-	_simulation_speed_index += direction_x
+	_menu_gui.set_simulation_speed_slider_value(
+		_simulation_speed_index + direction_x
+	)
+	
 	_previous_right_direction_x = direction_x
 
 
@@ -455,9 +467,18 @@ func _toggle_is_game_paused() -> void:
 
 	if _is_game_paused:
 		_old_simulation_speed_index = _simulation_speed_index
-		_simulation_speed_index = _SIMULATION_SPEEDS.find(0)
+		
+		_menu_gui.set_simulation_speed_slider_value(
+			_paused_simulation_speed_index
+		)
 	else:
-		_simulation_speed_index = _old_simulation_speed_index
+		_menu_gui.set_simulation_speed_slider_value(
+			_old_simulation_speed_index
+		)
+
+
+func _on_menu_simulation_speed_slider_changed(value: int) -> void:
+	_simulation_speed_index = value
 
 
 func _on_menu_labels_check_button_toggled(toggled_on: bool) -> void:

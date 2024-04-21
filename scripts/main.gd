@@ -62,6 +62,7 @@ const _SIMULATION_SPEEDS: Array[float] = [
 		_environment.background_energy_multiplier
 @onready var _initial_pointer_distance: float = _pointer.distance
 @onready var _hud_gui: HudGui = _hud.scene_node
+@onready var _menu_gui: MenuGui = _menu_screen.scene_node
 @onready var _info_panel_gui: InfoPanelGui = _info_panel_screen.scene_node
 
 @onready var _movement_speed: float = 0
@@ -276,6 +277,7 @@ func _set_up_xr() -> void:
 
 func _set_up_controls() -> void:
 	_menu_screen.connect_scene_signal("labels_check_button_toggled", _on_menu_labels_check_button_toggled)
+	_menu_screen.connect_scene_signal("passthrough_check_button_toggled", _on_menu_passthrough_check_button_toggled)
 	
 	_info_panel_screen.connect_scene_signal("close_button_up", _on_info_panel_close_button_up)
 	_info_panel_screen.connect_scene_signal("go_to_button_up", _on_info_panel_go_to_button_up)
@@ -369,7 +371,7 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 		"ax_button":
 			_is_menu_enabled = not _is_menu_enabled
 		"by_button":
-			_passthrough_enabled = not _passthrough_enabled
+			_menu_gui.set_passthrough_check_button(not _passthrough_enabled)
 		"primary_click":
 			_body_following = null
 		"trigger_click":
@@ -460,6 +462,10 @@ func _toggle_is_game_paused() -> void:
 
 func _on_menu_labels_check_button_toggled(toggled_on: bool) -> void:
 	Game.labels_enabled = toggled_on
+
+
+func _on_menu_passthrough_check_button_toggled(toggled_on: bool) -> void:
+	_passthrough_enabled = toggled_on
 
 
 func _on_info_panel_close_button_up() -> void:

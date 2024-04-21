@@ -10,6 +10,7 @@ enum Type {
 
 const _PIVOT_NAME_SUFFIX: String = "Orbit"
 const _SELECTION_THICKNESS: float = 0.003
+const _NAME_LABEL_OFFSET: float = 0.02
 
 @export_group("Info")
 @export var picture: Texture2D
@@ -33,6 +34,8 @@ const _SELECTION_THICKNESS: float = 0.003
 @export var initial_orbital_angle: float = 0
 ## The time it takes for this body to rotate around its own axis.
 @export var rotation_period: float
+
+@onready var _name_label: Label3D = %NameLabel
 
 var _meshes: Array
 var _meshes_initial_scales: Array
@@ -78,6 +81,7 @@ var _pivot: Node3D = null
 
 
 func _ready() -> void:
+	_name_label.text = body_name
 	Game.connect("simulation_scale_changed", _on_simulation_scale_changed)
 	
 	_set_position()
@@ -91,6 +95,7 @@ func _physics_process(delta: float) -> void:
 	_scale_nodes()
 	_rotate(delta)
 	_orbit(delta)
+	_set_name_label_position()
 
 
 func _set_up_selection() -> void:
@@ -191,6 +196,15 @@ func _orbit(delta: float) -> void:
 	
 	_pivot.rotate(Vector3.UP, final_angle_speed)
 	rotate(Vector3.UP, -final_angle_speed)
+
+
+func _set_name_label_position() -> void:
+	var distance_to_player: float = \
+			global_position.distance_to(Game.player_camera_position)
+			
+	var offset: float = distance_to_player * _NAME_LABEL_OFFSET
+	
+	_name_label.position.y = longest_axis_size / 2 + offset
 
 
 func _on_simulation_scale_changed(new_scale: float) -> void:

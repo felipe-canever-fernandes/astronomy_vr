@@ -27,7 +27,8 @@ func display_body_name(body_name: String) -> void:
 
 
 func display_movement_speed(speed: float) -> void:
-	var formatted_speed: String = "Movement speed: %.3fx" % speed
+	var formatted_speed: String = "Movement speed: %dx" % speed
+	
 	_movement_speed_label.display(formatted_speed)
 
 
@@ -40,6 +41,6 @@ func display_simulation_scale(simulation_scale: float) -> void:
 
 func display_simulation_speed(simulation_speed: float) -> void:
 	var formatted_simulation_speed: String = \
-			"Simulation speed: %sx" % simulation_speed
+			"Simulation Speed: {speed}x".format({"speed": simulation_speed})
 
 	_simulation_speed_label.display(formatted_simulation_speed)

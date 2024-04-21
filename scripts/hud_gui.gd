@@ -32,7 +32,9 @@ func display_movement_speed(speed: float) -> void:
 
 
 func display_simulation_scale(simulation_scale: float) -> void:
-	var formatted_simulation_scale: String = "Simulation scale: %.3fx" % simulation_scale
+	var formatted_simulation_scale: String =  \
+			"Simulation Scale: {scale}x".format({"scale": simulation_scale})
+	
 	_simulation_scale_label.display(formatted_simulation_scale)
 
 

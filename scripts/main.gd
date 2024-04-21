@@ -1,6 +1,7 @@
 extends Node3D
 
 const _SYSTEM_HEIGHT_OFFSET: float = -0.3
+const _SIMULATION_SPEED_INDICES_PER_METER: int = 100
 const _GO_TO_MINIMUM_OFFSET: float = 1
 
 const _SIMULATION_SPEEDS: Array[float] = [
@@ -67,17 +68,8 @@ const _SIMULATION_SPEEDS: Array[float] = [
 
 @onready var _movement_speed: float = 0
 
-
 @export var simulation_accelaration: float = 1
 @export var simulation_speed_accelaration: float = 2
-
-
-@export var simulation_scale: float:
-	get:
-		return Game.simulation_scale
-	set(value):
-		Game.simulation_scale = value
-
 
 @export var initial_movement_speed: float = 0
 @export var movement_acceleration: float = 0
@@ -175,7 +167,6 @@ var _right_controller_initial_position: Vector3 = Vector3.ZERO
 
 var _is_scale_button_pressed: bool = false
 var _left_controller_initial_position: Vector3 = Vector3.ZERO
-var _system_initial_scale: float = 0
 
 var _is_movement_speed_button_pressed: bool = false
 
@@ -230,14 +221,29 @@ var _simulation_speed_index: int:
 var _paused_simulation_speed_index: int = 0
 var _normal_simulation_speed_index: int = 0
 
+var _simulation_scales: Array
+var _normal_simulation_scale_index: int = 0
+
+var __simulation_scale_index: int = 0
+
+
+var _simulation_scale_index: int:
+	get:
+		return __simulation_scale_index
+	set(value):
+		__simulation_scale_index = value
+		Game.simulation_scale = _simulation_scales[__simulation_scale_index]
+
+
+var _initial_simulation_scale_index: int = 0
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
 	Game.connect("simulation_scale_changed", _on_game_simulation_scale_changed)
 	Game.connect("simulation_speed_changed", _on_game_simulation_speed_changed)
-	_paused_simulation_speed_index = _SIMULATION_SPEEDS.find(0)
-	_normal_simulation_speed_index = _SIMULATION_SPEEDS.find(1)
-	_simulation_speed_index = _normal_simulation_speed_index
+	_set_up_simulation_speed()
+	_set_up_simulation_scale()
 	_set_up_xr()
 	_set_up_controls()
 	_set_up_system()
@@ -263,6 +269,29 @@ func _physics_process(delta: float) -> void:
 	
 	_sync_hands(origin_displacement)
 	_environment.sky_rotation = _system.global_rotation
+
+
+func _set_up_simulation_speed() -> void:
+	_paused_simulation_speed_index = _SIMULATION_SPEEDS.find(0)
+	_normal_simulation_speed_index = _SIMULATION_SPEEDS.find(1)
+	_simulation_speed_index = _normal_simulation_speed_index
+
+
+func _set_up_simulation_scale() -> void:
+	_simulation_scales.append_array(range(2, 10, 1))
+	_simulation_scales.append_array(range(10, 1000, 10))
+	
+	_simulation_scales = _simulation_scales\
+			.map(func(scale_): return scale_ / 100.0)
+	
+	_simulation_scales.append_array(range(10, 251, 1))
+	
+	for i in len(_simulation_scales):
+		if is_equal_approx(_simulation_scales[i], 1):
+			_normal_simulation_scale_index = i
+			break
+
+	_simulation_scale_index = _normal_simulation_scale_index
 
 
 func _set_up_xr() -> void:
@@ -314,8 +343,13 @@ func _scale_system() -> void:
 	if initial_distance <= 0:
 		return
 	
-	var ratio: float = final_distance / initial_distance
-	Game.simulation_scale = _system_initial_scale * ratio
+	var difference: float = final_distance - initial_distance
+	
+	var index_difference: int = \
+			int(difference * _SIMULATION_SPEED_INDICES_PER_METER)
+	
+	_simulation_scale_index = \
+			_initial_simulation_scale_index + index_difference
 
 
 func _follow_body() -> void:
@@ -386,7 +420,7 @@ func _on_left_controller_button_pressed(button_name: String) -> void:
 			_is_scale_button_pressed = true
 			_left_controller_initial_position = \
 					_left_controller.global_position
-			_system_initial_scale = Game.simulation_scale
+			_initial_simulation_scale_index = _simulation_scale_index
 
 
 func _on_left_controller_button_released(button_name: String) -> void:

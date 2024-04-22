@@ -86,10 +86,10 @@ func _ready() -> void:
 	Game.connect("simulation_scale_changed", _on_simulation_scale_changed)
 	Game.connect("labels_enabled_changed", _on_labels_enabled_changed)
 	
-	_set_position()
 	_find_nodes()
 	_set_up_selection()
 	_set_up_orbit()
+	_set_position.call_deferred()
 
 
 func _physics_process(delta: float) -> void:

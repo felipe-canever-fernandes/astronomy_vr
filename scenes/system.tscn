@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://d25ivxqix60bc"]
+[gd_scene load_steps=82 format=3 uid="uid://d25ivxqix60bc"]
 
 [ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_nttpw"]
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
@@ -64,8 +64,8 @@ material = SubResource("StandardMaterial3D_hsacj")
 radius = 0.025
 height = 0.05
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ev4h1"]
-radius = 0.1
+[sub_resource type="SphereShape3D" id="SphereShape3D_c43w5"]
+radius = 0.025
 
 [sub_resource type="SphereMesh" id="SphereMesh_ra271"]
 radius = 0.1
@@ -78,6 +78,9 @@ albedo_texture = ExtResource("9_e3ie1")
 material = SubResource("StandardMaterial3D_57ff2")
 radius = 0.1
 height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ev4h1"]
+radius = 0.1
 
 [sub_resource type="SphereMesh" id="SphereMesh_8p87a"]
 radius = 0.1
@@ -296,7 +299,7 @@ mesh = SubResource("SphereMesh_xkeb7")
 transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mercury/BodyArea" index="0"]
-shape = SubResource("SphereShape3D_ev4h1")
+shape = SubResource("SphereShape3D_c43w5")
 
 [node name="Venus" parent="." index="3" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)

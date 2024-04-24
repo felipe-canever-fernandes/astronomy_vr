@@ -237,6 +237,16 @@ var _simulation_scale_index: int:
 
 var _initial_simulation_scale_index: int = 0
 
+var _locales: Array[String] = [
+	"en",
+	"pt"
+]
+
+var _locale_labels: Dictionary = {
+	"en": "English",
+	"pt": "Português"
+}
+
 
 func _ready() -> void:
 	Game.console = _console.scene_node
@@ -308,6 +318,8 @@ func _set_up_xr() -> void:
 
 
 func _set_up_controls() -> void:
+	_menu_gui.set_up_language_option_button(_locale_labels)
+	
 	_menu_gui.set_up_simulation_scale_slider(
 		_simulation_scales,
 		_normal_simulation_scale_index,
@@ -318,6 +330,7 @@ func _set_up_controls() -> void:
 		_normal_simulation_speed_index,
 	)
 	
+	_menu_screen.connect_scene_signal("language_item_selected", _on_menu_language_item_selected)
 	_menu_screen.connect_scene_signal("simulation_scale_slider_changed", _on_menu_simulation_scale_slider_changed)
 	_menu_screen.connect_scene_signal("simulation_speed_slider_changed", _on_menu_simulation_speed_slider_changed)
 	_menu_screen.connect_scene_signal("labels_check_button_toggled", _on_menu_labels_check_button_toggled)
@@ -516,6 +529,10 @@ func _toggle_is_game_paused() -> void:
 		_menu_gui.set_simulation_speed_slider_value(
 			_old_simulation_speed_index
 		)
+
+
+func _on_menu_language_item_selected(index: int) -> void:
+	TranslationServer.set_locale(_locales[index])
 
 
 func _on_menu_simulation_scale_slider_changed(value: int) -> void:

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://fnaar1vplgqi"
+
+[deps]
+
+files=["res://translations/neptune.en.translation", "res://translations/neptune.pt.translation"]
+
+source_file="res://translations/neptune.csv"
+dest_files=["res://translations/neptune.en.translation", "res://translations/neptune.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

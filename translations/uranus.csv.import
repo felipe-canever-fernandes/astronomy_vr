@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d0k6eiuo1remg"
+
+[deps]
+
+files=["res://translations/uranus.en.translation", "res://translations/uranus.pt.translation"]
+
+source_file="res://translations/uranus.csv"
+dest_files=["res://translations/uranus.en.translation", "res://translations/uranus.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

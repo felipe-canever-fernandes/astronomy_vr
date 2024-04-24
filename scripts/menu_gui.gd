@@ -1,11 +1,13 @@
 class_name MenuGui
 extends Control
 
+signal language_item_selected(index: int)
 signal simulation_scale_slider_changed(value: int)
 signal simulation_speed_slider_changed(value: int)
 signal labels_check_button_toggled(toggled_on: bool)
 signal passthrough_check_button_toggled(toggled_on: bool)
 
+@onready var _language_option_button: OptionButton = %LanguageOptionButton
 @onready var _simulation_scale_slider: HSlider = %SimulationScaleSlider
 @onready var _simulation_scale_value_label: Label = %SimulationScaleValueLabel
 @onready var _simulation_speed_slider: HSlider = %SimulationSpeedSlider
@@ -14,6 +16,11 @@ signal passthrough_check_button_toggled(toggled_on: bool)
 
 var _simulation_scales: Array
 var _simulation_speeds: Array[float]
+
+
+func set_up_language_option_button(locale_labels: Dictionary) -> void:
+	for locale in locale_labels:
+		_language_option_button.add_item(locale_labels[locale])
 
 
 func set_up_simulation_scale_slider(
@@ -32,6 +39,10 @@ func set_up_simulation_speed_slider(
 	_simulation_speeds = values
 	_simulation_speed_slider.max_value = len(values) - 1
 	_simulation_speed_slider.value = initial_index
+
+
+func _on_language_option_button_item_selected(index: int) -> void:
+	language_item_selected.emit(index)
 
 
 func set_simulation_scale_slider_value(value: int) -> void:

@@ -8,9 +8,24 @@ extends Control
 @onready var _simulation_scale_label: FadingLabel = %SimulationScaleLabel
 @onready var _simulation_speed_label: FadingLabel = %SimulationSpeedLabel
 
+var _body_name: String = ""
+var _movement_speed: float = 0
+var _simulation_scale: float = 0
+var _simulation_speed: float = 0
+
 
 func _ready() -> void:
 	hide_following_body_name()
+
+
+func _notification(what: int) -> void:
+	if what != Node.NOTIFICATION_TRANSLATION_CHANGED:
+		return
+	
+	_update_body_name(_body_name, false)
+	_update_movement_speed(_movement_speed, false)
+	_update_simulation_scale(_simulation_scale, false)
+	_update_simulation_speed(_simulation_speed, false)
 
 
 func display_following_body_name(body_name: String) -> void:
@@ -23,24 +38,60 @@ func hide_following_body_name() -> void:
 
 
 func display_body_name(body_name: String) -> void:
-	_body_name_label.display(body_name)
+	_body_name = body_name
+	_update_body_name(body_name, true)
 
 
-func display_movement_speed(speed: float) -> void:
-	var formatted_speed: String = "Movement speed: %dx" % speed
-	
-	_movement_speed_label.display(formatted_speed)
+func display_movement_speed(movement_speed: float) -> void:
+	_movement_speed = movement_speed
+	_update_movement_speed(_movement_speed, true)
 
 
 func display_simulation_scale(simulation_scale: float) -> void:
-	var formatted_simulation_scale: String =  \
-			"Simulation Scale: {scale}x".format({"scale": simulation_scale})
-	
-	_simulation_scale_label.display(formatted_simulation_scale)
+	_simulation_scale = simulation_scale
+	_update_simulation_scale(_simulation_scale, true)
 
 
 func display_simulation_speed(simulation_speed: float) -> void:
-	var formatted_simulation_speed: String = \
-			"Simulation Speed: {speed}x".format({"speed": simulation_speed})
+	_simulation_speed = simulation_speed
+	_update_simulation_speed(_simulation_speed, true)
 
-	_simulation_speed_label.display(formatted_simulation_speed)
+
+func _update_body_name(body_name: String, should_reset: bool) -> void:
+	_body_name_label.display(body_name, should_reset)
+
+
+func _update_movement_speed(
+	movement_speed: float,
+	should_reset: bool
+) -> void:
+	var formatted_movement_speed: String =  \
+			tr("HUD_MOVEMENT_SPEED").format({
+				"movement_speed": movement_speed
+			})
+	
+	_movement_speed_label.display(formatted_movement_speed, should_reset)
+
+
+func _update_simulation_scale(
+	simulation_scale: float,
+	should_reset: bool
+) -> void:
+	var formatted_simulation_scale: String =  \
+			tr("HUD_SIMULATION_SCALE").format({
+				"simulation_scale": simulation_scale
+			})
+	
+	_simulation_scale_label.display(formatted_simulation_scale, should_reset)
+
+
+func _update_simulation_speed(
+	simulation_speed: float,
+	should_reset: bool
+) -> void:
+	var formatted_simulation_speed: String =  \
+			tr("HUD_SIMULATION_SPEED").format({
+				"simulation_speed": simulation_speed
+			})
+	
+	_simulation_speed_label.display(formatted_simulation_speed, should_reset)

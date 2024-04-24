@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cg4e88quu5qv4"
+
+[deps]
+
+files=["res://translations/moon.en.translation", "res://translations/moon.pt.translation"]
+
+source_file="res://translations/moon.csv"
+dest_files=["res://translations/moon.en.translation", "res://translations/moon.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

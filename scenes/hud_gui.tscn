@@ -55,7 +55,7 @@ grow_horizontal = 2
 
 [node name="Label" type="Label" parent="FollowingBodyNameContainer"]
 layout_mode = 2
-text = "Following"
+text = "HUD_FOLLOWING"
 label_settings = SubResource("LabelSettings_c0y5i")
 horizontal_alignment = 1
 

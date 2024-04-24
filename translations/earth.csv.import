@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://r72wftnujcls"
+
+[deps]
+
+files=["res://translations/earth.en.translation", "res://translations/earth.pt.translation"]
+
+source_file="res://translations/earth.csv"
+dest_files=["res://translations/earth.en.translation", "res://translations/earth.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

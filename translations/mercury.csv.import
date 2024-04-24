@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://1j5q3o060pno"
+
+[deps]
+
+files=["res://translations/mercury.en.translation", "res://translations/mercury.pt.translation"]
+
+source_file="res://translations/mercury.csv"
+dest_files=["res://translations/mercury.en.translation", "res://translations/mercury.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

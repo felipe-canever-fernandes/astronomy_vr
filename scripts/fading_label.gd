@@ -12,11 +12,12 @@ func _ready() -> void:
 	visible = false
 
 
-func display(new_text: String) -> void:
+func display(new_text: String, should_reset: bool = true) -> void:
 		text = new_text
 		
-		visible = true
-		_timer.start()
+		if should_reset:
+			visible = true
+			_timer.start()
 
 
 func _on_timer_timeout() -> void:

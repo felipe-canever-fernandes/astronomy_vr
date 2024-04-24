@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://xfscp5qdtjfj"
+
+[deps]
+
+files=["res://translations/venus.en.translation", "res://translations/venus.pt.translation"]
+
+source_file="res://translations/venus.csv"
+dest_files=["res://translations/venus.en.translation", "res://translations/venus.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

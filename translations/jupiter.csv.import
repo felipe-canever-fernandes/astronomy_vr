@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://x4lqfnyejsw"
+
+[deps]
+
+files=["res://translations/jupiter.en.translation", "res://translations/jupiter.pt.translation"]
+
+source_file="res://translations/jupiter.csv"
+dest_files=["res://translations/jupiter.en.translation", "res://translations/jupiter.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

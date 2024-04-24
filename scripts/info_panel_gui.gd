@@ -2,10 +2,10 @@ class_name InfoPanelGui
 extends MarginContainer
 
 var _type_names: Dictionary = {
-	Body.Type.STAR: "Star",
-	Body.Type.PLANET: "Planet",
-	Body.Type.DWARF_PLANET: "Dwarf Planet",
-	Body.Type.MOON: "Moon"
+	Body.Type.STAR: "INFO_PANEL_BODY_TYPE_STAR",
+	Body.Type.PLANET: "INFO_PANEL_BODY_TYPE_PLANET",
+	Body.Type.DWARF_PLANET: "INFO_PANEL_BODY_TYPE_DWARF_PLANET",
+	Body.Type.NATURAL_SATELLITE: "INFO_PANEL_BODY_TYPE_NATURAL_SATELLITE"
 }
 
 signal close_button_up
@@ -47,24 +47,46 @@ var body: Body:
 			_type_label.text = _type_names[_body.type]
 			
 			_average_orbital_distance_value_label.text = \
-					"%s km" % _format_number(_body.average_orbital_distance)
+					tr("INFO_PANEL_AVERAGE_ORBITAL_DISTANCE_VALUE").format({
+						"average_orbital_distance":
+								_format_number(_body.average_orbital_distance)
+					})
 					
 			_orbital_period_value_label.text = \
-					"%s day(s)" % _format_number(_body.info_orbital_period)
+					tr("INFO_PANEL_ORBITAL_PERIOD_VALUE").format({
+						"orbital_period":
+								_format_number(_body.orbital_period)
+					})
 					
 			_rotation_period_value_label.text = \
-					"%s day(s)" % _format_number(_body.info_rotation_period)
+					tr("INFO_PANEL_ROTATION_PERIOD_VALUE").format({
+						"rotation_period":
+								_format_number(_body.rotation_period)
+					})
 					
-			_radius_value_label.text = "%s km" % _format_number(_body.radius)
+			_radius_value_label.text = \
+					tr("INFO_PANEL_RADIUS_VALUE").format({
+						"radius":
+								_format_number(_body.radius)
+					})
 			
 			_mass_value_label.text = \
-					"%s quintillion(s) of kg" % _format_number(_body.mass)
+					tr("INFO_PANEL_MASS_VALUE").format({
+						"mass":
+								_format_number(_body.mass)
+					})
 			
 			_surface_gravity_value_label.text = \
-					"%s m/s²" % _format_number(_body.surface_gravity)
+					tr("INFO_PANEL_SURFACE_GRAVITY_VALUE").format({
+						"surface_gravity":
+								_format_number(_body.surface_gravity)
+					})
 					
 			_average_surface_temperature_value_label.text = \
-					"%s °C" % _format_number(_body.average_surface_temperature)
+					tr("INFO_PANEL_AVERAGE_SURFACE_TEMPERATURE_VALUE").format({
+						"average_surface_temperature":
+								_format_number(_body.average_surface_temperature)
+					})
 					
 			_description_text_label.text = _body.description
 		else:
@@ -75,6 +97,10 @@ var body: Body:
 func _ready() -> void:
 	body = null
 
+
+func _notification(what: int) -> void:
+	if what == Node.NOTIFICATION_TRANSLATION_CHANGED:
+		body = body
 
 func _on_close_button_button_up() -> void:
 	close_button_up.emit()

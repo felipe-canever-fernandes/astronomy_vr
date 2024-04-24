@@ -102,9 +102,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="MenuScreen" parent="Menu" instance=ExtResource("5_x4w6x")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
-screen_size = Vector2(0.336, 0.091)
+screen_size = Vector2(0.471, 0.108)
 scene = ExtResource("13_26tua")
-viewport_size = Vector2(538, 146)
+viewport_size = Vector2(753, 173)
 transparent = 0
 unshaded = true
 
@@ -113,10 +113,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="Screen" parent="InfoPanel" instance=ExtResource("5_x4w6x")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
-screen_size = Vector2(0.3, 0.4)
+screen_size = Vector2(0.418, 0.534)
 collision_layer = 5242880
 scene = ExtResource("22_qft3v")
-viewport_size = Vector2(600, 800)
+viewport_size = Vector2(668, 854)
 transparent = 0
 unshaded = true
 

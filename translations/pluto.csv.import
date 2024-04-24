@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b8se0qu30wvoy"
+
+[deps]
+
+files=["res://translations/pluto.en.translation", "res://translations/pluto.pt.translation"]
+
+source_file="res://translations/pluto.csv"
+dest_files=["res://translations/pluto.en.translation", "res://translations/pluto.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

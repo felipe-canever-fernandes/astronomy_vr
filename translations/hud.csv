@@ -1,0 +1,5 @@
+﻿keys,en,pt
+HUD_FOLLOWING,"Following","Seguindo"
+HUD_MOVEMENT_SPEED,"Movement Speed: {movement_speed}x","Velocidade do movimento: {movement_speed}x"
+HUD_SIMULATION_SCALE,"Simulation Scale: {simulation_scale}x","Escala da simulação: {simulation_scale}x"
+HUD_SIMULATION_SPEED,"Simulation Speed: {simulation_speed}x","Velocidade da simulação: {simulation_speed}x"

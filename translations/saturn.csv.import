@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cyxkh0t672qm2"
+
+[deps]
+
+files=["res://translations/saturn.en.translation", "res://translations/saturn.pt.translation"]
+
+source_file="res://translations/saturn.csv"
+dest_files=["res://translations/saturn.en.translation", "res://translations/saturn.pt.translation"]
+
+[params]
+
+compress=true
+delimiter=0

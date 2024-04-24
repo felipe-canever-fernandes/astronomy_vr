@@ -5,7 +5,7 @@ enum Type {
 	STAR,
 	PLANET,
 	DWARF_PLANET,
-	MOON
+	NATURAL_SATELLITE
 }
 
 const _PIVOT_NAME_SUFFIX: String = "Orbit"

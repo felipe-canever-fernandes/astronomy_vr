@@ -102,10 +102,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 [node name="MenuScreen" parent="Menu" instance=ExtResource("5_x4w6x")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
-screen_size = Vector2(0.312, 0.191)
+screen_size = Vector2(0.462, 0.314)
 scene = ExtResource("13_26tua")
-viewport_size = Vector2(499, 305)
-transparent = 0
+viewport_size = Vector2(924, 629)
 unshaded = true
 
 [node name="InfoPanel" type="Node3D" parent="."]

@@ -28,6 +28,10 @@ project/assembly_name="Astronomy VR"
 
 enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 
+[gui]
+
+theme/custom="res://resources/theme.tres"
+
 [internationalization]
 
 locale/translations=PackedStringArray("res://translations/bodies.en.translation", "res://translations/bodies.pt.translation", "res://translations/earth.en.translation", "res://translations/earth.pt.translation", "res://translations/hud.en.translation", "res://translations/hud.pt.translation", "res://translations/info_panel.en.translation", "res://translations/info_panel.pt.translation", "res://translations/jupiter.en.translation", "res://translations/jupiter.pt.translation", "res://translations/mars.en.translation", "res://translations/mars.pt.translation", "res://translations/menu.en.translation", "res://translations/menu.pt.translation", "res://translations/mercury.en.translation", "res://translations/mercury.pt.translation", "res://translations/moon.en.translation", "res://translations/moon.pt.translation", "res://translations/neptune.en.translation", "res://translations/neptune.pt.translation", "res://translations/pluto.en.translation", "res://translations/pluto.pt.translation", "res://translations/saturn.en.translation", "res://translations/saturn.pt.translation", "res://translations/sun.en.translation", "res://translations/sun.pt.translation", "res://translations/uranus.en.translation", "res://translations/uranus.pt.translation", "res://translations/venus.en.translation", "res://translations/venus.pt.translation")

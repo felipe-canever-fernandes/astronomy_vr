@@ -1,5 +1,5 @@
 class_name MenuGui
-extends Control
+extends PanelContainer
 
 signal language_item_selected(index: int)
 signal simulation_scale_slider_changed(value: int)
@@ -18,7 +18,16 @@ var _simulation_scales: Array
 var _simulation_speeds: Array[float]
 
 
+func _ready() -> void:
+	var language_option_button_popup: PopupMenu = \
+			_language_option_button.get_popup()
+	
+	language_option_button_popup.transparent_bg = true
+
+
 func set_up_language_option_button(locale_labels: Dictionary) -> void:
+	_language_option_button.clear()
+	
 	for locale in locale_labels:
 		_language_option_button.add_item(locale_labels[locale])
 

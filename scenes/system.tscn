@@ -4,32 +4,32 @@
 [ext_resource type="Script" path="res://scripts/system_collision_shape.gd" id="2_hoq6b"]
 [ext_resource type="PackedScene" uid="uid://bxg7qliyo1b16" path="res://scenes/body.tscn" id="2_wjxkg"]
 [ext_resource type="PackedScene" uid="uid://dw7pxoybt2j6p" path="res://scenes/body_selection.tscn" id="3_cwcqk"]
-[ext_resource type="Texture2D" uid="uid://cem13ygkblpqo" path="res://textures/pictures/sun.jpg" id="4_eq1ll"]
+[ext_resource type="Texture2D" uid="uid://djljkkp7wg3fr" path="res://textures/pictures/sun.jpg" id="4_eq1ll"]
 [ext_resource type="Texture2D" uid="uid://1de0dhntf5oe" path="res://textures/bodies/sun.jpg" id="4_pejri"]
 [ext_resource type="PackedScene" uid="uid://del47qxgxnctx" path="res://scenes/body_area.tscn" id="5_nucrf"]
 [ext_resource type="Script" path="res://scripts/sun_light.gd" id="6_mwi5q"]
 [ext_resource type="Texture2D" uid="uid://dpeh45xdjnauq" path="res://textures/bodies/mercury.jpg" id="8_m5lvy"]
 [ext_resource type="Texture2D" uid="uid://dlioslxer2edv" path="res://textures/bodies/venus.jpg" id="9_e3ie1"]
-[ext_resource type="Texture2D" uid="uid://dr4lldjltysd4" path="res://textures/pictures/mercury.jpg" id="9_mnls2"]
+[ext_resource type="Texture2D" uid="uid://bvxxwc74xf2ow" path="res://textures/pictures/mercury.jpg" id="9_mnls2"]
 [ext_resource type="Texture2D" uid="uid://dn0i616gdwmcd" path="res://textures/bodies/earth.jpg" id="10_fpv51"]
 [ext_resource type="Texture2D" uid="uid://dpr0yjaiynrmr" path="res://textures/bodies/moon.jpg" id="11_4wbh5"]
-[ext_resource type="Texture2D" uid="uid://b70ri2q4s46b" path="res://textures/pictures/venus.jpg" id="11_w3orm"]
-[ext_resource type="Texture2D" uid="uid://cwiidw6u6uhex" path="res://textures/pictures/earth.jpg" id="13_6imsl"]
-[ext_resource type="Texture2D" uid="uid://bc3ads1rgghj7" path="res://textures/pictures/moon.jpg" id="15_1fufj"]
+[ext_resource type="Texture2D" uid="uid://dlvvxn1nmhh4p" path="res://textures/pictures/venus.jpg" id="11_w3orm"]
+[ext_resource type="Texture2D" uid="uid://cm7xplgoqelf1" path="res://textures/pictures/earth.jpg" id="13_6imsl"]
+[ext_resource type="Texture2D" uid="uid://btkua421jvsar" path="res://textures/pictures/moon.jpg" id="15_1fufj"]
 [ext_resource type="Texture2D" uid="uid://ci4gry4fe8ihu" path="res://textures/bodies/earth_clouds.jpg" id="15_5d55y"]
 [ext_resource type="Texture2D" uid="uid://1s3b5gbtwjv7" path="res://textures/bodies/earth_normal.jpg" id="15_psxxb"]
-[ext_resource type="Texture2D" uid="uid://8dqxjxp6i7j6" path="res://textures/pictures/mars.png" id="17_5cwgo"]
 [ext_resource type="Texture2D" uid="uid://baw5econhkdw4" path="res://textures/bodies/mars.jpg" id="18_e1rjy"]
-[ext_resource type="Texture2D" uid="uid://mgrmtrrwxstr" path="res://textures/pictures/jupiter.jpg" id="19_vjare"]
+[ext_resource type="Texture2D" uid="uid://bjvrt50tnvpdx" path="res://textures/pictures/mars.jpg" id="19_h8ttk"]
+[ext_resource type="Texture2D" uid="uid://c7annpgm8qo4i" path="res://textures/pictures/jupiter.jpg" id="19_vjare"]
 [ext_resource type="Texture2D" uid="uid://dd3kl0g66mdtn" path="res://textures/bodies/jupiter.jpg" id="20_n6tlb"]
-[ext_resource type="Texture2D" uid="uid://bgcvtl81h6mtq" path="res://textures/pictures/saturn.jpg" id="21_gejy7"]
+[ext_resource type="Texture2D" uid="uid://cwtkew4nsly4j" path="res://textures/pictures/saturn.jpg" id="21_gejy7"]
 [ext_resource type="Texture2D" uid="uid://c4qikcget3e5p" path="res://textures/bodies/saturn.jpg" id="22_b1n1h"]
 [ext_resource type="Texture2D" uid="uid://dmuqakd4ny86i" path="res://textures/bodies/saturn_rings.png" id="23_yc77p"]
-[ext_resource type="Texture2D" uid="uid://v578dpebrf6j" path="res://textures/pictures/uranus.png" id="24_8modx"]
 [ext_resource type="Texture2D" uid="uid://ddfa806gbnb06" path="res://textures/bodies/uranus.jpg" id="25_aiwlm"]
-[ext_resource type="Texture2D" uid="uid://dwda86r87kreo" path="res://textures/pictures/neptune.png" id="26_3mbd7"]
+[ext_resource type="Texture2D" uid="uid://cduo1lfctcvkc" path="res://textures/pictures/uranus.jpg" id="26_rh38k"]
 [ext_resource type="Texture2D" uid="uid://co51nb1orrcys" path="res://textures/bodies/neptune.jpg" id="27_f04sc"]
-[ext_resource type="Texture2D" uid="uid://0s3bustmx0hj" path="res://textures/pictures/pluto.jpg" id="28_o5ipf"]
+[ext_resource type="Texture2D" uid="uid://c4xahojaql0rc" path="res://textures/pictures/neptune.jpg" id="28_3pygx"]
+[ext_resource type="Texture2D" uid="uid://binliemp0gw5f" path="res://textures/pictures/pluto.jpg" id="28_o5ipf"]
 [ext_resource type="Texture2D" uid="uid://byx0cxp2ruvfu" path="res://textures/bodies/pluto.jpg" id="29_y38en"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
@@ -416,7 +416,7 @@ shape = SubResource("SphereShape3D_op5jb")
 
 [node name="Mars" parent="." index="6" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
-picture = ExtResource("17_5cwgo")
+picture = ExtResource("19_h8ttk")
 body_name = "MARS_NAME"
 type = 1
 description = "MARS_DESCRIPTION"
@@ -534,7 +534,7 @@ shape = SubResource("CylinderShape3D_apscf")
 
 [node name="Uranus" parent="." index="9" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
-picture = ExtResource("24_8modx")
+picture = ExtResource("26_rh38k")
 body_name = "URANUS_NAME"
 type = 1
 description = "URANUS_DESCRIPTION"
@@ -569,7 +569,7 @@ shape = SubResource("SphereShape3D_njgux")
 
 [node name="Neptune" parent="." index="10" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
-picture = ExtResource("26_3mbd7")
+picture = ExtResource("28_3pygx")
 body_name = "NEPTUNE_NAME"
 type = 1
 description = "NEPTUNE_DESCRIPTION"

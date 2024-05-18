@@ -249,6 +249,7 @@ var _locale_labels: Dictionary = {
 
 
 func _ready() -> void:
+	TranslationServer.set_locale(OS.get_locale_language())
 	Game.console = _console.scene_node
 	Game.connect("simulation_scale_changed", _on_game_simulation_scale_changed)
 	Game.connect("simulation_speed_changed", _on_game_simulation_speed_changed)

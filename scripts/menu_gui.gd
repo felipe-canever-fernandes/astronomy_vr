@@ -29,8 +29,18 @@ func _ready() -> void:
 func set_up_language_option_button(locale_labels: Dictionary) -> void:
 	_language_option_button.clear()
 	
+	var current_locale: String = TranslationServer.get_locale()
+	var current_locale_index: int = -1
+	
 	for locale in locale_labels:
 		_language_option_button.add_item(locale_labels[locale])
+		
+		if locale == current_locale:
+			current_locale_index = _language_option_button.item_count - 1
+	
+	if current_locale_index >= 0:
+		_language_option_button.select(current_locale_index)
+	
 
 
 func set_up_simulation_scale_slider(

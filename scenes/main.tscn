@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="9_yrm02"]
 [ext_resource type="PackedScene" uid="uid://c04kwua8fsk7h" path="res://scenes/menu_gui.tscn" id="13_26tua"]
 [ext_resource type="PackedScene" uid="uid://d25ivxqix60bc" path="res://scenes/system.tscn" id="13_fo6c5"]
-[ext_resource type="PackedScene" uid="uid://dd40nqq0ykhxa" path="res://scenes/info_panel_gui.tscn" id="22_qft3v"]
+[ext_resource type="PackedScene" uid="uid://wu6ajfwy52sg" path="res://scenes/info_panel_gui.tscn" id="14_bpasv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kyjvu"]
 panorama = ExtResource("2_c3tb5")
@@ -112,11 +112,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="Screen" parent="InfoPanel" instance=ExtResource("5_x4w6x")]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, -0.3, -0.5)
-screen_size = Vector2(0.418, 0.534)
+screen_size = Vector2(0.4, 0.519)
 collision_layer = 5242880
-scene = ExtResource("22_qft3v")
-viewport_size = Vector2(668, 854)
-transparent = 0
+scene = ExtResource("14_bpasv")
+viewport_size = Vector2(800, 1038)
 unshaded = true
 
 [connection signal="button_pressed" from="XROrigin3D/LeftController" to="." method="_on_left_controller_button_pressed"]

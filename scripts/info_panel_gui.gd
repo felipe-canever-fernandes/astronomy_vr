@@ -1,5 +1,5 @@
 class_name InfoPanelGui
-extends MarginContainer
+extends VBoxContainer
 
 var _type_names: Dictionary = {
 	Body.Type.STAR: "INFO_PANEL_BODY_TYPE_STAR",
@@ -16,6 +16,8 @@ signal go_to_follow_button_up(body: Body)
 @onready var _picture_texture_rect: TextureRect = %PictureTextureRect
 @onready var _name_label: Label = %NameLabel
 @onready var _type_label: Label = %TypeLabel
+
+@onready var _tab_container: TabContainer = %TabContainer
 
 @onready var _average_orbital_distance_value_label: Label = \
 		%AverageOrbitalDistanceValueLabel
@@ -95,6 +97,9 @@ var body: Body:
 
 
 func _ready() -> void:
+	_tab_container.set_tab_title(0, "INFO_PANEL_DATA_TAB")
+	_tab_container.set_tab_title(1, "INFO_PANEL_DESCRIPTION_TAB")
+	
 	body = null
 
 
@@ -149,4 +154,3 @@ func _format_number(number: float) -> String:
 			formatted_before_dot = " " + formatted_before_dot
 	
 	return sign_symbol + formatted_before_dot + dot_symbol + after_dot
-

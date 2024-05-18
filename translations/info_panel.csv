@@ -2,6 +2,8 @@
 INFO_PANEL_GO_TO,"Go To","Ir para"
 INFO_PANEL_FOLLOW,"Follow","Seguir"
 INFO_PANEL_GO_TO_FOLLOW,"Go To + Follow","Ir para + seguir"
+INFO_PANEL_DATA_TAB,"Data","Dados"
+INFO_PANEL_DESCRIPTION_TAB,"Description","Descrição"
 INFO_PANEL_AVERAGE_ORBITAL_DISTANCE,"Average Orbital Distance","Distância orbital média"
 INFO_PANEL_AVERAGE_ORBITAL_DISTANCE_VALUE,"{average_orbital_distance} km","{average_orbital_distance} km"
 INFO_PANEL_ORBITAL_PERIOD,"Orbital Period","Período orbital"

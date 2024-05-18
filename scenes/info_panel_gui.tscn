@@ -1,20 +1,18 @@
 [gd_scene load_steps=6 format=3 uid="uid://wu6ajfwy52sg"]
 
-[ext_resource type="Texture2D" uid="uid://cwiidw6u6uhex" path="res://textures/pictures/earth.jpg" id="1_f0nlk"]
+[ext_resource type="Texture2D" uid="uid://cm7xplgoqelf1" path="res://textures/pictures/earth.jpg" id="1_f0nlk"]
 [ext_resource type="Script" path="res://scripts/info_panel_gui.gd" id="1_je1pn"]
 [ext_resource type="Texture2D" uid="uid://btclc5pafecc4" path="res://textures/ui/close_button_icon.png" id="3_ja4kj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eiamm"]
 font_size = 20
-shadow_size = 2
+shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.509804)
-shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_akquy"]
 font_size = 100
-shadow_size = 2
+shadow_size = 10
 shadow_color = Color(0, 0, 0, 0.509804)
-shadow_offset = Vector2(2, 2)
 
 [node name="VBoxContainer" type="VBoxContainer"]
 offset_right = 40.0

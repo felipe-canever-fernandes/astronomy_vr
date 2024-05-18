@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgujsn3tru3w2"]
+[gd_scene load_steps=20 format=3 uid="uid://dgujsn3tru3w2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2r76i"]
 [ext_resource type="Texture2D" uid="uid://b3qesp4kri617" path="res://textures/bodies/sky.jpg" id="2_c3tb5"]
@@ -27,6 +27,14 @@ background_mode = 2
 background_energy_multiplier = 0.03
 sky = SubResource("Sky_d8oc5")
 tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45yw1"]
+shading_mode = 0
+albedo_color = Color(0.14902, 0.85098, 0.478431, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nv5do"]
+shading_mode = 0
+albedo_color = Color(0.14902, 0.85098, 0.478431, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2r76i")
@@ -85,8 +93,11 @@ hand_material_override = ExtResource("3_tmbjj")
 distance = 100.0
 active_button_action = "ax_button"
 laser_length = 1
+laser_material = SubResource("StandardMaterial3D_45yw1")
+laser_hit_material = SubResource("StandardMaterial3D_nv5do")
 show_target = true
 target_radius = 0.005
+target_material = SubResource("StandardMaterial3D_45yw1")
 collide_with_areas = true
 
 [node name="FunctionPickup" parent="XROrigin3D/RightController" instance=ExtResource("7_q8y7u")]

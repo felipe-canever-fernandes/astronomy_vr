@@ -36,6 +36,7 @@ const _NAME_LABEL_OFFSET: float = 0.02
 @export var rotation_period: float
 
 @onready var _name_label: Label3D = %NameLabel
+@onready var _selection_material: Material = preload("res://resources/selection_material.tres")
 
 var _meshes: Array
 var _meshes_initial_scales: Array
@@ -103,18 +104,9 @@ func _physics_process(delta: float) -> void:
 func _set_up_selection() -> void:
 	for selection in _selections:
 		selection.mesh.flip_faces = true
-		selection.mesh.material = _create_selection_material()
+		selection.mesh.material = _selection_material.duplicate()
 	
 	selected = false
-
-
-func _create_selection_material() -> StandardMaterial3D:
-	var material: StandardMaterial3D = StandardMaterial3D.new()
-	
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.grow = true
-	
-	return material
 
 
 func _set_position() -> void:

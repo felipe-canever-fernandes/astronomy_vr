@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c04kwua8fsk7h"]
+[gd_scene load_steps=3 format=3 uid="uid://c04kwua8fsk7h"]
 
 [ext_resource type="Script" path="res://scripts/menu_gui.gd" id="1_ey3p8"]
+[ext_resource type="Texture2D" uid="uid://btclc5pafecc4" path="res://textures/ui/close_button_icon.png" id="2_d455p"]
 
 [node name="MenuGui" type="PanelContainer"]
 offset_right = 924.0
@@ -93,8 +94,15 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_d455p")
+
 [connection signal="item_selected" from="VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
 [connection signal="toggled" from="VBoxContainer/LabelsCheckButton" to="." method="_on_labels_check_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/PassthroughCheckButton" to="." method="_on_passthrough_check_button_toggled"]
+[connection signal="button_up" from="CloseButton" to="." method="_on_close_button_button_up"]

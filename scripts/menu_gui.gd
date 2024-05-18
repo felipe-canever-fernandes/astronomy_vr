@@ -1,6 +1,7 @@
 class_name MenuGui
 extends PanelContainer
 
+signal close_button_up
 signal language_item_selected(index: int)
 signal simulation_scale_slider_changed(value: int)
 signal simulation_speed_slider_changed(value: int)
@@ -92,3 +93,7 @@ func _on_labels_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_passthrough_check_button_toggled(toggled_on: bool) -> void:
 	passthrough_check_button_toggled.emit(toggled_on)
+
+
+func _on_close_button_button_up() -> void:
+	close_button_up.emit()

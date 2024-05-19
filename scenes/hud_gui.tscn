@@ -1,7 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cttyjmt7g11lp"]
+[gd_scene load_steps=10 format=3 uid="uid://cttyjmt7g11lp"]
 
 [ext_resource type="Script" path="res://scripts/hud_gui.gd" id="1_d6iey"]
 [ext_resource type="PackedScene" uid="uid://bhm606i4ayof5" path="res://scenes/fading_label.tscn" id="2_dahaf"]
+[ext_resource type="Texture2D" uid="uid://d1dwrnxxp5126" path="res://textures/ui/simulation_scale_icon.png" id="3_pqndr"]
+[ext_resource type="Texture2D" uid="uid://opqu68q05x6x" path="res://textures/ui/simulation_speed_icon.png" id="4_4xlku"]
+[ext_resource type="Texture2D" uid="uid://xf024nf77385" path="res://textures/ui/movement_speed_icon.png" id="5_ngi0n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c0y5i"]
 font_size = 32
@@ -18,17 +21,7 @@ font_size = 64
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2g3r0"]
-font_size = 32
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_g6285"]
-font_size = 32
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_sd4sp"]
+[sub_resource type="LabelSettings" id="LabelSettings_6nb1d"]
 font_size = 32
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
@@ -38,6 +31,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d6iey")
@@ -69,71 +63,78 @@ horizontal_alignment = 1
 [node name="BodyNameLabel" parent="." instance=ExtResource("2_dahaf")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = -178.5
-offset_top = -148.0
+offset_top = -44.0
 offset_right = 178.5
-offset_bottom = -60.0
+offset_bottom = 44.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "Body Name"
 label_settings = SubResource("LabelSettings_1oai8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MovementSpeedLabel" parent="." instance=ExtResource("2_dahaf")]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 74.0
-offset_bottom = 0.0
+offset_top = -200.0
+offset_right = 218.0
 grow_vertical = 0
-text = "Movement Speed: 1x"
-label_settings = SubResource("LabelSettings_2g3r0")
-horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SimulationScaleIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_pqndr")
+expand_mode = 1
+
+[node name="SimulationScaleLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "1x"
+label_settings = SubResource("LabelSettings_6nb1d")
 vertical_alignment = 1
 
-[node name="SimulationScaleLabel" parent="." instance=ExtResource("2_dahaf")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SimulationSpeedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("4_4xlku")
+expand_mode = 1
+
+[node name="SimulationSpeedLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -80.5
-offset_top = -23.0
-offset_right = 80.5
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "Simulation Scale: 1x"
-label_settings = SubResource("LabelSettings_g6285")
-horizontal_alignment = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "1x"
+label_settings = SubResource("LabelSettings_6nb1d")
 vertical_alignment = 1
 
-[node name="SimulationSpeedLabel" parent="." instance=ExtResource("2_dahaf")]
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MovementSpeedIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_ngi0n")
+expand_mode = 1
+
+[node name="MovementSpeedLabel" type="Label" parent="VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -304.0
-offset_top = -45.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Simulation Speed: 1x"
-label_settings = SubResource("LabelSettings_sd4sp")
-horizontal_alignment = 1
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "1x"
+label_settings = SubResource("LabelSettings_6nb1d")
 vertical_alignment = 1

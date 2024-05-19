@@ -66,7 +66,14 @@ const _SIMULATION_SPEEDS: Array[float] = [
 @onready var _menu_gui: MenuGui = _menu_screen.scene_node
 @onready var _info_panel_gui: InfoPanelGui = _info_panel_screen.scene_node
 
-@onready var _movement_speed: float = 0
+var __movement_speed: float = 0
+
+@onready var _movement_speed: float:
+	get:
+		return __movement_speed
+	set(value):
+		__movement_speed = value
+		_hud_gui.display_movement_speed(__movement_speed)
 
 @export var simulation_accelaration: float = 1
 @export var simulation_speed_accelaration: float = 2
@@ -409,8 +416,6 @@ func _move(delta: float) -> void:
 			* delta
 	
 	_initial_player_body_following_direction -= final_velocity
-	
-	_hud_gui.display_movement_speed(_movement_speed)
 
 
 func _sync_hands(displacement: Vector3) -> void:

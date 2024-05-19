@@ -339,6 +339,7 @@ func _set_up_controls() -> void:
 	)
 	
 	_menu_screen.connect_scene_signal("close_button_up", _on_menu_close_button_up)
+	_menu_screen.connect_scene_signal("restart_button_up", _on_menu_restart_button_up)
 	_menu_screen.connect_scene_signal("language_item_selected", _on_menu_language_item_selected)
 	_menu_screen.connect_scene_signal("simulation_scale_slider_changed", _on_menu_simulation_scale_slider_changed)
 	_menu_screen.connect_scene_signal("simulation_speed_slider_changed", _on_menu_simulation_speed_slider_changed)
@@ -540,6 +541,10 @@ func _toggle_is_game_paused() -> void:
 
 func _on_menu_close_button_up() -> void:
 	_is_menu_enabled = false
+
+
+func _on_menu_restart_button_up() -> void:
+	get_tree().reload_current_scene()
 
 
 func _on_menu_language_item_selected(index: int) -> void:

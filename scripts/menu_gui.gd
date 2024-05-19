@@ -2,6 +2,7 @@ class_name MenuGui
 extends PanelContainer
 
 signal close_button_up
+signal restart_button_up
 signal language_item_selected(index: int)
 signal simulation_scale_slider_changed(value: int)
 signal simulation_speed_slider_changed(value: int)
@@ -59,6 +60,11 @@ func set_up_simulation_speed_slider(
 	_simulation_speeds = values
 	_simulation_speed_slider.max_value = len(values) - 1
 	_simulation_speed_slider.value = initial_index
+
+
+func _on_restart_button_button_up() -> void:
+	restart_button_up.emit()
+
 
 
 func _on_language_option_button_item_selected(index: int) -> void:

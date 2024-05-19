@@ -18,6 +18,11 @@ theme_type_variation = &"TitleLabel"
 text = "Options"
 horizontal_alignment = 1
 
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "MENU_RESTART"
+
 [node name="LanguageLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "MENU_LANGUAGE"
@@ -100,6 +105,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("2_d455p")
 
+[connection signal="button_up" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_button_up"]
 [connection signal="item_selected" from="VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]

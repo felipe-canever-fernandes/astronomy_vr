@@ -63,6 +63,7 @@ func set_up_simulation_speed_slider(
 
 func _on_language_option_button_item_selected(index: int) -> void:
 	language_item_selected.emit(index)
+	_language_option_button.release_focus()
 
 
 func set_simulation_scale_slider_value(value: int) -> void:

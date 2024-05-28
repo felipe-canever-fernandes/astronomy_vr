@@ -9,6 +9,7 @@ signal simulation_speed_slider_changed(value: int)
 signal labels_check_button_toggled(toggled_on: bool)
 signal passthrough_check_button_toggled(toggled_on: bool)
 
+@onready var _tab_container: TabContainer = %TabContainer
 @onready var _language_option_button: OptionButton = %LanguageOptionButton
 @onready var _simulation_scale_slider: HSlider = %SimulationScaleSlider
 @onready var _simulation_scale_value_label: Label = %SimulationScaleValueLabel
@@ -21,6 +22,8 @@ var _simulation_speeds: Array[float]
 
 
 func _ready() -> void:
+	_tab_container.set_tab_title(0, "MENU_OPTIONS_TAB")
+	
 	var language_option_button_popup: PopupMenu = \
 			_language_option_button.get_popup()
 	

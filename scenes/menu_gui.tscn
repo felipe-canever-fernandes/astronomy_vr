@@ -23,11 +23,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "MENU_RESTART"
 
-[node name="LanguageLabel" type="Label" parent="VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tab_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "MENU_LANGUAGE"
 
-[node name="LanguageOptionButton" type="OptionButton" parent="VBoxContainer"]
+[node name="LanguageOptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -35,21 +52,21 @@ item_count = 1
 popup/item_0/text = "LANGUAGE"
 popup/item_0/id = 0
 
-[node name="SimulationScaleLabel" type="Label" parent="VBoxContainer"]
+[node name="SimulationScaleLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "MENU_SIMULATION_SCALE"
 
-[node name="SimulationScaleContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SimulationScaleContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SimulationScaleSlider" type="HSlider" parent="VBoxContainer/SimulationScaleContainer"]
+[node name="SimulationScaleSlider" type="HSlider" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationScaleContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 tick_count = 2
 ticks_on_borders = true
 
-[node name="SimulationScaleValueLabel" type="Label" parent="VBoxContainer/SimulationScaleContainer"]
+[node name="SimulationScaleValueLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationScaleContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -58,14 +75,14 @@ theme_type_variation = &"DetailLabel"
 text = "1000x"
 horizontal_alignment = 2
 
-[node name="SimulationSpeedLabel" type="Label" parent="VBoxContainer"]
+[node name="SimulationSpeedLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "MENU_SIMULATION_SPEED"
 
-[node name="SimulationSpeedContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SimulationSpeedContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SimulationSpeedSlider" type="HSlider" parent="VBoxContainer/SimulationSpeedContainer"]
+[node name="SimulationSpeedSlider" type="HSlider" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationSpeedContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
@@ -73,7 +90,7 @@ size_flags_horizontal = 3
 tick_count = 3
 ticks_on_borders = true
 
-[node name="SimulationSpeedValueLabel" type="Label" parent="VBoxContainer/SimulationSpeedContainer"]
+[node name="SimulationSpeedValueLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationSpeedContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -82,19 +99,19 @@ theme_type_variation = &"DetailLabel"
 text = "1000x"
 horizontal_alignment = 2
 
-[node name="LabelsLabel" type="Label" parent="VBoxContainer"]
+[node name="LabelsLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "MENU_LABELS"
 
-[node name="LabelsCheckButton" type="CheckButton" parent="VBoxContainer"]
+[node name="LabelsCheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="PassthroughLabel" type="Label" parent="VBoxContainer"]
+[node name="PassthroughLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "MENU_PASSTHROUGH"
 
-[node name="PassthroughCheckButton" type="CheckButton" parent="VBoxContainer"]
+[node name="PassthroughCheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -106,9 +123,9 @@ size_flags_vertical = 0
 icon = ExtResource("2_d455p")
 
 [connection signal="button_up" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_button_up"]
-[connection signal="item_selected" from="VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
-[connection signal="value_changed" from="VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/LabelsCheckButton" to="." method="_on_labels_check_button_toggled"]
-[connection signal="toggled" from="VBoxContainer/PassthroughCheckButton" to="." method="_on_passthrough_check_button_toggled"]
+[connection signal="item_selected" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/LabelsCheckButton" to="." method="_on_labels_check_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/PassthroughCheckButton" to="." method="_on_passthrough_check_button_toggled"]
 [connection signal="button_up" from="CloseButton" to="." method="_on_close_button_button_up"]

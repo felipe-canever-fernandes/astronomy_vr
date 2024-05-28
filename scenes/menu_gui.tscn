@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://c04kwua8fsk7h"]
+[gd_scene load_steps=16 format=3 uid="uid://c04kwua8fsk7h"]
 
 [ext_resource type="Script" path="res://scripts/menu_gui.gd" id="1_ey3p8"]
+[ext_resource type="Texture2D" uid="uid://k4b527paqtj0" path="res://textures/ui/controller_right_trigger.png" id="2_4bfrb"]
 [ext_resource type="Texture2D" uid="uid://btclc5pafecc4" path="res://textures/ui/close_button_icon.png" id="2_d455p"]
+[ext_resource type="Texture2D" uid="uid://16tym5jxoh2a" path="res://textures/ui/controller_x.png" id="2_gwfyy"]
+[ext_resource type="Texture2D" uid="uid://btgryup4vdr7b" path="res://textures/ui/controller_a.png" id="2_vm11u"]
+[ext_resource type="Texture2D" uid="uid://dqu3uavtjgc35" path="res://textures/ui/controller_b.png" id="3_lv0ah"]
+[ext_resource type="Texture2D" uid="uid://b7xj1cwhk4w7i" path="res://textures/ui/controller_left_thumbstick_x.png" id="3_p70yp"]
+[ext_resource type="Texture2D" uid="uid://vkht4mv2d7h6" path="res://textures/ui/controller_y.png" id="3_y8jyb"]
+[ext_resource type="Texture2D" uid="uid://c2hh1tpos2h6" path="res://textures/ui/controller_right_thumbstick_direction.png" id="4_2ealj"]
+[ext_resource type="Texture2D" uid="uid://demtm3kdj220l" path="res://textures/ui/controller_left_thumbstick_y.png" id="4_al17d"]
+[ext_resource type="Texture2D" uid="uid://dkox3hqyvhmyn" path="res://textures/ui/controller_right_thumbstick.png" id="4_gygff"]
+[ext_resource type="Texture2D" uid="uid://chybqad8stqi7" path="res://textures/ui/controller_left_trigger_thumbstick_y.png" id="5_e60n4"]
+[ext_resource type="Texture2D" uid="uid://ltrnxbpvn38m" path="res://textures/ui/controller_right_grip.png" id="7_ihbic"]
+[ext_resource type="Texture2D" uid="uid://dxyrk244hlxor" path="res://textures/ui/controller_left_thumbstick.png" id="10_4cm4c"]
+[ext_resource type="Texture2D" uid="uid://bndxonsxy40g" path="res://textures/ui/controller_grips.png" id="12_c3yo1"]
 
 [node name="MenuGui" type="PanelContainer"]
+custom_minimum_size = Vector2(964, 758)
 offset_right = 924.0
 offset_bottom = 615.0
 script = ExtResource("1_ey3p8")
@@ -28,23 +42,23 @@ unique_name_in_owner = true
 layout_mode = 2
 tab_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+[node name="OptionsTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/OptionsTab"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="LanguageLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "MENU_LANGUAGE"
 
-[node name="LanguageOptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="LanguageOptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -52,21 +66,21 @@ item_count = 1
 popup/item_0/text = "LANGUAGE"
 popup/item_0/id = 0
 
-[node name="SimulationScaleLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="SimulationScaleLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 text = "MENU_SIMULATION_SCALE"
 
-[node name="SimulationScaleContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="SimulationScaleContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 
-[node name="SimulationScaleSlider" type="HSlider" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationScaleContainer"]
+[node name="SimulationScaleSlider" type="HSlider" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationScaleContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 tick_count = 2
 ticks_on_borders = true
 
-[node name="SimulationScaleValueLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationScaleContainer"]
+[node name="SimulationScaleValueLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationScaleContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -75,14 +89,14 @@ theme_type_variation = &"DetailLabel"
 text = "1000x"
 horizontal_alignment = 2
 
-[node name="SimulationSpeedLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="SimulationSpeedLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 text = "MENU_SIMULATION_SPEED"
 
-[node name="SimulationSpeedContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="SimulationSpeedContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 
-[node name="SimulationSpeedSlider" type="HSlider" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationSpeedContainer"]
+[node name="SimulationSpeedSlider" type="HSlider" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationSpeedContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
@@ -90,7 +104,7 @@ size_flags_horizontal = 3
 tick_count = 3
 ticks_on_borders = true
 
-[node name="SimulationSpeedValueLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationSpeedContainer"]
+[node name="SimulationSpeedValueLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationSpeedContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
@@ -99,22 +113,266 @@ theme_type_variation = &"DetailLabel"
 text = "1000x"
 horizontal_alignment = 2
 
-[node name="LabelsLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="LabelsLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 text = "MENU_LABELS"
 
-[node name="LabelsCheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="LabelsCheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="PassthroughLabel" type="Label" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="PassthroughLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
 text = "MENU_PASSTHROUGH"
 
-[node name="PassthroughCheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/MarginContainer/VBoxContainer"]
+[node name="PassthroughCheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+
+[node name="HelpTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/TabContainer/HelpTab"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "MENU_HELP_CONTROLS"
+horizontal_alignment = 1
+
+[node name="MenuContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/MenuContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_MENU"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/MenuContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("2_gwfyy")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="RotateViewContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/RotateViewContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_ROTATE_VIEW"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/RotateViewContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("3_p70yp")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="MoveContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/MoveContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_MOVE"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/MoveContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("4_al17d")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="IncreaseMovementSpeedContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/IncreaseMovementSpeedContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_INCREASE_MOVEMENT_SPEED"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/IncreaseMovementSpeedContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("5_e60n4")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="PassthroughContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/PassthroughContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_PASSTHROUGH"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/PassthroughContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("3_y8jyb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="PointerContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/PointerContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_POINTER"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/PointerContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("2_4bfrb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="SelectContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/SelectContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_SELECT"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/SelectContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("2_vm11u")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="PauseContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/PauseContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_PAUSE"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/PauseContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("3_lv0ah")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="ChangeSimulationSpeedContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ChangeSimulationSpeedContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_CHANGE_SIMULATION_SPEED"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ChangeSimulationSpeedContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("4_2ealj")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="ResetContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ResetContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_RESET"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ResetContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("4_gygff")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="ChangeScaleContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ChangeScaleContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_CHANGE_SCALE"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ChangeScaleContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("12_c3yo1")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="GrabContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/GrabContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_GRAB"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/GrabContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("7_ihbic")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="StopFollowingContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/StopFollowingContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_STOP_FOLLOWING"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/StopFollowingContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("10_4cm4c")
+expand_mode = 5
+stretch_mode = 4
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 2
@@ -123,9 +381,9 @@ size_flags_vertical = 0
 icon = ExtResource("2_d455p")
 
 [connection signal="button_up" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_button_up"]
-[connection signal="item_selected" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
-[connection signal="value_changed" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
-[connection signal="toggled" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/LabelsCheckButton" to="." method="_on_labels_check_button_toggled"]
-[connection signal="toggled" from="VBoxContainer/TabContainer/MarginContainer/VBoxContainer/PassthroughCheckButton" to="." method="_on_passthrough_check_button_toggled"]
+[connection signal="item_selected" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/LabelsCheckButton" to="." method="_on_labels_check_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/PassthroughCheckButton" to="." method="_on_passthrough_check_button_toggled"]
 [connection signal="button_up" from="CloseButton" to="." method="_on_close_button_button_up"]

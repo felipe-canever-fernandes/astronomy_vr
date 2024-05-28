@@ -24,6 +24,7 @@ var _simulation_speeds: Array[float]
 func _ready() -> void:
 	_tab_container.set_tab_title(0, "MENU_OPTIONS_TAB")
 	_tab_container.set_tab_title(1, "MENU_HELP_TAB")
+	_tab_container.set_tab_title(2, "MENU_ABOUT_TAB")
 	
 	var language_option_button_popup: PopupMenu = \
 			_language_option_button.get_popup()

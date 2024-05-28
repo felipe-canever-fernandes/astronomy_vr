@@ -15,7 +15,7 @@ theme_override_constants/separation = 20
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
-text = "Options"
+text = "MENU_TITLE"
 horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="VBoxContainer"]

@@ -2,7 +2,7 @@
 MENU_TITLE,"Menu","Menu"
 MENU_OPTIONS_TAB,"Options","Opções"
 MENU_HELP_TAB,"Help","Ajuda"
-MENU_RESTART,"Restart","Reiniciar"
+MENU_RESTART,"Restart simulation","Reiniciar simulação"
 MENU_LANGUAGE,"Language","Idioma"
 MENU_SIMULATION_SCALE,"Simulation Scale","Escala da simulação"
 MENU_SIMULATION_SPEED,"Simulation Speed","Velocidade da simulação"

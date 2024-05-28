@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bndxonsxy40g" path="res://textures/ui/controller_grips.png" id="12_c3yo1"]
 
 [node name="MenuGui" type="PanelContainer"]
-custom_minimum_size = Vector2(964, 758)
+custom_minimum_size = Vector2(964, 775)
 offset_right = 924.0
 offset_bottom = 615.0
 script = ExtResource("1_ey3p8")
@@ -31,11 +31,6 @@ layout_mode = 2
 theme_type_variation = &"TitleLabel"
 text = "MENU_TITLE"
 horizontal_alignment = 1
-
-[node name="RestartButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "MENU_RESTART"
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -53,9 +48,14 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="LanguageLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
-visible = false
+[node name="RestartButton" type="Button" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
+text = "MENU_RESTART"
+
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 text = "MENU_LANGUAGE"
 
 [node name="LanguageOptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/OptionsTab/VBoxContainer"]
@@ -380,7 +380,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 icon = ExtResource("2_d455p")
 
-[connection signal="button_up" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_button_up"]
+[connection signal="button_up" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/RestartButton" to="." method="_on_restart_button_button_up"]
 [connection signal="item_selected" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationScaleContainer/SimulationScaleSlider" to="." method="_on_simulation_scale_slider_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/TabContainer/OptionsTab/VBoxContainer/SimulationSpeedContainer/SimulationSpeedSlider" to="." method="_on_simulation_speed_slider_value_changed"]

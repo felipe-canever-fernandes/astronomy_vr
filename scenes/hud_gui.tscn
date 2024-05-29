@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cttyjmt7g11lp"]
+[gd_scene load_steps=12 format=3 uid="uid://cttyjmt7g11lp"]
 
 [ext_resource type="Script" path="res://scripts/hud_gui.gd" id="1_d6iey"]
 [ext_resource type="PackedScene" uid="uid://bhm606i4ayof5" path="res://scenes/fading_label.tscn" id="2_dahaf"]
+[ext_resource type="Texture2D" uid="uid://5aict4dxy3wx" path="res://textures/ui/controller_x_only.png" id="2_tcp27"]
 [ext_resource type="Texture2D" uid="uid://bv24glca33ohe" path="res://textures/ui/controller_left_thumbstick_only.png" id="2_uinfb"]
 [ext_resource type="Texture2D" uid="uid://d1dwrnxxp5126" path="res://textures/ui/simulation_scale_icon.png" id="3_pqndr"]
 [ext_resource type="Texture2D" uid="uid://opqu68q05x6x" path="res://textures/ui/simulation_speed_icon.png" id="4_4xlku"]
@@ -36,6 +37,24 @@ offset_right = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d6iey")
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 1000.0
+offset_bottom = 163.0
+size_flags_vertical = 10
+
+[node name="TextureRect" type="TextureRect" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+texture = ExtResource("2_tcp27")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="MenuContainer"]
+layout_mode = 2
+text = "HUD_MENU"
 
 [node name="FollowingBodyNameContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

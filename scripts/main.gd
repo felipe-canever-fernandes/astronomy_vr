@@ -541,6 +541,7 @@ func _toggle_is_game_paused() -> void:
 
 func _on_menu_close_button_up() -> void:
 	_is_menu_enabled = false
+	_hud_gui.hide_menu_help()
 
 
 func _on_menu_restart_button_up() -> void:

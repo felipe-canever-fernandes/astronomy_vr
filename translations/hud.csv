@@ -1,5 +1,6 @@
 ﻿keys,en,pt
 HUD_FOLLOWING,"Following","Seguindo"
+HUD_STOP_FOLLOWING,"Stop Following","Parar de seguir"
 HUD_MOVEMENT_SPEED,"{movement_speed}x","{movement_speed}x"
 HUD_SIMULATION_SCALE,"{simulation_scale}x","{simulation_scale}x"
 HUD_SIMULATION_SPEED,"{simulation_speed}x","{simulation_speed}x"

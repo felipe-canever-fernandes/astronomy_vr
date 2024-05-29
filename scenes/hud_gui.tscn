@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cttyjmt7g11lp"]
+[gd_scene load_steps=11 format=3 uid="uid://cttyjmt7g11lp"]
 
 [ext_resource type="Script" path="res://scripts/hud_gui.gd" id="1_d6iey"]
 [ext_resource type="PackedScene" uid="uid://bhm606i4ayof5" path="res://scenes/fading_label.tscn" id="2_dahaf"]
+[ext_resource type="Texture2D" uid="uid://bv24glca33ohe" path="res://textures/ui/controller_left_thumbstick_only.png" id="2_uinfb"]
 [ext_resource type="Texture2D" uid="uid://d1dwrnxxp5126" path="res://textures/ui/simulation_scale_icon.png" id="3_pqndr"]
 [ext_resource type="Texture2D" uid="uid://opqu68q05x6x" path="res://textures/ui/simulation_speed_icon.png" id="4_4xlku"]
 [ext_resource type="Texture2D" uid="uid://xf024nf77385" path="res://textures/ui/movement_speed_icon.png" id="5_ngi0n"]
@@ -39,13 +40,11 @@ script = ExtResource("1_d6iey")
 [node name="FollowingBodyNameContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="FollowingBodyNameContainer"]
 layout_mode = 2
@@ -59,6 +58,23 @@ layout_mode = 2
 text = "Body Name"
 label_settings = SubResource("LabelSettings_q5wkb")
 horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FollowingBodyNameContainer"]
+modulate = Color(1, 1, 1, 0.509804)
+layout_mode = 2
+size_flags_vertical = 10
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="FollowingBodyNameContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+texture = ExtResource("2_uinfb")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="FollowingBodyNameContainer/HBoxContainer"]
+layout_mode = 2
+text = "HUD_STOP_FOLLOWING"
 
 [node name="BodyNameLabel" parent="." instance=ExtResource("2_dahaf")]
 unique_name_in_owner = true

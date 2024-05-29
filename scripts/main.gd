@@ -570,6 +570,7 @@ func _on_menu_passthrough_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_info_panel_close_button_up() -> void:
 	_is_info_panel_enabled = false
+	_hud_gui.hide_select_help()
 
 
 func _on_info_panel_go_to_button_up(body: Body) -> void:

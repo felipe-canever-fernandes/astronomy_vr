@@ -1,5 +1,6 @@
 ﻿keys,en,pt
 HUD_MENU,"Open/close menu","Abrir fechar menu"
+HUD_SELECT,"Select","Selecionar"
 HUD_FOLLOWING,"Following","Seguindo"
 HUD_STOP_FOLLOWING,"Stop Following","Parar de seguir"
 HUD_MOVEMENT_SPEED,"{movement_speed}x","{movement_speed}x"

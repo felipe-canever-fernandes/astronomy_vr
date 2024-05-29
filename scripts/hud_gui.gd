@@ -2,6 +2,7 @@ class_name HudGui
 extends Control
 
 @onready var _menu_container: VBoxContainer = %MenuContainer
+@onready var _select_container: VBoxContainer = %SelectContainer
 @onready var _following_body_name_container: VBoxContainer = %FollowingBodyNameContainer
 @onready var _following_body_name_label: Label = %FollowingBodyNameLabel
 @onready var _body_name_label: FadingLabel = %BodyNameLabel
@@ -31,6 +32,10 @@ func _notification(what: int) -> void:
 
 func hide_menu_help() -> void:
 	_menu_container.visible = false
+
+
+func hide_select_help() -> void:
+	_select_container.visible = false
 
 
 func display_following_body_name(body_name: String) -> void:

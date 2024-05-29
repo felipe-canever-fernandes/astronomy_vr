@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c04kwua8fsk7h"]
+[gd_scene load_steps=17 format=3 uid="uid://c04kwua8fsk7h"]
 
 [ext_resource type="Script" path="res://scripts/menu_gui.gd" id="1_ey3p8"]
 [ext_resource type="Texture2D" uid="uid://k4b527paqtj0" path="res://textures/ui/controller_right_trigger.png" id="2_4bfrb"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://ltrnxbpvn38m" path="res://textures/ui/controller_right_grip.png" id="7_ihbic"]
 [ext_resource type="Texture2D" uid="uid://dxyrk244hlxor" path="res://textures/ui/controller_left_thumbstick.png" id="10_4cm4c"]
 [ext_resource type="Texture2D" uid="uid://bndxonsxy40g" path="res://textures/ui/controller_grips.png" id="12_c3yo1"]
+[ext_resource type="Texture2D" uid="uid://dpkd7wa4guwlh" path="res://textures/ui/controller_right_trigger_meta.png" id="15_t8rgx"]
 
 [node name="MenuGui" type="PanelContainer"]
 custom_minimum_size = Vector2(964, 775)
@@ -36,7 +37,7 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 tab_alignment = 1
-current_tab = 2
+current_tab = 1
 
 [node name="OptionsTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
 visible = false
@@ -133,7 +134,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="HelpTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -376,7 +376,25 @@ texture = ExtResource("10_4cm4c")
 expand_mode = 5
 stretch_mode = 4
 
+[node name="ScreenshotContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ScreenshotContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"ListLabel"
+text = "MENU_HELP_SCREENSHOT"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/TabContainer/HelpTab/ScrollContainer/GridContainer/ScreenshotContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+texture = ExtResource("15_t8rgx")
+expand_mode = 5
+stretch_mode = 4
+
 [node name="AboutTab" type="MarginContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20

@@ -23,4 +23,5 @@ MENU_HELP_RESET,"Reset simulation speed to 1x","Resetar velocidade da simulaçã
 MENU_HELP_CHANGE_SCALE,"Change simulation scale","Alterar escala da simulação"
 MENU_HELP_GRAB,"Grab","Agarrar"
 MENU_HELP_STOP_FOLLOWING,"Stop following","Parar de seguir"
+MENU_HELP_SCREENSHOT,"Take screenshot","Tirar foto da tela"
 MENU_ABOUT_TEXT,"[b]Astronomy VR (Prototype)[/b] was made by me, [b]Felipe Canever Fernandes[/b], using [b]Godot Engine[/b], for my undergraduate thesis at [b]Santa Catarina Federal University[/b] under the supervision of [b]Prof. Eliane Pozzebon[/b]. The font used is Dosis by Impallari Type. The solar system textures are from https://www.solarsystemscope.com/textures/.","[b]Astronomy VR (Protótipo)[/b] foi feito por mim, [b]Felipe Canever Fernandes[/b], utilizando o motor de jogo [b]Godot Engine[/b], para o meu trabalho de conclusão de curso na [b]Universidade Federal de Santa Catarina[/b] sob a supervisão da [b]profª. Eliane Pozzebon[/b]. A fonte utilizada é Dosis por Impallari Type. As texturas do sistema solar são de https://www.solarsystemscope.com/textures/."

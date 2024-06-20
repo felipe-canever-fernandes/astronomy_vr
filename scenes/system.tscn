@@ -33,11 +33,11 @@
 [ext_resource type="Texture2D" uid="uid://byx0cxp2ruvfu" path="res://textures/bodies/pluto.jpg" id="29_y38en"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yrn17"]
-radius = 40.0
+radius = 44.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_yhy8b"]
-radius = 1.0
-height = 2.0
+radius = 3.482
+height = 6.963
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lcw7w"]
 albedo_texture = ExtResource("4_pejri")
@@ -47,45 +47,45 @@ emission_texture = ExtResource("4_pejri")
 
 [sub_resource type="SphereMesh" id="SphereMesh_0ebod"]
 material = SubResource("StandardMaterial3D_lcw7w")
-radius = 1.0
-height = 2.0
+radius = 3.482
+height = 6.963
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_curjq"]
-radius = 1.0
+radius = 3.482
 
 [sub_resource type="SphereMesh" id="SphereMesh_llkbt"]
-radius = 0.025
-height = 0.05
+radius = 0.012
+height = 0.024
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsacj"]
 albedo_texture = ExtResource("8_m5lvy")
 
 [sub_resource type="SphereMesh" id="SphereMesh_xkeb7"]
 material = SubResource("StandardMaterial3D_hsacj")
-radius = 0.025
-height = 0.05
+radius = 0.012
+height = 0.024
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c43w5"]
-radius = 0.025
+radius = 0.012
 
 [sub_resource type="SphereMesh" id="SphereMesh_ra271"]
-radius = 0.1
-height = 0.2
+radius = 0.03
+height = 0.061
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57ff2"]
 albedo_texture = ExtResource("9_e3ie1")
 
 [sub_resource type="SphereMesh" id="SphereMesh_3ukhf"]
 material = SubResource("StandardMaterial3D_57ff2")
-radius = 0.1
-height = 0.2
+radius = 0.03
+height = 0.061
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ev4h1"]
-radius = 0.1
+radius = 0.03
 
 [sub_resource type="SphereMesh" id="SphereMesh_8p87a"]
-radius = 0.1
-height = 0.199
+radius = 0.032
+height = 0.064
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mgnv7"]
 albedo_texture = ExtResource("10_fpv51")
@@ -95,8 +95,8 @@ normal_texture = ExtResource("15_psxxb")
 
 [sub_resource type="SphereMesh" id="SphereMesh_fprpx"]
 material = SubResource("StandardMaterial3D_mgnv7")
-radius = 0.1
-height = 0.199
+radius = 0.032
+height = 0.064
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wq0r"]
 transparency = 1
@@ -105,60 +105,64 @@ albedo_texture = ExtResource("15_5d55y")
 
 [sub_resource type="SphereMesh" id="SphereMesh_l4spq"]
 material = SubResource("StandardMaterial3D_0wq0r")
-radius = 0.101
-height = 0.201
+radius = 0.033
+height = 0.065
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_71fgl"]
-radius = 0.1
+radius = 0.032
 
 [sub_resource type="SphereMesh" id="SphereMesh_6lngk"]
-radius = 0.025
-height = 0.05
+radius = 0.009
+height = 0.017
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yuo56"]
 albedo_texture = ExtResource("11_4wbh5")
 
 [sub_resource type="SphereMesh" id="SphereMesh_0n8yv"]
 material = SubResource("StandardMaterial3D_yuo56")
-radius = 0.025
-height = 0.05
+radius = 0.009
+height = 0.017
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_op5jb"]
-radius = 0.025
+radius = 0.009
 
 [sub_resource type="SphereMesh" id="SphereMesh_v4nvx"]
-radius = 0.075
-height = 0.149
+radius = 0.017
+height = 0.034
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oeowk"]
 albedo_texture = ExtResource("18_e1rjy")
 
 [sub_resource type="SphereMesh" id="SphereMesh_agcks"]
 material = SubResource("StandardMaterial3D_oeowk")
-radius = 0.075
-height = 0.149
+radius = 0.017
+height = 0.034
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wyufv"]
-radius = 0.075
+radius = 0.017
 
 [sub_resource type="SphereMesh" id="SphereMesh_0hugi"]
-height = 0.935
+radius = 0.35
+height = 0.654
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i071"]
 albedo_texture = ExtResource("20_n6tlb")
 
 [sub_resource type="SphereMesh" id="SphereMesh_8gc38"]
 material = SubResource("StandardMaterial3D_7i071")
-height = 0.935
+radius = 0.35
+height = 0.654
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_onbid"]
+radius = 0.35
 
 [sub_resource type="SphereMesh" id="SphereMesh_4nrcn"]
-height = 0.902
+radius = 0.291
+height = 0.525
 
 [sub_resource type="TorusMesh" id="TorusMesh_slk3c"]
-inner_radius = 0.6
-outer_radius = 1.141
+inner_radius = 0.365
+outer_radius = 0.849
 ring_segments = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f7b6y"]
@@ -166,7 +170,8 @@ albedo_texture = ExtResource("22_b1n1h")
 
 [sub_resource type="SphereMesh" id="SphereMesh_8y4u5"]
 material = SubResource("StandardMaterial3D_f7b6y")
-height = 0.902
+radius = 0.291
+height = 0.525
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6i68p"]
 transparency = 1
@@ -174,59 +179,60 @@ albedo_texture = ExtResource("23_yc77p")
 
 [sub_resource type="TorusMesh" id="TorusMesh_glt5e"]
 material = SubResource("StandardMaterial3D_6i68p")
-outer_radius = 1.141
+inner_radius = 0.365
+outer_radius = 0.849
 ring_segments = 3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a6b1s"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_apscf"]
 height = 0.01
-radius = 1.0
+radius = 0.75
 
 [sub_resource type="SphereMesh" id="SphereMesh_adq7n"]
-radius = 0.3
-height = 0.586
+radius = 0.127
+height = 0.248
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_djepl"]
 albedo_texture = ExtResource("25_aiwlm")
 
 [sub_resource type="SphereMesh" id="SphereMesh_3jyr0"]
 material = SubResource("StandardMaterial3D_djepl")
-radius = 0.3
-height = 0.586
+radius = 0.127
+height = 0.248
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_njgux"]
-radius = 0.3
+radius = 0.127
 
 [sub_resource type="SphereMesh" id="SphereMesh_1fbt8"]
-radius = 0.3
-height = 0.59
+radius = 0.123
+height = 0.242
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xtsu"]
 albedo_texture = ExtResource("27_f04sc")
 
 [sub_resource type="SphereMesh" id="SphereMesh_58kai"]
 material = SubResource("StandardMaterial3D_8xtsu")
-radius = 0.3
-height = 0.59
+radius = 0.123
+height = 0.242
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7w1ce"]
-radius = 0.3
+radius = 0.123
 
 [sub_resource type="SphereMesh" id="SphereMesh_sml37"]
-radius = 0.025
-height = 0.05
+radius = 0.006
+height = 0.012
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4qjb"]
 albedo_texture = ExtResource("29_y38en")
 
 [sub_resource type="SphereMesh" id="SphereMesh_kxy6g"]
 material = SubResource("StandardMaterial3D_n4qjb")
-radius = 0.025
-height = 0.05
+radius = 0.006
+height = 0.012
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_efcn6"]
-radius = 0.025
+radius = 0.006
 
 [node name="System" instance=ExtResource("1_nttpw")]
 collision_mask = 65540
@@ -267,11 +273,11 @@ shape = SubResource("SphereShape3D_curjq")
 [node name="Light" type="OmniLight3D" parent="Sun" index="3"]
 light_energy = 10.0
 light_size = 1.0
-omni_range = 40.0
+omni_range = 44.0
 script = ExtResource("6_mwi5q")
 
 [node name="Mercury" parent="." index="2" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 picture = ExtResource("9_mnls2")
 body_name = "MERCURY_NAME"
 type = 1
@@ -284,7 +290,7 @@ mass = 330110.0
 surface_gravity = 3.7
 average_surface_temperature = 167.0
 parent = NodePath("../Sun")
-orbital_distance = 4.0
+orbital_distance = 8.0
 orbital_period = 88.0
 initial_orbital_angle = -2.402
 rotation_period = 176.0
@@ -306,7 +312,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999998, -0.00174533, 0, 0.00174533, 0.9999
 shape = SubResource("SphereShape3D_c43w5")
 
 [node name="Venus" parent="." index="3" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
 picture = ExtResource("11_w3orm")
 body_name = "VENUS_NAME"
 type = 1
@@ -319,7 +325,7 @@ mass = 4.8675e+06
 surface_gravity = 8.87
 average_surface_temperature = 465.0
 parent = NodePath("../Sun")
-orbital_distance = 8.0
+orbital_distance = 12.0
 orbital_period = 225.0
 initial_orbital_angle = -0.026
 rotation_period = 117.0
@@ -341,7 +347,7 @@ transform = Transform3D(1, 0, 0, 0, -0.99863, -0.052336, 0, 0.052336, -0.99863, 
 shape = SubResource("SphereShape3D_ev4h1")
 
 [node name="Earth" parent="." index="4" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
 picture = ExtResource("13_6imsl")
 body_name = "EARTH_NAME"
 type = 1
@@ -354,7 +360,7 @@ mass = 5.97217e+06
 surface_gravity = 9.1
 average_surface_temperature = 15.0
 parent = NodePath("../Sun")
-orbital_distance = 12.0
+orbital_distance = 16.0
 orbital_period = 365.0
 initial_orbital_angle = -2.643
 rotation_period = 1.0
@@ -380,7 +386,7 @@ transform = Transform3D(1, 0, 0, 0, 0.920505, -0.390731, 0, 0.390731, 0.920505, 
 shape = SubResource("SphereShape3D_71fgl")
 
 [node name="Moon" parent="." index="5" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
 picture = ExtResource("15_1fufj")
 body_name = "MOON_NAME"
 type = 3
@@ -415,7 +421,7 @@ transform = Transform3D(1, 0, 0, 0, 0.996041, -0.0888943, 0, 0.0888943, 0.996041
 shape = SubResource("SphereShape3D_op5jb")
 
 [node name="Mars" parent="." index="6" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 picture = ExtResource("19_h8ttk")
 body_name = "MARS_NAME"
 type = 1
@@ -428,7 +434,7 @@ mass = 641710.0
 surface_gravity = 3.721
 average_surface_temperature = -60.0
 parent = NodePath("../Sun")
-orbital_distance = 16.0
+orbital_distance = 20.0
 orbital_period = 687.0
 initial_orbital_angle = -0.624
 rotation_period = 1.027
@@ -450,7 +456,7 @@ transform = Transform3D(1, 0, 0, 0, 0.906308, -0.422618, 0, 0.422618, 0.906308, 
 shape = SubResource("SphereShape3D_wyufv")
 
 [node name="Jupiter" parent="." index="7" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24)
 picture = ExtResource("19_vjare")
 body_name = "JUPITER_NAME"
 type = 1
@@ -463,7 +469,7 @@ mass = 1.8982e+09
 surface_gravity = 24.79
 average_surface_temperature = -108.0
 parent = NodePath("../Sun")
-orbital_distance = 20.0
+orbital_distance = 24.0
 orbital_period = 4332.59
 initial_orbital_angle = 0.966
 rotation_period = 0.414
@@ -485,7 +491,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99863, -0.052336, 0, 0.052336, 0.99863, 0,
 shape = SubResource("SphereShape3D_onbid")
 
 [node name="Saturn" parent="." index="8" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
 picture = ExtResource("21_gejy7")
 body_name = "SATURN_NAME"
 type = 1
@@ -498,7 +504,7 @@ mass = 5.6834e+08
 surface_gravity = 10.44
 average_surface_temperature = -143.0
 parent = NodePath("../Sun")
-orbital_distance = 24.0
+orbital_distance = 28.0
 orbital_period = 10755.7
 initial_orbital_angle = -0.329
 rotation_period = 0.439
@@ -533,7 +539,7 @@ shape = SubResource("SphereShape3D_a6b1s")
 shape = SubResource("CylinderShape3D_apscf")
 
 [node name="Uranus" parent="." index="9" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 28)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
 picture = ExtResource("26_rh38k")
 body_name = "URANUS_NAME"
 type = 1
@@ -546,7 +552,7 @@ mass = 8.681e+07
 surface_gravity = 8.69
 average_surface_temperature = -195.0
 parent = NodePath("../Sun")
-orbital_distance = 28.0
+orbital_distance = 32.0
 orbital_period = 30688.5
 initial_orbital_angle = 0.918
 rotation_period = 0.718
@@ -568,7 +574,7 @@ transform = Transform3D(1, 0, 0, 0, -0.139173, -0.990268, 0, 0.990268, -0.139173
 shape = SubResource("SphereShape3D_njgux")
 
 [node name="Neptune" parent="." index="10" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
 picture = ExtResource("28_3pygx")
 body_name = "NEPTUNE_NAME"
 type = 1
@@ -581,7 +587,7 @@ mass = 1.02409e+08
 surface_gravity = 11.15
 average_surface_temperature = -214.0
 parent = NodePath("../Sun")
-orbital_distance = 32.0
+orbital_distance = 36.0
 orbital_period = 60195.0
 initial_orbital_angle = -0.049
 rotation_period = 0.671
@@ -603,7 +609,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
 shape = SubResource("SphereShape3D_7w1ce")
 
 [node name="Pluto" parent="." index="11" node_paths=PackedStringArray("parent") instance=ExtResource("2_wjxkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40)
 picture = ExtResource("28_o5ipf")
 body_name = "PLUTO_NAME"
 type = 2
@@ -616,7 +622,7 @@ mass = 13030.0
 surface_gravity = 0.62
 average_surface_temperature = -232.0
 parent = NodePath("../Sun")
-orbital_distance = 36.0
+orbital_distance = 40.0
 orbital_period = 90560.0
 initial_orbital_angle = -1.044
 rotation_period = 6.387
